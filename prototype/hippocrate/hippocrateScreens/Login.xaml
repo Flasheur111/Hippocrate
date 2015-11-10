@@ -1,0 +1,61 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="Screen_1_Name"
+	mc:Ignorable="d"
+	x:Class="hippocrateScreens.Screen_1"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot" Background="White">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="_SketchFlowAnimation_SketchFlowAnimation" d:IsSketchFlowAnimation="True">
+				<VisualStateGroup.Transitions>
+					<VisualTransition GeneratedDuration="0:0:0.5" To="SketchFlowAnimationFrame">
+						<VisualTransition.GeneratedEasingFunction>
+							<CubicEase EasingMode="EaseInOut"/>
+						</VisualTransition.GeneratedEasingFunction>
+					</VisualTransition>
+					<VisualTransition From="holdtimes" GeneratedDuration="0:0:0.5" To="SketchFlowAnimationFrame"/>
+				</VisualStateGroup.Transitions>
+				<VisualState x:Name="holdtimes"/>
+				<VisualState x:Name="SketchFlowAnimationFrame">
+					<Storyboard>
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="button">
+							<EasingDoubleKeyFrame KeyTime="0" Value="303"/>
+						</DoubleAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+				<VisualState x:Name="_SketchFlowAnimation_base">
+					<Storyboard/>
+				</VisualState>
+			</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="3*"/>
+		</Grid.ColumnDefinitions>
+        <Rectangle Fill="#FF232222" Grid.Column="0" />
+        <Rectangle Grid.Column="1" Fill="#FF787878" />
+		<TextBox Height="28.199" Margin="102.989,162.452,162.452,0" Style="{DynamicResource BasicTextBox-Sketch}" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Grid.Column="1"/>
+		<PasswordBox Height="Auto" Margin="102.989,218.238,162.452,230.498" Style="{DynamicResource PasswordBox-Sketch}" Password="password" Grid.Column="1" Background="White"/>
+		<TextBlock Height="42.75" Margin="8,21.75,8,0" Style="{DynamicResource BasicTextBlock-Sketch}" VerticalAlignment="Top" Foreground="White" FontSize="24" TextAlignment="Center"><Run Language="fr-fr" Text="Hippocrate"/></TextBlock>
+		<Button x:Name="button" Grid.Column="1" Height="79.5" Margin="154.59,0,195.25,25.5" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Content="Go&#xd;&#xa;" RenderTransformOrigin="0.5,0.5">
+			<Button.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform/>
+					<RotateTransform/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</Button.RenderTransform>
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:PlaySketchFlowAnimationAction SketchFlowAnimation="_SketchFlowAnimation_SketchFlowAnimation"/>
+					<pi:NavigateToScreenAction TargetScreen="hippocrateScreens.Screen_2"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+		
+	</Grid>
+</UserControl>

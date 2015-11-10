@@ -1,0 +1,43 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:hippocrateScreens" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="Screen_2_Name"
+	mc:Ignorable="d"
+	x:Class="hippocrateScreens.Screen_2"
+	Width="640" Height="480">
+
+    <Grid x:Name="LayoutRoot" Background="#FF232222">
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="1.1*"/>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="1.1*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0,0,0,0"  Grid.Column="1" Grid.ColumnSpan="5"/>
+        <Button Grid.Column="2" Margin="0" Grid.Row="1">
+        	<Button.Background>
+        		<ImageBrush ImageSource="malade.png"/>
+        	</Button.Background>
+        	<i:Interaction.Triggers>
+        		<i:EventTrigger EventName="Click">
+        			<pi:NavigateToScreenAction TargetScreen="hippocrateScreens.List"/>
+        		</i:EventTrigger>
+        	</i:Interaction.Triggers>
+        </Button>
+        <Button Grid.Column="4" Margin="0" Grid.Row="1">
+        	<Button.Background>
+        		<ImageBrush ImageSource="doc.png"/>
+        	</Button.Background>
+        </Button>
+        <local:Screen_1_1 Height="Auto" Grid.RowSpan="3" Width="Auto" d:IsPrototypingComposition="True"/>
+	</Grid>
+</UserControl>

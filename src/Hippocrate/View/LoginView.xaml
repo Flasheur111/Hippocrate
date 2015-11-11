@@ -23,7 +23,11 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="6" />
-        <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" FontSize="53.333" TextWrapping="WrapWithOverflow"><Run FontSize="40" Text="Bienvenue sur Hippocrate !"/><LineBreak/><Run FontSize="22" Text="Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/></TextBlock>
+        <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" TextWrapping="WrapWithOverflow" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" >
+            <Run FontSize="40" Text="Bienvenue sur Hippocrate !"/>
+            <LineBreak/>
+            <Run FontWeight="Light" FontSize="20" Text="Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/>
+        </TextBlock>
         <TextBox Style="{StaticResource PlaceHolder}" Tag="Login" Background="{StaticResource LightGray}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="447" FontSize="26.667"/>
         <TextBox Style="{StaticResource PlaceHolder}" Background="{StaticResource LightGray}"  Tag="Pass pas sécu" HorizontalAlignment="Left"  Grid.Row="3" TextWrapping="Wrap" Width="447" FontSize="26.667" />
         <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24"/>

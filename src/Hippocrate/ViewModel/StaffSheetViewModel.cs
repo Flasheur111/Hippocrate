@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System.Windows.Controls;
 
 namespace Hippocrate.ViewModel
 {
@@ -10,11 +11,24 @@ namespace Hippocrate.ViewModel
     /// </summary>
     public class StaffSheetViewModel : ViewModelBase
     {
+        private UserControl _windowContent;
+
+        public UserControl WindowContent
+        {
+            get { return _windowContent; }
+            set
+            {
+                _windowContent = value;
+                RaisePropertyChanged(nameof(WindowContent));
+            }
+        }
         /// <summary>
         /// Initializes a new instance of the StaffSheetViewModel class.
         /// </summary>
         public StaffSheetViewModel()
         {
+            // WindowContent = new StaffSheetView();
+            // WindowContent.DataContext = this;
         }
     }
 }

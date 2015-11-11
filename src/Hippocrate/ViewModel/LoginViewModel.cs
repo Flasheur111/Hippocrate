@@ -52,7 +52,7 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public LoginViewModel()
         {
-            WindowContent = new View.Login();
+            WindowContent = new View.LoginView();
             WindowContent.DataContext = this;
         }
     }

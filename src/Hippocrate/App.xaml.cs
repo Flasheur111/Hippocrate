@@ -31,7 +31,7 @@ namespace Hippocrate
             base.OnStartup(e);
 
             LoginViewModel loginViewModel = new ViewModelLocator().Login;
-            View.MainWindow view = new View.MainWindow();
+            View.MainView view = new View.MainView();
 
             view.DataContext = loginViewModel;
             view.Show();

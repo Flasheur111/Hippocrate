@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Hippocrate.View
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Logique d'interaction pour SidebarView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class SidebarView : UserControl
     {
-        public MainView()
+        public SidebarView()
         {
             InitializeComponent();
         }

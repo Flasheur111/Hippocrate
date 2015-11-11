@@ -265,7 +265,7 @@
         <!-- ViewModel dico -->
         
         <ResourceDictionary x:Key="ViewModels">
-            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:Hippocrate.ViewModel" />
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"  xmlns:vm="clr-namespace:Hippocrate.ViewModel"/>
         </ResourceDictionary>
         
     </Application.Resources>

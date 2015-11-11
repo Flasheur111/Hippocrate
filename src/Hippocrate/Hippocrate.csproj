@@ -101,6 +101,9 @@
     <Compile Include="View\PatientSheet.xaml.cs">
       <DependentUpon>PatientSheet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SidebarView.xaml.cs">
+      <DependentUpon>SidebarView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\ServiceUserManager.cs" />
@@ -160,6 +163,10 @@
     <Page Include="View\PatientSheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SidebarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

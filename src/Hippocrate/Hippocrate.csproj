@@ -81,7 +81,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Moncul.cs" />
+    <Compile Include="ViewModel\AddPatientViewModel.cs" />
+    <Compile Include="ViewModel\AddStaffViewModel.cs" />
+    <Compile Include="ViewModel\DeleteUserViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\PatientSheetViewModel.cs" />
+    <Compile Include="ViewModel\PatientsListViewModel.cs" />
+    <Compile Include="ViewModel\StaffListViewModel.cs" />
+    <Compile Include="ViewModel\StaffSheetViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\PatientSheet.xaml.cs">
       <DependentUpon>PatientSheet.xaml</DependentUpon>
     </Compile>

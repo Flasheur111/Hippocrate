@@ -42,7 +42,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
       </Style.Setters>
     </Style>
-    <ResourceDictionary>
+    <ResourceDictionary x:Key="ViewModels">
       <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:Hippocrate.ViewModel" />
     </ResourceDictionary>
   </Application.Resources>

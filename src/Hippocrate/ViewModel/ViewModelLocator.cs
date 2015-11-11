@@ -39,6 +39,7 @@ namespace Hippocrate.ViewModel
             SimpleIoc.Default.Register<PatientsListViewModel>();
             SimpleIoc.Default.Register<StaffListViewModel>();
             SimpleIoc.Default.Register<StaffSheetViewModel>();
+            SimpleIoc.Default.Register<View.MainWindow>();
         }
 
         public AddPatientViewModel AddPatient
@@ -49,7 +50,7 @@ namespace Hippocrate.ViewModel
             }
         }
 
-        public AddStaffViewModel addStaff
+        public AddStaffViewModel AddStaff
         {
             get
             {
@@ -100,6 +101,14 @@ namespace Hippocrate.ViewModel
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
+        }
+
+        public View.MainWindow Window
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<View.MainWindow>();
+            }
         }
     }
 }

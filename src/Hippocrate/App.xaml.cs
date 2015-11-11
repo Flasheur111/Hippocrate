@@ -31,10 +31,11 @@ namespace Hippocrate
             base.OnStartup(e);
 
             LoginViewModel loginViewModel = new ViewModelLocator().Login;
-            View.MainView view = new View.MainView();
 
-            view.DataContext = loginViewModel;
-            view.Show();
+            var window = new ViewModelLocator().Window;
+
+            window.DataContext = loginViewModel;
+            window.Show();
         }
     }
 }

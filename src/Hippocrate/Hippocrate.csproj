@@ -58,6 +58,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\PatientSheet.xaml.cs">
+      <DependentUpon>PatientSheet.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="View\MainView.xaml.cs">
@@ -94,6 +97,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\back_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\plus_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

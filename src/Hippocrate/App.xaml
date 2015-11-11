@@ -3,6 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="View/MainView.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="Primary" Color="#404040" />
+        <SolidColorBrush x:Key="Second" Color="#a1a1a1" />
+        <SolidColorBrush x:Key="LightGray" Color="#bdbdbd" />
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="Foreground" Value="{StaticResource Primary}" />
+            </Style.Setters>
+        </Style> 
+        <Style x:Key="Subtitle" TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Foreground" Value="{StaticResource Primary}" />
+            </Style.Setters>
+        </Style> 
+        <Style x:Key="CustomTabControl" TargetType="TabControl">
+            <Style.Setters>
+                <Setter Property="Background" Value="Transparent" />
+            </Style.Setters>
+        </Style>
+        <Style x:Key="CustomTabItem" TargetType="TabItem">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Foreground" Value="{StaticResource Primary}" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style.Setters>
+        </Style>
+        <Style x:Key="RoundButton" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Width" Value="40" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style.Setters>
+        </Style>
+        <Style x:Key="CustomListBox" TargetType="ListBox">
+            <Style.Setters>
+                <Setter Property="Background" Value="{StaticResource LightGray}" />
+                <Setter Property="Foreground" Value="{StaticResource Primary}" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+            </Style.Setters>
+        </Style>
     </Application.Resources>
 </Application>

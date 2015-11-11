@@ -83,6 +83,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusinessManagement\User.cs" />
+    <Compile Include="Helper\PasswordConverter.cs" />
+    <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\AddStaffViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />

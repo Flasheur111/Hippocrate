@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Hippocrate.ViewModel
 {
@@ -11,6 +13,15 @@ namespace Hippocrate.ViewModel
     /// </summary>
     public class LoginViewModel : ViewModelBase
     {
+        private RelayCommand _connectionCommand;
+
+        public RelayCommand ConnectionCommand
+        {
+            get { return _connectionCommand; }
+            set { _connectionCommand = value; }
+        }
+
+
         private UserControl _windowContent;
 
         public UserControl WindowContent
@@ -43,7 +54,13 @@ namespace Hippocrate.ViewModel
         public string Password
         {
             get { return _password; }
-            set { _password = value; }
+            set
+            {
+                if (_password != value)
+                {
+                    _password = value;
+                }
+            }
         }
 
 
@@ -52,8 +69,25 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public LoginViewModel()
         {
+            Login = "";
+            Password = "";
+
+            _connectionCommand = new RelayCommand(async () => {
+                bool isConnected = await BusinessManagement.User.ConnectAsync(Login, Password);
+                if (isConnected || !isConnected) {
+                    PatientSheetViewModel ps = new PatientSheetViewModel();
+                    new ViewModelLocator().Window.DataContext = ps;
+                    RaisePropertyChanged("WindowContent");
+                };
+
+            }, 
+            () =>
+            Password.Length > 0 && Login.Length > 0
+            );
+
             WindowContent = new View.LoginView();
             WindowContent.DataContext = this;
+            
         }
     }
 }

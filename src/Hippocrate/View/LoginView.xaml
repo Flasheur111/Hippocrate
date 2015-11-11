@@ -6,8 +6,12 @@
              xmlns:local="clr-namespace:Hippocrate.View"
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
+             Width="980"
+             Height="660"
+             Margin="{Binding Padding, RelativeSource={RelativeSource Mode=FindAncestor, 
+                                 AncestorType={x:Type ContentControl }}}"
              >
-    <Grid>
+    <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -19,9 +23,9 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="6" />
-        <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" FontSize="53.333" TextWrapping="WrapWithOverflow"><Run FontSize="40" Text="Bienvenue sur Hippocrate !"/><LineBreak/><Run FontSize="26.667" Text="Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/></TextBlock>
-        <TextBox Style="{StaticResource PlaceHolder}" Tag="Login" Background="{StaticResource LightGray}" Foreground="{StaticResource Second}" HorizontalAlignment="Left" Margin="10,10,0,-5" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="447" FontSize="26.667"/>
-        <TextBox Background="{StaticResource LightGray}" Foreground="{StaticResource Second}" HorizontalAlignment="Left" Margin="10,10,0,-5" Grid.Row="3" TextWrapping="Wrap" Text="TextBox" Width="447" FontSize="26.667" />
-        <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="4" Width="146" Background="{StaticResource Primary}" FontSize="24"/>
+        <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" FontSize="53.333" TextWrapping="WrapWithOverflow"><Run FontSize="40" Text="Bienvenue sur Hippocrate !"/><LineBreak/><Run FontSize="22" Text="Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/></TextBlock>
+        <TextBox Style="{StaticResource PlaceHolder}" Tag="Login" Background="{StaticResource LightGray}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="447" FontSize="26.667"/>
+        <TextBox Style="{StaticResource PlaceHolder}" Background="{StaticResource LightGray}"  Tag="Pass pas sécu" HorizontalAlignment="Left"  Grid.Row="3" TextWrapping="Wrap" Width="447" FontSize="26.667" />
+        <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24"/>
     </Grid>
 </UserControl>

@@ -19,7 +19,7 @@ namespace Hippocrate.ViewModel
             set
             {
                 _windowContent = value;
-                RaisePropertyChanged(nameof(WindowContent));
+                RaisePropertyChanged("WindowContent");
             }
         }
         /// <summary>

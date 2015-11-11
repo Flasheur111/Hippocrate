@@ -1,0 +1,21 @@
+﻿<Window x:Class="Hippocrate.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Hippocrate" Height="720" Width="1280">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="1040" />
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#404040" />
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="1">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#a1a1a1" />
+            </Rectangle.Fill>
+        </Rectangle>
+    </Grid>
+</Window>

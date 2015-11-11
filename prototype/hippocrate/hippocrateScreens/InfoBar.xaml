@@ -15,7 +15,13 @@
     	</Rectangle>
     	<TextBlock Margin="8,196.5,8,0" Style="{DynamicResource BasicTextBlock-Sketch}" Foreground="White" FontSize="21.333" HorizontalAlignment="Center" Height="36" VerticalAlignment="Top"><Run Language="fr-fr" Text="Frédéric D."/></TextBlock>
     	<Button Content="mon compte" Height="27" Margin="47.595,0,8,106.5" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"/>
-    	<Button Content="déconnexion" Height="23.363" Margin="47.595,0,8,79.137" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" Background="{x:Null}"/>
+    	<Button Content="déconnexion" Height="23.363" Margin="47.595,0,8,79.137" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" Background="{x:Null}">
+    		<i:Interaction.Triggers>
+    			<i:EventTrigger EventName="Click">
+    				<pi:NavigateToScreenAction TargetScreen="hippocrateScreens.Screen_1"/>
+    			</i:EventTrigger>
+    		</i:Interaction.Triggers>
+    	</Button>
     	<TextBlock Height="42.75" Margin="8,0,8,8" Style="{DynamicResource BasicTextBlock-Sketch}" VerticalAlignment="Bottom" Foreground="White" FontSize="24" TextAlignment="Center" Opacity="0.245"><Run Language="fr-fr" Text="Hippocrate"/></TextBlock>
     </Grid>
 </UserControl>

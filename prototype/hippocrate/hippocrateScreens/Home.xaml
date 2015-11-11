@@ -29,6 +29,11 @@
         	</Rectangle.Fill>
         </Rectangle>
         <Rectangle Grid.Column="2" Grid.Row="3" Opacity="0.75">
+        	<i:Interaction.Triggers>
+        		<i:EventTrigger EventName="MouseLeftButtonDown">
+        			<pi:NavigateToScreenAction TargetScreen="hippocrateScreens.List"/>
+        		</i:EventTrigger>
+        	</i:Interaction.Triggers>
         	<Rectangle.Fill>
         		<ImageBrush ImageSource="noun_206184_cc.png" Stretch="Uniform"/>
         	</Rectangle.Fill>

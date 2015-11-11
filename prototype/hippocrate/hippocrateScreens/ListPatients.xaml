@@ -28,7 +28,13 @@
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
         <local:Screen_1_1 Height="Auto" Grid.RowSpan="7" Width="Auto" d:IsPrototypingComposition="True"/>
-        <Button Content="&lt;-" Grid.Column="2" Grid.Row="1" Style="{DynamicResource Button-Sketch}" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}"/>
+        <Button Content="&lt;-" Grid.Column="2" Grid.Row="1" Style="{DynamicResource Button-Sketch}" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}">
+        	<i:Interaction.Triggers>
+        		<i:EventTrigger EventName="Click">
+        			<pi:NavigateBackAction/>
+        		</i:EventTrigger>
+        	</i:Interaction.Triggers>
+        </Button>
         <Rectangle Grid.Column="3" Grid.Row="1" Margin="0,5,0,0" Opacity="0.75">
         	<Rectangle.Fill>
         		<ImageBrush ImageSource="noun_206184_cc.png" Stretch="Uniform"/>

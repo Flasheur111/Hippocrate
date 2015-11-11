@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="6" />
         <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" FontSize="53.333" TextWrapping="WrapWithOverflow"><Run FontSize="40" Text="Bienvenue sur Hippocrate !"/><LineBreak/><Run FontSize="26.667" Text="Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/></TextBlock>
-        <TextBox Background="{StaticResource LightGray}" Foreground="{StaticResource Second}" HorizontalAlignment="Left" Margin="10,10,0,-5" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="Identifiant" Width="447" FontSize="26.667"/>
+        <TextBox Style="{StaticResource PlaceHolder}" Tag="Login" Background="{StaticResource LightGray}" Foreground="{StaticResource Second}" HorizontalAlignment="Left" Margin="10,10,0,-5" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="447" FontSize="26.667"/>
         <TextBox Background="{StaticResource LightGray}" Foreground="{StaticResource Second}" HorizontalAlignment="Left" Margin="10,10,0,-5" Grid.Row="3" TextWrapping="Wrap" Text="TextBox" Width="447" FontSize="26.667" />
         <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="4" Width="146" Background="{StaticResource Primary}" FontSize="24"/>
     </Grid>

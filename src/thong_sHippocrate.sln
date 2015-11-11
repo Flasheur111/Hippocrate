@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf-Medical", "Wcf-Medical\Wcf-Medical.csproj", "{0040AD7D-3BB5-443C-9101-FAA725F7FB54}"
 EndProject
@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dbo", "Dbo\Dbo.csproj", "{E251EA27-0BE8-46DF-9E11-5F86E2402E84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hippocrate", "Hippocrate\Hippocrate.csproj", "{C4D83727-0388-4769-8C8B-F9C37C494F45}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0040AD7D-3BB5-443C-9101-FAA725F7FB54} = {0040AD7D-3BB5-443C-9101-FAA725F7FB54}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

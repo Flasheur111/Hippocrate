@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hippocrate.View"
         mc:Ignorable="d"
-        Title="Hippocrate" Height="720" Width="1280">
+        Title="Hippocrate" Height="720" Width="1280" MinWidth="600" MinHeight="600">
     <ContentControl Content="{Binding WindowContent}" />
 </Window>

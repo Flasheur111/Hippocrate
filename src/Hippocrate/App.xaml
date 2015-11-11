@@ -1,49 +1,49 @@
-﻿<Application x:Class="Hippocrate.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="View/MainView.xaml">
-    <Application.Resources>
-        <SolidColorBrush x:Key="Primary" Color="#404040" />
-        <SolidColorBrush x:Key="Second" Color="#a1a1a1" />
-        <SolidColorBrush x:Key="LightGray" Color="#bdbdbd" />
-        <Style x:Key="Title" TargetType="TextBlock">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="30" />
-                <Setter Property="Foreground" Value="{StaticResource Primary}" />
-            </Style.Setters>
-        </Style> 
-        <Style x:Key="Subtitle" TargetType="TextBlock">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="Foreground" Value="{StaticResource Primary}" />
-            </Style.Setters>
-        </Style> 
-        <Style x:Key="CustomTabControl" TargetType="TabControl">
-            <Style.Setters>
-                <Setter Property="Background" Value="Transparent" />
-            </Style.Setters>
-        </Style>
-        <Style x:Key="CustomTabItem" TargetType="TabItem">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="18" />
-                <Setter Property="Foreground" Value="{StaticResource Primary}" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0" />
-            </Style.Setters>
-        </Style>
-        <Style x:Key="RoundButton" TargetType="Button">
-            <Style.Setters>
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Width" Value="40" />
-                <Setter Property="BorderThickness" Value="0" />
-            </Style.Setters>
-        </Style>
-        <Style x:Key="CustomListBox" TargetType="ListBox">
-            <Style.Setters>
-                <Setter Property="Background" Value="{StaticResource LightGray}" />
-                <Setter Property="Foreground" Value="{StaticResource Primary}" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-            </Style.Setters>
-        </Style>
-    </Application.Resources>
+﻿<Application x:Class="Hippocrate.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="View/MainView.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <Application.Resources>
+    <SolidColorBrush x:Key="Primary" Color="#404040" />
+    <SolidColorBrush x:Key="Second" Color="#a1a1a1" />
+    <SolidColorBrush x:Key="LightGray" Color="#bdbdbd" />
+    <Style x:Key="Title" TargetType="TextBlock">
+      <Style.Setters>
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Foreground" Value="{StaticResource Primary}" />
+      </Style.Setters>
+    </Style>
+    <Style x:Key="Subtitle" TargetType="TextBlock">
+      <Style.Setters>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{StaticResource Primary}" />
+      </Style.Setters>
+    </Style>
+    <Style x:Key="CustomTabControl" TargetType="TabControl">
+      <Style.Setters>
+        <Setter Property="Background" Value="Transparent" />
+      </Style.Setters>
+    </Style>
+    <Style x:Key="CustomTabItem" TargetType="TabItem">
+      <Style.Setters>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="{StaticResource Primary}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+      </Style.Setters>
+    </Style>
+    <Style x:Key="RoundButton" TargetType="Button">
+      <Style.Setters>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="BorderThickness" Value="0" />
+      </Style.Setters>
+    </Style>
+    <Style x:Key="CustomListBox" TargetType="ListBox">
+      <Style.Setters>
+        <Setter Property="Background" Value="{StaticResource LightGray}" />
+        <Setter Property="Foreground" Value="{StaticResource Primary}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+      </Style.Setters>
+    </Style>
+    <ResourceDictionary>
+      <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:Hippocrate.ViewModel" />
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>

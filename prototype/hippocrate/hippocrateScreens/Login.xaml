@@ -8,39 +8,16 @@
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup x:Name="_SketchFlowAnimation_SketchFlowAnimation" d:IsSketchFlowAnimation="True">
-				<VisualStateGroup.Transitions>
-					<VisualTransition GeneratedDuration="0:0:0.5" To="SketchFlowAnimationFrame">
-						<VisualTransition.GeneratedEasingFunction>
-							<CubicEase EasingMode="EaseInOut"/>
-						</VisualTransition.GeneratedEasingFunction>
-					</VisualTransition>
-					<VisualTransition From="holdtimes" GeneratedDuration="0:0:0.5" To="SketchFlowAnimationFrame"/>
-				</VisualStateGroup.Transitions>
-				<VisualState x:Name="holdtimes"/>
-				<VisualState x:Name="SketchFlowAnimationFrame">
-					<Storyboard>
-						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="button">
-							<EasingDoubleKeyFrame KeyTime="0" Value="303"/>
-						</DoubleAnimationUsingKeyFrames>
-					</Storyboard>
-				</VisualState>
-				<VisualState x:Name="_SketchFlowAnimation_base">
-					<Storyboard/>
-				</VisualState>
-			</VisualStateGroup>
-			</VisualStateManager.VisualStateGroups>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*"/>
 			<ColumnDefinition Width="3*"/>
 		</Grid.ColumnDefinitions>
-        <Rectangle Fill="#FF232222" Grid.Column="0" />
-        <Rectangle Grid.Column="1" Fill="#FF787878" />
-		<TextBox Height="28.199" Margin="102.989,162.452,162.452,0" Style="{DynamicResource BasicTextBox-Sketch}" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Grid.Column="1"/>
-		<PasswordBox Height="Auto" Margin="102.989,218.238,162.452,230.498" Style="{DynamicResource PasswordBox-Sketch}" Password="password" Grid.Column="1" Background="White"/>
-		<TextBlock Height="42.75" Margin="8,21.75,8,0" Style="{DynamicResource BasicTextBlock-Sketch}" VerticalAlignment="Top" Foreground="White" FontSize="24" TextAlignment="Center"><Run Language="fr-fr" Text="Hippocrate"/></TextBlock>
-		<Button x:Name="button" Grid.Column="1" Height="79.5" Margin="154.59,0,195.25,25.5" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Content="Go&#xd;&#xa;" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Fill="#FF404040" Grid.Column="0" />
+        <Rectangle Grid.Column="1" Fill="#FFA1A1A1" />
+		<TextBox Height="28.199" Margin="47.59,168.452,217.851,0" Style="{DynamicResource BasicTextBox-Sketch}" TextWrapping="Wrap" Text="Identifiant" VerticalAlignment="Top" Grid.Column="1"/>
+		<PasswordBox Height="Auto" Margin="47.59,218.238,217.851,230.498" Style="{DynamicResource PasswordBox-Sketch}" Password="password" Grid.Column="1" Background="White"/>
+		<TextBlock Height="42.75" Margin="8,0,8,8" Style="{DynamicResource BasicTextBlock-Sketch}" VerticalAlignment="Bottom" Foreground="White" FontSize="24" TextAlignment="Center" Opacity="0.245"><Run Language="fr-fr" Text="Hippocrate"/></TextBlock>
+		<Button x:Name="button" Grid.Column="1" Height="27.5" Margin="47.59,0,0,186" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Content="Connexion" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="86.16">
 			<Button.RenderTransform>
 				<TransformGroup>
 					<ScaleTransform/>
@@ -51,7 +28,6 @@
 			</Button.RenderTransform>
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="Click">
-					<pi:PlaySketchFlowAnimationAction SketchFlowAnimation="_SketchFlowAnimation_SketchFlowAnimation"/>
 					<pi:NavigateToScreenAction TargetScreen="hippocrateScreens.Screen_2"/>
 				</i:EventTrigger>
 			</i:Interaction.Triggers>

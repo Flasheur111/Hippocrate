@@ -104,6 +104,8 @@
       <Link>Properties\Version.cs</Link>
     </Compile>
     <Resource Include="malade.png" />
+    <Resource Include="noun_206184_cc.png" />
+    <Resource Include="noun_206185_cc.png" />
     <Resource Include="profil_pic.png" />
     <Resource Include="rank.png" />
     <Resource Include="search.png" />

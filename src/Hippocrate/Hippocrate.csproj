@@ -37,6 +37,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -60,6 +63,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\ServiceUserManager.cs" />
+    <Compile Include="DataAccess\ServicePatientManager.cs" />
+    <Compile Include="DataAccess\ServiceObservationManager.cs" />
+    <Compile Include="DataAccess\ServiceLiveManager.cs" />
+    <Compile Include="Dbo\Observation.cs" />
+    <Compile Include="Dbo\Patient.cs" />
+    <Compile Include="Dbo\User.cs" />
+    <Compile Include="Interface\ServiceLive.cs" />
+    <Compile Include="Interface\ServiceObservation.cs" />
+    <Compile Include="Interface\ServicePatient.cs" />
+    <Compile Include="Interface\ServiceUser.cs" />
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -95,6 +109,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

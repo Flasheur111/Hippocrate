@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:Hippocrate.View"
         Title="Hippocrate" Height="720" Width="1280">
-    <Grid Margin="0,1,0,-1">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240" />
-            <ColumnDefinition Width="1040" />
+            <ColumnDefinition Width="240*" />
+            <ColumnDefinition Width="1040*" />
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0">
             <Rectangle.Fill>

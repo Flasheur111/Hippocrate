@@ -33,7 +33,6 @@ namespace Hippocrate.ViewModel
 
             SimpleIoc.Default.Register<AddPatientViewModel>();
             SimpleIoc.Default.Register<AddStaffViewModel>();
-            SimpleIoc.Default.Register<DeleteUserViewModel>();
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<PatientSheetViewModel>();
@@ -55,14 +54,6 @@ namespace Hippocrate.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<AddStaffViewModel>();
-            }
-        }
-
-        public DeleteUserViewModel DeleteUser
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<DeleteUserViewModel>();
             }
         }
 

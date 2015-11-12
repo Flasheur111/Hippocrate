@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -63,7 +64,10 @@ namespace Hippocrate.ViewModel
         {
             Connected = false;
             AccountCommand = new RelayCommand(() => { /* Fixme */ }, () => Connected);
-            LogoutCommand = new RelayCommand(() => { /* Fixme */}, () => Connected);
+            LogoutCommand = new RelayCommand(() => {
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.Login;
+                Connected = false; }, () => Connected);
             
         }
 

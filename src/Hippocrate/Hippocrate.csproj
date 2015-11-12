@@ -108,8 +108,14 @@
     <Compile Include="View\PatientSheet.xaml.cs">
       <DependentUpon>PatientSheet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientSheetNurse.xaml.cs">
+      <DependentUpon>PatientSheetNurse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SidebarView.xaml.cs">
       <DependentUpon>SidebarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffSheetView.xaml.cs">
+      <DependentUpon>StaffSheetView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -170,7 +176,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientSheetNurse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\SidebarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\StaffSheetView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -184,7 +198,9 @@
   <ItemGroup>
     <Resource Include="Assets\plus_button.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\chirurgien.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

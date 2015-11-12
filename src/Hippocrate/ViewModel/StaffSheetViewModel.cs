@@ -27,8 +27,8 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public StaffSheetViewModel()
         {
-            // WindowContent = new StaffSheetView();
-            // WindowContent.DataContext = this;
+             WindowContent = new View.StaffSheetView();
+             WindowContent.DataContext = this;
         }
     }
 }

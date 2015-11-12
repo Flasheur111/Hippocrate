@@ -1,7 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Hippocrate.ViewModel
 {
@@ -72,13 +77,32 @@ namespace Hippocrate.ViewModel
             Login = "";
             Password = "";
 
-            _connectionCommand = new RelayCommand(async () => {
+            _connectionCommand = new RelayCommand(async () =>
+            {
                 bool isConnected = await BusinessManagement.User.ConnectAsync(Login, Password);
                 if (isConnected)
                 {
+                    ServiceUser.User u = await BusinessManagement.User.GetUserAsync(Login);
                     ViewModelLocator vml = new ViewModelLocator();
-                    vml.Sidebar.DisplayedName = "lol";
-                    vml.Sidebar.Picture = new System.Drawing.Bitmap(100, 100);
+                    vml.Sidebar.DisplayedName = u.Firstname + " " + u.Name;
+                    //vml.Sidebar.Picture = 
+
+                    BitmapImage bitmapImage = new BitmapImage();
+                    using (MemoryStream memory = new MemoryStream(u.Picture))
+                    {
+                        memory.Position = 0;
+                        bitmapImage.BeginInit();
+                        bitmapImage.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.UriSource = null;
+                        bitmapImage.StreamSource = memory;
+                        bitmapImage.EndInit();
+                    }
+
+                    bitmapImage.Freeze();
+
+                    vml.Sidebar.Picture = bitmapImage;
+
                     vml.Sidebar.Connected = true;
 
                     vml.Window.DataContext = vml.Home;
@@ -87,7 +111,7 @@ namespace Hippocrate.ViewModel
 
             WindowContent = new View.LoginView();
             WindowContent.DataContext = this;
-            
+
         }
     }
 }

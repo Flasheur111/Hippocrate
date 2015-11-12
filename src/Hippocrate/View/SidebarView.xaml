@@ -13,8 +13,8 @@
                 <SolidColorBrush Color="#404040" />
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="userName" Grid.Row="1" TextWrapping="Wrap" Text="Frédéric D." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-        <Image x:Name="userPhoto" Margin="208,0,208,0"/>
+        <TextBlock x:Name="userName" Grid.Row="1" TextWrapping="Wrap" Text="{Binding DisplayedName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <Image x:Name="userPhoto" Source="{Binding Picture}" Stretch="UniformToFill" StretchDirection="Both" Margin="30,0,30,0"/>
         <TextBlock x:Name="my_account" Grid.Row="3" TextWrapping="Wrap" FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Text="mon compte"/>
         <TextBlock x:Name="disconnect" Grid.Row="4" TextWrapping="Wrap" FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Text="déconnexion"/>
 

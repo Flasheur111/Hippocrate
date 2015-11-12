@@ -1,7 +1,6 @@
-﻿using Hippocrate.Interface;
+﻿using Hippocrate.ServiceObservation;
 using System;
 using System.ServiceModel;
-using Hippocrate.Dbo;
 using System.Threading.Tasks;
 
 namespace Hippocrate.DataAccess
@@ -11,7 +10,7 @@ namespace Hippocrate.DataAccess
         private ServiceObservationClient _client;
         public ServiceObservationManager()
         {
-            this._client = new ServiceObservationClient("WSDualHttpBinding_IServiceObservation", "http://localhost:3055/ServiceObservation.svc");
+            this._client = new ServiceObservationClient();
         }
 
         public bool AddObservation(int idPatient, Observation obs)

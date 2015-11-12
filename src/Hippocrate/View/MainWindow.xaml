@@ -12,7 +12,7 @@
             <ColumnDefinition Width="240*" />
             <ColumnDefinition Width="1040*" />
         </Grid.ColumnDefinitions>
-        <controls:SidebarView Grid.Column="0" />
+        <controls:SidebarView x:Name="sidebar" Grid.Column="0" />
         <Rectangle Fill="#FFA1A1A1" Grid.Column="1" />
         <ContentControl Content="{Binding WindowContent}" Padding="30,30,30,30" Grid.Column="1"/>
     </Grid>

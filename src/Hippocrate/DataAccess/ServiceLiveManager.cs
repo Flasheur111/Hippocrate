@@ -1,5 +1,4 @@
-﻿using Hippocrate.Interface;
-using System;
+﻿using Hippocrate.ServiceLive;
 using System.ServiceModel;
 
 namespace Hippocrate.DataAccess
@@ -25,7 +24,7 @@ namespace Hippocrate.DataAccess
         public ServiceLiveManager()
         {
             this._ic = new InstanceContext(new ServiceLiveCallback());
-            this._client = new ServiceLiveClient(this._ic, "WSDualHttpBinding_IServiceLive", "http://localhost:3055/ServiceLive.svc");
+            this._client = new ServiceLiveClient(this._ic);
             this._client.Subscribe();
         }
     }

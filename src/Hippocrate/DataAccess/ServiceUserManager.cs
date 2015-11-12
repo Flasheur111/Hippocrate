@@ -1,45 +1,43 @@
-﻿using Hippocrate.Interface;
-using System;
+﻿using System;
 using System.ServiceModel;
-using Hippocrate.Dbo;
 using System.Threading.Tasks;
 
 namespace Hippocrate.DataAccess
 {
-    public class ServiceUserManager : IServiceUser
+    public class ServiceUserManager : ServiceUser.IServiceUser
     {
-        private ServiceUserClient _client;
+        private ServiceUser.ServiceUserClient _client;
         public ServiceUserManager()
         {
-            this._client = new ServiceUserClient("WSDualHttpBinding_IServiceUser", "http://localhost:3055/ServiceUser.svc");
+            this._client = new ServiceUser.ServiceUserClient();
         }
 
-        public User[] GetListUser()
+        public ServiceUser.User[] GetListUser()
         {
             return _client.GetListUser();
         }
 
-        public Task<User[]> GetListUserAsync()
+        public Task<ServiceUser.User[]> GetListUserAsync()
         {
             return _client.GetListUserAsync();
         }
 
-        public User GetUser(string login)
+        public ServiceUser.User GetUser(string login)
         {
             return _client.GetUser(login);
         }
 
-        public Task<User> GetUserAsync(string login)
+        public Task<ServiceUser.User> GetUserAsync(string login)
         {
             return _client.GetUserAsync(login);
         }
 
-        public bool AddUser(User user)
+        public bool AddUser(ServiceUser.User user)
         {
             return _client.AddUser(user);
         }
 
-        public Task<bool> AddUserAsync(User user)
+        public Task<bool> AddUserAsync(ServiceUser.User user)
         {
             return _client.AddUserAsync(user);
         }

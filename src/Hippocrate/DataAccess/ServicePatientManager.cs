@@ -1,7 +1,6 @@
-﻿using Hippocrate.Interface;
+﻿using Hippocrate.ServicePatient;
 using System;
 using System.ServiceModel;
-using Hippocrate.Dbo;
 using System.Threading.Tasks;
 
 namespace Hippocrate.DataAccess
@@ -11,7 +10,7 @@ namespace Hippocrate.DataAccess
         private ServicePatientClient _client;
         public ServicePatientManager()
         {
-            this._client = new ServicePatientClient("WSDualHttpBinding_IServicePatient", "http://localhost:3055/ServicePatient.svc");
+            this._client = new ServicePatientClient();
         }
 
         public bool AddPatient(Patient user)

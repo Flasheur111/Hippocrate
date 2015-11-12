@@ -29,13 +29,12 @@ namespace Hippocrate
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            ViewModelLocator vm = new ViewModelLocator();
+            LoginViewModel loginViewModel = vm.Login;
 
-            LoginViewModel loginViewModel = new ViewModelLocator().Login;
-
-            var window = new ViewModelLocator().Window;
-
-            window.DataContext = loginViewModel;
-            window.Show();
+            vm.Window.sidebar.DataContext = vm.Sidebar;
+            vm.Window.DataContext = loginViewModel;
+            vm.Window.Show();
         }
     }
 }

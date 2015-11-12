@@ -40,7 +40,7 @@ namespace Wcf_Medical
         /// </summary>
         /// <param name="login">login du user</param>
         /// <returns>un user si il y a un problème une exception est lancée</returns>
-        public Dbo.User GetUser(string login)
+        public User GetUser(string login)
         {
             if (!DaSingleton.GetInstance().ListUser.Any())
             {

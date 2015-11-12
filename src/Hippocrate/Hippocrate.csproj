@@ -92,6 +92,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PatientSheetViewModel.cs" />
     <Compile Include="ViewModel\PatientsListViewModel.cs" />
+    <Compile Include="ViewModel\SidebarViewModel.cs" />
     <Compile Include="ViewModel\StaffListViewModel.cs" />
     <Compile Include="ViewModel\StaffSheetViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

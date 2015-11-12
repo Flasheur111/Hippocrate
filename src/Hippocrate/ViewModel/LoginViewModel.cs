@@ -74,16 +74,8 @@ namespace Hippocrate.ViewModel
 
             _connectionCommand = new RelayCommand(async () => {
                 bool isConnected = await BusinessManagement.User.ConnectAsync(Login, Password);
-                if (isConnected || !isConnected) {
-                    PatientSheetViewModel ps = new PatientSheetViewModel();
-                    new ViewModelLocator().Window.DataContext = ps;
-                    RaisePropertyChanged("WindowContent");
-                };
-
-            }, 
-            () =>
-            Password.Length > 0 && Login.Length > 0
-            );
+                // #ConnectMeImFamous
+            }, () => Password.Length > 0 && Login.Length > 0);
 
             WindowContent = new View.LoginView();
             WindowContent.DataContext = this;

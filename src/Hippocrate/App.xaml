@@ -8,6 +8,7 @@
            >
     <Application.Resources>
 
+        <!-- Converters -->
         <helper:PasswordConverter x:Key="passwordConverter"/>
         
         <!-- Colors -->

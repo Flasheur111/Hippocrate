@@ -13,10 +13,10 @@
                 <SolidColorBrush Color="#404040" />
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="userName" Grid.Row="1" TextWrapping="Wrap" Text="{Binding DisplayedName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-        <Image x:Name="userPhoto" Source="{Binding Picture}" Stretch="UniformToFill" StretchDirection="Both" Margin="30,0,30,0"/>
-        <TextBlock x:Name="my_account" Grid.Row="3" TextWrapping="Wrap" FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Text="mon compte"/>
-        <TextBlock x:Name="disconnect" Grid.Row="4" TextWrapping="Wrap" FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Text="déconnexion"/>
+        <TextBlock x:Name="userName" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="1" TextWrapping="Wrap" Text="{Binding DisplayedName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <Image x:Name="userPhoto" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Source="{Binding Picture}" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant" Margin="30,0,30,0"/>
+        <TextBlock x:Name="my_account" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="3" TextWrapping="Wrap" FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Text="mon compte"/>
+        <TextBlock x:Name="disconnect" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="4" TextWrapping="Wrap" FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Text="déconnexion"/>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />

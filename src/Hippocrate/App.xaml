@@ -209,32 +209,35 @@
             <Setter Property="OverridesDefaultStyle"
                 Value="true"/>
             <Setter Property="IsTabStop"
-                Value="false"/>
+                Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Border Background="White"/>
+                        <Border Background="#FF555555"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="VerticalScrollBarPageButton"
            TargetType="{x:Type RepeatButton}">
-            <Setter Property="Visibility" Value="Hidden"/>
+            <Setter Property="Visibility" Value="Visible"/>
         </Style>
 
+        <Style x:Key="HorizontalScrollBarPageButton"
+           TargetType="{x:Type RepeatButton}">
+            <Setter Property="Visibility" Value="Visible"/>
+        </Style>
         <Style x:Key="{x:Type ScrollBar}"
            TargetType="{x:Type ScrollBar}">
             <Setter Property="Height" Value="{Binding Height, 
               RelativeSource={RelativeSource Mode=FindAncestor, 
                                  AncestorType={x:Type ListBox }}}"/>
             <Setter Property="Background"
-                Value="#FF555555"/>
+                Value="White"/>
             <Setter Property="Stylus.IsPressAndHoldEnabled"
                 Value="True"/>
             <Setter Property="Stylus.IsFlicksEnabled"
                 Value="True"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ScrollBar}">
@@ -243,7 +246,8 @@
                             <Track
                                                 Name="PART_Track"
                                                 IsEnabled="{TemplateBinding IsMouseOver}"
-                                                IsDirectionReversed="true">
+                                                IsDirectionReversed="true"
+                                                >
                                 <Track.DecreaseRepeatButton>
                                     <RepeatButton Style="{StaticResource VerticalScrollBarPageButton}"
                                                         Command="{x:Static ScrollBar.PageUpCommand}"/>
@@ -252,6 +256,7 @@
                                     <RepeatButton Style="{StaticResource VerticalScrollBarPageButton}"
                                                         Command="{x:Static ScrollBar.PageDownCommand}"/>
                                 </Track.IncreaseRepeatButton>
+                                
                                 <Track.Thumb>
                                     <Thumb Style="{StaticResource ScrollBarThumb}"
                                                         />

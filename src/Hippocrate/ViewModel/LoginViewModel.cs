@@ -85,8 +85,7 @@ namespace Hippocrate.ViewModel
                     ServiceUser.User u = await BusinessManagement.User.GetUserAsync(Login);
                     ViewModelLocator vml = new ViewModelLocator();
                     vml.Sidebar.DisplayedName = u.Firstname + " " + u.Name;
-                    //vml.Sidebar.Picture = 
-
+ 
                     BitmapImage bitmapImage = new BitmapImage();
                     using (MemoryStream memory = new MemoryStream(u.Picture))
                     {
@@ -98,7 +97,6 @@ namespace Hippocrate.ViewModel
                         bitmapImage.StreamSource = memory;
                         bitmapImage.EndInit();
                     }
-
                     bitmapImage.Freeze();
 
                     vml.Sidebar.Picture = bitmapImage;

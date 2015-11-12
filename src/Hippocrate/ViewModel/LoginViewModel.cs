@@ -74,7 +74,15 @@ namespace Hippocrate.ViewModel
 
             _connectionCommand = new RelayCommand(async () => {
                 bool isConnected = await BusinessManagement.User.ConnectAsync(Login, Password);
-                // #ConnectMeImFamous
+                if (isConnected)
+                {
+                    ViewModelLocator vml = new ViewModelLocator();
+                    vml.Sidebar.DisplayedName = "lol";
+                    vml.Sidebar.Picture = new System.Drawing.Bitmap(100, 100);
+                    vml.Sidebar.Connected = true;
+
+                    vml.Window.DataContext = vml.Home;
+                }
             }, () => Password.Length > 0 && Login.Length > 0);
 
             WindowContent = new View.LoginView();

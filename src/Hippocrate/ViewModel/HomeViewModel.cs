@@ -28,8 +28,8 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public HomeViewModel()
         {
-            // WindowContent = new View.HomeView();
-            // WindowContent.DataContext = this;
+            WindowContent = new View.HomeView();
+            WindowContent.DataContext = this;
         }
     }
 }

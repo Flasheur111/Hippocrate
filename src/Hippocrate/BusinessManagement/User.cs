@@ -8,8 +8,6 @@ namespace Hippocrate.BusinessManagement
         public static Task<bool> ConnectAsync(string login, string pass)
         {
             ServiceUserManager sum = new ServiceUserManager();
-
-            ServiceUser.
             return sum.ConnectAsync(login, pass);
         }
 

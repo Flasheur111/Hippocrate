@@ -1,6 +1,4 @@
 ﻿using Hippocrate.ServiceObservation;
-using System;
-using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace Hippocrate.DataAccess

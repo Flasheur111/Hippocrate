@@ -9,6 +9,7 @@ namespace Hippocrate.BusinessManagement
         {
             ServiceUserManager sum = new ServiceUserManager();
 
+            ServiceUser.
             return sum.ConnectAsync(login, pass);
         }
 

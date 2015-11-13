@@ -81,12 +81,9 @@ namespace Hippocrate.ViewModel
             LogoutCommand = new RelayCommand(() => {
                 ViewModelLocator vm = new ViewModelLocator();
                 vm.Login.User = null;
-                vm.Login.Login = "";
-                vm.Login.Password = "";
                 BackColor = "#404040";
                 vm.Window.DataContext = vm.Login;
                 Connected = false; }, () => Connected);
-            
         }
 
 

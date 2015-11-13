@@ -17,6 +17,9 @@ namespace Wcf_Medical
     {
         private DataAccess.DataPatient data = new DataAccess.DataPatient();
 
+     
+    
+
         #region IServicePatient Members
 
         /// <summary>

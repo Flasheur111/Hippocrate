@@ -121,14 +121,33 @@ namespace Hippocrate.ViewModel
 
                     // Update Sidebar backcolor
                     if (User.Role == "Infirmière")
+                    {
                         vm.Sidebar.BackColor = "#0097B6";
+
+                        vm.Home.TButton1 = "Consulter les fiches du personnel";
+                        vm.Home.DButton1 = "Vous pouvez lire des fiches.";
+
+                        vm.Home.TButton2 = "Consulter les fiches des patients";
+                        vm.Home.DButton2 = "Vous pouvez lire des fiches.";
+                    }
                     else
+                    {
                         vm.Sidebar.BackColor = "#B60000";
+
+                        vm.Home.TButton1 = "Consulter les fiches du personnel";
+                        vm.Home.DButton1 = "Vous pouvez lire, modifier et supprimer des fiches.";
+
+                        vm.Home.TButton2 = "Consulter les fiches des patients";
+                        vm.Home.DButton2 = "Vous pouvez lire, modifier et supprimer des fiches.";
+                    }
+                    
 
                     // Switch view to home
                     vm.Window.DataContext = vm.Home;
                 }
             }, () => Password.Length > 0 && Login.Length > 0);
+
+           
 
             WindowContent = new View.LoginView();
             WindowContent.DataContext = this;

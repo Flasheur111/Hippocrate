@@ -23,9 +23,9 @@
             <DockPanel>
                 <Image DockPanel.Dock="Left" Source="/Assets/noun_206185_cc.png" Margin="50,0,0,0"/>
                 <TextBlock x:Name="personal" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Run FontSize="37.333" Text="Consulter les fiches du personnel"/>
+                    <Run FontSize="37.333" Text="{Binding TButton1}"/>
                     <LineBreak/>
-                    <Run FontSize="27" Text="Vous pouvez lire des fiches."/>
+                    <Run FontSize="27" Text="{Binding DButton1}"/>
                 </TextBlock>
             </DockPanel>
         </Button>
@@ -33,9 +33,9 @@
             <DockPanel>
                 <Image DockPanel.Dock="Left" Source="/Assets/noun_206184_cc.png" Margin="16,0,0,0"/>
                 <TextBlock x:Name="patients" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Run FontSize="37.333" Text="Consulter les fiche des patients"/>
+                    <Run FontSize="37.333" Text="{Binding TButton2}"/>
                     <LineBreak/>
-                    <Run FontSize="27" Text="Vous pouvez lire des fiches."/>
+                    <Run FontSize="27" Text="{Binding DButton2}"/>
                 </TextBlock>
             </DockPanel>
         </Button>

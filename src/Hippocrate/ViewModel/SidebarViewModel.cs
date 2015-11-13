@@ -44,6 +44,19 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private string _backcolor;
+
+        public string BackColor
+        {
+            get { return _backcolor; }
+            set
+            {
+                _backcolor = value;
+                RaisePropertyChanged("BackColor");
+            }
+        }
+
+
         private ICommand _accountCommand;
 
         public ICommand AccountCommand
@@ -62,10 +75,15 @@ namespace Hippocrate.ViewModel
 
         public SidebarViewModel()
         {
+            BackColor = "#404040";
             Connected = false;
             AccountCommand = new RelayCommand(() => { /* Fixme */ }, () => Connected);
             LogoutCommand = new RelayCommand(() => {
                 ViewModelLocator vm = new ViewModelLocator();
+                vm.Login.User = null;
+                vm.Login.Login = "";
+                vm.Login.Password = "";
+                BackColor = "#404040";
                 vm.Window.DataContext = vm.Login;
                 Connected = false; }, () => Connected);
             

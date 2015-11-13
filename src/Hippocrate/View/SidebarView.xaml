@@ -10,13 +10,13 @@
     <Grid x:Name="grid">
         <Rectangle x:Name="background" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="1">
             <Rectangle.Fill>
-                <SolidColorBrush Color="#404040" />
+                <SolidColorBrush Color="{Binding BackColor}" />
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock x:Name="userName" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="1" TextWrapping="Wrap" Text="{Binding DisplayedName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-        <Image x:Name="userPhoto" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Source="{Binding Picture}" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant" Margin="30,0,30,0"/>
-        <Button x:Name="my_account" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="3"  FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Content="mon compte" Background="#FF404040"/>
-        <Button x:Name="disconnect" Command="{Binding LogoutCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="4"  FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Content="déconnexion" Background="#FF404040"/>
+        <Image x:Name="userPhoto" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Source="{Binding Picture}" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant" Margin="30,30,30,0"/>
+        <Button x:Name="my_account" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="3"  FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Content="mon compte" Background="{Binding BackColor}"/>
+        <Button x:Name="disconnect" Command="{Binding LogoutCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="4"  FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Content="déconnexion" Background="{Binding BackColor}"/>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />

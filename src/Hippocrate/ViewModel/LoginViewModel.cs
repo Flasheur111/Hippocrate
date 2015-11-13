@@ -68,6 +68,20 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private ServiceUser.User _user;
+
+        public ServiceUser.User User
+        {
+            get { return _user; }
+            set
+            {
+                if (_user != value)
+                {
+                    _user = value;
+                }
+            }
+        }
+
 
         /// <summary>
         /// Initializes a new instance of the LoginViewModel class.
@@ -76,18 +90,23 @@ namespace Hippocrate.ViewModel
         {
             Login = "";
             Password = "";
+            User = null;
 
             _connectionCommand = new RelayCommand(async () =>
             {
+                ViewModelLocator vm = new ViewModelLocator();
                 bool isConnected = await BusinessManagement.User.ConnectAsync(Login, Password);
                 if (isConnected)
                 {
-                    ServiceUser.User u = await BusinessManagement.User.GetUserAsync(Login);
-                    ViewModelLocator vml = new ViewModelLocator();
-                    vml.Sidebar.DisplayedName = u.Firstname + " " + u.Name;
- 
+                    // Set connected User
+                    User = await BusinessManagement.User.GetUserAsync(Login);
+                    vm.Sidebar.Connected = true;
+                    // Update name displayed
+                    vm.Sidebar.DisplayedName = User.Firstname + " " + User.Name;
+
+                    // Update image displayed
                     BitmapImage bitmapImage = new BitmapImage();
-                    using (MemoryStream memory = new MemoryStream(u.Picture))
+                    using (MemoryStream memory = new MemoryStream(User.Picture))
                     {
                         memory.Position = 0;
                         bitmapImage.BeginInit();
@@ -98,12 +117,16 @@ namespace Hippocrate.ViewModel
                         bitmapImage.EndInit();
                     }
                     bitmapImage.Freeze();
+                    vm.Sidebar.Picture = bitmapImage;
 
-                    vml.Sidebar.Picture = bitmapImage;
+                    // Update Sidebar backcolor
+                    if (User.Role == "Infirmière")
+                        vm.Sidebar.BackColor = "#0097B6";
+                    else
+                        vm.Sidebar.BackColor = "#B60000";
 
-                    vml.Sidebar.Connected = true;
-
-                    vml.Window.DataContext = vml.Home;
+                    // Switch view to home
+                    vm.Window.DataContext = vm.Home;
                 }
             }, () => Password.Length > 0 && Login.Length > 0);
 

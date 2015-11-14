@@ -41,7 +41,7 @@ namespace Hippocrate.ViewModel
             SimpleIoc.Default.Register<StaffSheetViewModel>();
             SimpleIoc.Default.Register<SidebarViewModel>();
             SimpleIoc.Default.Register<AccountViewModel>();
-
+            
             SimpleIoc.Default.Register<View.MainWindow>();
         }
 

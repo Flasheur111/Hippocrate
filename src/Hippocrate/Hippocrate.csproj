@@ -116,6 +116,7 @@
     <Compile Include="ViewModel\SidebarViewModel.cs" />
     <Compile Include="ViewModel\StaffListViewModel.cs" />
     <Compile Include="ViewModel\StaffSheetViewModel.cs" />
+    <Compile Include="ViewModel\IUserConnectedChangedEventHandler.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>

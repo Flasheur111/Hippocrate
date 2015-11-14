@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Windows.Controls;
+using Hippocrate.ServiceUser;
+using System;
 
 namespace Hippocrate.ViewModel
 {
@@ -9,7 +11,7 @@ namespace Hippocrate.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class AddPatientViewModel : ViewModelBase
+    public class AddPatientViewModel : ViewModelBase, IUserConnectedChangedEventHandler
     {
         private UserControl _windowContent;
 
@@ -30,6 +32,10 @@ namespace Hippocrate.ViewModel
         {
             // WindowContent = new View.AddPatientView();
             // WindowContent.DataContext = this;
+        }
+
+        public void UserConnectedChangedEventHandler(object sender, User e)
+        {
         }
     }
 }

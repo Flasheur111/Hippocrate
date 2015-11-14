@@ -73,17 +73,38 @@ namespace Hippocrate.ViewModel
             set { _logoutCommand = value; }
         }
 
+        private ICommand _homeCommand;
+        public ICommand HomeCommand
+        {
+            get { return _homeCommand; }
+            set { _homeCommand = value; }
+        }
+
         public SidebarViewModel()
         {
             BackColor = "#404040";
             Connected = false;
-            AccountCommand = new RelayCommand(() => { /* Fixme */ }, () => Connected);
-            LogoutCommand = new RelayCommand(() => {
+            AccountCommand = new RelayCommand(() => {
+                ViewModelLocator vm = new ViewModelLocator();
+                ServiceUser.User u = vm.Login.User;
+                vm.Account.Lastname = u.Name;
+                vm.Account.Firstname = u.Firstname;
+                vm.Account.Role = u.Role;
+                vm.Window.DataContext = vm.Account;
+            }, () => Connected);
+            LogoutCommand = new RelayCommand(() =>
+            {
                 ViewModelLocator vm = new ViewModelLocator();
                 vm.Login.User = null;
                 BackColor = "#404040";
                 vm.Window.DataContext = vm.Login;
-                Connected = false; }, () => Connected);
+                Connected = false;
+            }, () => Connected);
+            HomeCommand = new RelayCommand(() =>
+            {
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.Home;
+            }, () => Connected);
         }
 
 

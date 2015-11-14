@@ -1,0 +1,75 @@
+﻿using GalaSoft.MvvmLight;
+using System.Windows.Controls;
+
+namespace Hippocrate.ViewModel
+{
+    /// <summary>
+    /// This class contains properties that a View can data bind to.
+    /// <para>
+    /// See http://www.galasoft.ch/mvvm
+    /// </para>
+    /// </summary>
+    public class AccountViewModel : ViewModelBase
+    {
+        private UserControl _windowContent;
+
+        public UserControl WindowContent
+        {
+            get { return _windowContent; }
+            set
+            {
+                _windowContent = value;
+                RaisePropertyChanged("WindowContent");
+            }
+        }
+
+        private string _firstname;
+
+        public string Firstname
+        {
+            get { return _firstname;  }
+            set
+            {
+                _firstname = value;
+                RaisePropertyChanged("Firstname");
+            }
+        }
+
+        private string _lastname;
+
+        public string Lastname
+        {
+            get { return _lastname; }
+            set
+            {
+                _lastname = value;
+                RaisePropertyChanged("Lastname");
+            }
+        }
+
+        private string _role;
+
+        public string Role
+        {
+            get { return _role; }
+            set
+            {
+                _role = value;
+                RaisePropertyChanged("Role");
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the AddPatientViewModel class.
+        /// </summary>
+        public AccountViewModel()
+        {
+            this.Firstname = "";
+            this.Lastname = "";
+            this.Role = "";
+
+            WindowContent = new View.AccountView();
+            WindowContent.DataContext = this;
+        }
+    }
+}

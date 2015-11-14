@@ -84,6 +84,7 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public LoginViewModel()
         {
+            Login = "";
             Password = "";
             _connectionCommand = new RelayCommand(async () =>
             {

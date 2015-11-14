@@ -28,7 +28,7 @@
                 </TextBlock>
             </DockPanel>
         </Button>
-        <Button x:Name="button2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="#FFA1A1A1">
+        <Button x:Name="button2" Command="{Binding PatientConsult}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="#FFA1A1A1">
             <DockPanel>
                 <Image DockPanel.Dock="Left" Source="/Assets/noun_206184_cc.png" Margin="16,0,0,0"/>
                 <TextBlock x:Name="patients" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Center">

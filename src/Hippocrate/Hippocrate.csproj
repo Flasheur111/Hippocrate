@@ -106,6 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\AddStaffViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
@@ -116,6 +117,9 @@
     <Compile Include="ViewModel\StaffListViewModel.cs" />
     <Compile Include="ViewModel\StaffSheetViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -222,6 +226,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

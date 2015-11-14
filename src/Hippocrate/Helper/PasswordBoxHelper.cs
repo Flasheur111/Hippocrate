@@ -22,7 +22,7 @@ namespace Hippocrate.Helper
         }
 
         public static readonly DependencyProperty PlaceHolderTextProperty =
-            DependencyProperty.RegisterAttached("PlaceHolderText", typeof(string),
+            DependencyProperty.RegisterAttached("PlaceHolderText", typeof(String),
                 typeof(PasswordBoxHelper),
                 new UIPropertyMetadata(string.Empty, PlaceHolderTextChanged));
 

@@ -8,9 +8,6 @@
            >
     <Application.Resources>
 
-        <!-- Converters -->
-        <helper:PasswordConverter x:Key="passwordConverter"/>
-        
         <!-- Colors -->
         <SolidColorBrush x:Key="Primary" Color="#404040" />
         <SolidColorBrush x:Key="Second" Color="#a1a1a1" />
@@ -282,16 +279,19 @@
                                                 Mode=TwoWay,
                                                 UpdateSourceTrigger=PropertyChanged}"
                                  x:Name="textSource" 
-                                 Background="Transparent" 
+                                 Background="Transparent"
                                  Foreground="{StaticResource Primary}"
+                                     BorderThickness="0"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5,0,0,0"
                                  Panel.ZIndex="2" />
-                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1" VerticalContentAlignment="Center" Padding="15,0,0,0">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Foreground" Value="Transparent"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
-                                                <Setter Property="Foreground" Value="LightGray"/>
+                                                <Setter Property="Foreground" Value="{StaticResource Second}"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -314,8 +314,8 @@
                                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="1" />
                                 <TextBlock x:Name="PlaceHolder"
                                 Text="{TemplateBinding helper:PasswordBoxHelper.PlaceHolderText}" 
-                                Foreground="LightGray" IsHitTestVisible="False" 
-                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                                Foreground="{StaticResource Second}" IsHitTestVisible="False" 
+                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>

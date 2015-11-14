@@ -24,14 +24,13 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("WindowContent");
             }
         }
-
         /// <summary>
-        /// Initializes a new instance of the PatientSheetViewModel class.
+        /// Initializes a new instance of the PatientsListViewModel class.
         /// </summary>
         public PatientSheetViewModel()
         {
-            WindowContent = new View.PatientSheet();
-            WindowContent.DataContext = this;
+             WindowContent = new View.PatientSheet();
+             WindowContent.DataContext = this;
         }
 
         public void UserConnectedChangedEventHandler(object sender, User e)

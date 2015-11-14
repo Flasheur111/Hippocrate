@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using Hippocrate.ServiceUser;
 using System;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace Hippocrate.ViewModel
 {
@@ -47,6 +49,17 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private ICommand _patientconsult;
+        public ICommand PatientConsult
+        {
+            get { return _patientconsult; }
+            set
+            {
+                _patientconsult = value;
+                RaisePropertyChanged("PatientConsult");
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the LoginViewModel class.
         /// </summary>
@@ -54,6 +67,12 @@ namespace Hippocrate.ViewModel
         {
             WindowContent = new View.HomeView();
             WindowContent.DataContext = this;
+
+            PatientConsult = new RelayCommand(() =>
+            {
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.PatientList;
+            });
         }
         
 
@@ -62,11 +81,9 @@ namespace Hippocrate.ViewModel
             if (e.Role != "Infirmière")
             {
                 DButton1 = "Vous pouvez lire, modifier et supprimer des fiches.";
-                DButton2 = "Vous pouvez lire, modifier et supprimer des fiches.";
             }
             else
             {
-                DButton1 = "Vous pouvez lire des fiches.";
                 DButton2 = "Vous pouvez lire des fiches.";
             }
         }

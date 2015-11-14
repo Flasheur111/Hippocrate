@@ -115,8 +115,8 @@
     <Compile Include="ViewModel\AddStaffViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\PatientListViewModel.cs" />
     <Compile Include="ViewModel\PatientSheetViewModel.cs" />
-    <Compile Include="ViewModel\PatientsListViewModel.cs" />
     <Compile Include="ViewModel\SidebarViewModel.cs" />
     <Compile Include="ViewModel\StaffListViewModel.cs" />
     <Compile Include="ViewModel\StaffSheetViewModel.cs" />
@@ -127,6 +127,9 @@
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientList.xaml.cs">
+      <DependentUpon>PatientList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -236,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

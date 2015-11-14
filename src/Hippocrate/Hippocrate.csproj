@@ -34,9 +34,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Assets\hippocrate.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -88,7 +85,6 @@
     </Compile>
     <Compile Include="BusinessManagement\User.cs" />
     <Compile Include="Helper\PasswordBoxHelper.cs" />
-    <Compile Include="Helper\PasswordConverter.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Service References\ServiceObservation\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -343,13 +339,10 @@
     <Resource Include="Assets\noun_206185_cc.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\hippocrate.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="hippocrate.ico" />
+    <Resource Include="Assets\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

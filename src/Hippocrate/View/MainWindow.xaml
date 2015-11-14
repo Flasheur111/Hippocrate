@@ -10,12 +10,11 @@
         Icon="/Assets/hippocrate.ico">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="51*" />
-            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="238*" />
             <ColumnDefinition Width="1034*" />
         </Grid.ColumnDefinitions>
-        <controls:SidebarView x:Name="sidebar" Grid.Column="0" Grid.ColumnSpan="2" />
-        <Rectangle Fill="#FFA1A1A1" Grid.Column="2" />
-        <ContentControl Content="{Binding WindowContent}" Padding="30,30,30,30" Grid.Column="2"/>
+        <controls:SidebarView x:Name="sidebar" Grid.Column="0" />
+        <Rectangle Fill="{StaticResource Second}" Grid.Column="1" />
+        <ContentControl Content="{Binding WindowContent}" Padding="30,30,30,30" Grid.Column="1"/>
     </Grid>
 </Window>

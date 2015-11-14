@@ -29,6 +29,22 @@ namespace Hippocrate.ViewModel
         private event EventHandler<ServiceUser.User> _userChangedEventHandler;
         #endregion
 
+        private bool _loginError;
+
+        public bool LoginError
+        {
+            get { return _loginError; }
+            set
+            {
+                if (_loginError != value)
+                {
+                    _loginError = value;
+                    RaisePropertyChanged("LoginError");
+                }
+            }
+        }
+
+
         private RelayCommand _connectionCommand;
 
         public RelayCommand ConnectionCommand
@@ -60,6 +76,7 @@ namespace Hippocrate.ViewModel
                 if (_login != value)
                 {
                     _login = value;
+                    LoginError = false;
                 }
             }
         }
@@ -74,6 +91,7 @@ namespace Hippocrate.ViewModel
                 if (_password != value)
                 {
                     _password = value;
+                    LoginError = false;
                 }
             }
         }
@@ -86,6 +104,8 @@ namespace Hippocrate.ViewModel
         {
             Login = "";
             Password = "";
+            LoginError = false;
+
             _connectionCommand = new RelayCommand(async () =>
             {
                 ViewModelLocator vm = new ViewModelLocator();
@@ -96,12 +116,16 @@ namespace Hippocrate.ViewModel
                     ServiceUser.User User = await BusinessManagement.User.GetUserAsync(Login);
                     _userChangedEventHandler(this, User);
 
+                    // Reset error handling
+                    LoginError = false;
+
                     // Switch view to home
                     vm.Window.DataContext = vm.Home;
                 }
                 else
                 {
                     // Wrong pass dude !
+                    LoginError = true;
                 }
             }, () => Password.Length > 0 && Login.Length > 0);
             

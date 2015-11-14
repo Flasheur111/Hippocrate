@@ -50,7 +50,7 @@
         <Button x:Name="home" Command="{Binding HomeCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="3"  FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Content="accueil" BorderThickness="0" Background="{Binding BackColor}"/>
         <Button x:Name="my_account" Command="{Binding AccountCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="4"  FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Content="mon compte" BorderThickness="0" Background="{Binding BackColor}"/>
         <Button x:Name="disconnect" Command="{Binding LogoutCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="5"  FontSize="23" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Content="déconnexion" BorderThickness="0" Background="{Binding BackColor}"/>
-        <Image x:Name="logo" Grid.Row="6" Source="/Assets/logo.png" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant"/>
+        <Image x:Name="logo" Grid.Row="6" Source="/Assets/logo.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="Fant"/>
 
     </Grid>
 </UserControl>

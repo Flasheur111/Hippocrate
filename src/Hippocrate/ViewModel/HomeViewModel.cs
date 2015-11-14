@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Windows.Controls;
+using Hippocrate.ServiceUser;
+using System;
 
 namespace Hippocrate.ViewModel
 {
@@ -9,7 +11,7 @@ namespace Hippocrate.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : ViewModelBase, IUserConnectedChangedEventHandler
     {
         private UserControl _windowContent;
 
@@ -23,17 +25,6 @@ namespace Hippocrate.ViewModel
             }
         }
 
-        private string _tbutton1;
-        public string TButton1
-        {
-            get { return _tbutton1; }
-            set
-            {
-                _tbutton1 = value;
-                RaisePropertyChanged("TButton1");
-            }
-        }
-
         private string _dbutton1;
         public string DButton1
         {
@@ -44,18 +35,7 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("DButton1");
             }
         }
-
-        private string _tbutton2;
-        public string TButton2
-        {
-            get { return _tbutton2; }
-            set
-            {
-                _tbutton2 = value;
-                RaisePropertyChanged("TButton2");
-            }
-        }
-
+        
         private string _dbutton2;
         public string DButton2
         {
@@ -72,12 +52,23 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public HomeViewModel()
         {
-            TButton1 = "";
-            TButton2 = "";
-            DButton1 = "";
-            DButton2 = "";
             WindowContent = new View.HomeView();
             WindowContent.DataContext = this;
+        }
+        
+
+        public void UserConnectedChangedEventHandler(object sender, User e)
+        {
+            if (e.Role != "Infirmière")
+            {
+                DButton1 = "Vous pouvez lire, modifier et supprimer des fiches.";
+                DButton2 = "Vous pouvez lire, modifier et supprimer des fiches.";
+            }
+            else
+            {
+                DButton1 = "Vous pouvez lire des fiches.";
+                DButton2 = "Vous pouvez lire des fiches.";
+            }
         }
     }
 }

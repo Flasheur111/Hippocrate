@@ -16,6 +16,10 @@
         <SolidColorBrush x:Key="Second" Color="#a1a1a1" />
         <SolidColorBrush x:Key="LightGray" Color="#bdbdbd" />
 
+        <SolidColorBrush x:Key="NotConnected" Color="#404040"/>
+        <SolidColorBrush x:Key="Nurse" Color="#0097B6" />
+        <SolidColorBrush x:Key="Other" Color="#B60000" />
+        
         <!-- Styles -->
 
         <Style x:Key="Title" TargetType="TextBlock">
@@ -324,6 +328,11 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style x:Key="CustomLabel" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+        </Style>
+        <Style x:Key="CustomTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
         </Style>
         <!-- Data Template-->
 

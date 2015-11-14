@@ -6,7 +6,7 @@
           xmlns:controls="clr-namespace:Hippocrate.View"
         xmlns:local="clr-namespace:Hippocrate.View"
         mc:Ignorable="d"
-        Title="Hippocrate" Height="720" Width="1280" MinWidth="600" MinHeight="600">
+        Title="Hippocrate" Height="720" Width="1280" MinWidth="700" MinHeight="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240*" />

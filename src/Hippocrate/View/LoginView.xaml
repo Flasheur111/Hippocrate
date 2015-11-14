@@ -7,8 +7,6 @@
              xmlns:helper="clr-namespace:Hippocrate.Helper"
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
-             Width="980"
-             Height="660"
              Margin="{Binding Padding, RelativeSource={RelativeSource Mode=FindAncestor, 
                                  AncestorType={x:Type ContentControl }}}"
              >
@@ -24,15 +22,15 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="6" />
-        <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" TextWrapping="WrapWithOverflow" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" >
+        <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" TextWrapping="WrapWithOverflow" >
             <Run FontSize="40" Text="Bienvenue sur Hippocrate !"/>
             <LineBreak/>
-            <Run FontWeight="Light" FontSize="20" Text="Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/>
+            <Run FontWeight="Light" FontSize="20" Text=" Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/>
         </TextBlock>
         <TextBox Style="{StaticResource PlaceHolder}" Tag="Login" Background="{StaticResource LightGray}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="447" FontSize="26.667" Text="{Binding Login}"/>
 
-        <PasswordBox Style="{StaticResource PasswordPlaceHolder}" Background="{StaticResource LightGray}"  Tag="Mot de passe" HorizontalAlignment="Left"  Grid.Row="3"  Width="447" FontSize="26.667" />
+        <PasswordBox   Style="{StaticResource PasswordPlaceHolder}" Background="{StaticResource LightGray}"  Tag="Mot de passe" HorizontalAlignment="Left"  Grid.Row="3"  Width="447" FontSize="26.667" />
      
-            <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24" Command="{Binding ConnectionCommand}"/>
+        <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24" Command="{Binding ConnectionCommand}"/>
     </Grid>
 </UserControl>

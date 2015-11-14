@@ -76,6 +76,9 @@ namespace Hippocrate.ViewModel
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
+            this.Firstname = e.Firstname;
+            this.Lastname = e.Name;
+            this.Role = e.Role;
         }
     }
 }

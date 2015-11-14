@@ -18,7 +18,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1.2*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="4" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
         
         <TextBlock Grid.Row="1" Text="Prénom : "  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="28"/>
         <TextBox  Text="{Binding Firstname}"  Grid.Row="1" VerticalAlignment="Center" Margin="120,0,20,0" IsEnabled="False" Height="35" FontSize="24"/>

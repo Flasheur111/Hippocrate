@@ -6,14 +6,16 @@
           xmlns:controls="clr-namespace:Hippocrate.View"
         xmlns:local="clr-namespace:Hippocrate.View"
         mc:Ignorable="d"
-        Title="Hippocrate" Height="720" Width="1280" MinWidth="700" MinHeight="600">
+        Title="Hippocrate" Height="720" Width="1280" MinWidth="700" MinHeight="600"
+        Icon="/Assets/hippocrate.ico">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240*" />
-            <ColumnDefinition Width="1040*" />
+            <ColumnDefinition Width="51*" />
+            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="1034*" />
         </Grid.ColumnDefinitions>
-        <controls:SidebarView x:Name="sidebar" Grid.Column="0" />
-        <Rectangle Fill="#FFA1A1A1" Grid.Column="1" />
-        <ContentControl Content="{Binding WindowContent}" Padding="30,30,30,30" Grid.Column="1"/>
+        <controls:SidebarView x:Name="sidebar" Grid.Column="0" Grid.ColumnSpan="2" />
+        <Rectangle Fill="#FFA1A1A1" Grid.Column="2" />
+        <ContentControl Content="{Binding WindowContent}" Padding="30,30,30,30" Grid.Column="2"/>
     </Grid>
 </Window>

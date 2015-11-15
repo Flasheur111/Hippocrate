@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:Hippocrate.View"
         mc:Ignorable="d"
         Title="Hippocrate" Height="720" Width="1280" MinWidth="700" MinHeight="600"
-        Icon="/Assets/hippocrate.ico">
+        Icon="/Assets/hippocrate.ico"
+>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="238*" />

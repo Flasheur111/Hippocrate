@@ -18,9 +18,9 @@ namespace Hippocrate.View
     /// <summary>
     /// Interaction logic for PatientSheet.xaml
     /// </summary>
-    public partial class PatientSheet : UserControl
+    public partial class PatientSheetView : UserControl
     {
-        public PatientSheet()
+        public PatientSheetView()
         {
             InitializeComponent();
         }

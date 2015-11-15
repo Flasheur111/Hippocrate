@@ -14,5 +14,12 @@ namespace Hippocrate.BusinessManagement
             ServicePatientManager s = new ServicePatientManager();
             return s.GetListPatient();
         }
+
+        public static bool DeletePatient(int id)
+        {
+            ServicePatientManager s = new ServicePatientManager();
+            return s.DeletePatient(id);
+        }
+      
     }
 }

@@ -11,4 +11,9 @@ namespace Hippocrate.ViewModel
     {
         void UserConnectedChangedEventHandler(object sender, ServiceUser.User e);
     }
+
+    interface IPatientSelected
+    {
+        void PatientSelectedEventHandler(ServicePatient.Patient e);
+    }
 }

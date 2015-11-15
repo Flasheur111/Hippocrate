@@ -78,6 +78,21 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("Search");
             }
         }
+
+        private ServicePatient.Patient _selectedrecord;
+
+        public ServicePatient.Patient SelectedRecord
+        {
+            get
+            {
+                return _selectedrecord;
+            }
+            set
+            {
+                _selectedrecord = value;
+                RaisePropertyChanged("SelectedRecord");
+            }
+        }
         /// <summary>
         /// Initializes a new instance of the PatientListViewModel class.
         /// </summary>
@@ -90,9 +105,17 @@ namespace Hippocrate.ViewModel
             set { _backCommand = value; }
         }
 
+        private ICommand _patientdetails;
+
+        public ICommand PatientDetails
+        {
+            get { return _patientdetails; }
+            set { _patientdetails = value; }
+        }
+
         public PatientListViewModel()
         {
-            WindowContent = new View.PatientList();
+            WindowContent = new View.PatientListView();
             WindowContent.DataContext = this;
 
             BackCommand = new RelayCommand(() =>
@@ -101,8 +124,21 @@ namespace Hippocrate.ViewModel
                 vm.Window.DataContext = vm.Home;
             });
 
+            PatientDetails = new RelayCommand(() =>
+            {
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.PatientSheet.PatientSelectedEventHandler(SelectedRecord);
+                vm.Window.DataContext = vm.PatientSheet;
+            });
+
             PatientsList = null;
             CanAdd = true;
+        }
+
+        public void PatientListUpdate()
+        {
+            ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
+            PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
         }
     
 
@@ -110,8 +146,7 @@ namespace Hippocrate.ViewModel
         {
             CanAdd = e.Role == "Infirmière" ? false : true;
 
-            ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
-            PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
+            PatientListUpdate();
         }
     }
 }

@@ -68,14 +68,13 @@ namespace Hippocrate.ViewModel
             }
             set {
                 _search = value;
-                ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
+
                 List<ServicePatient.Patient> filters = new List<ServicePatient.Patient>();
-                foreach (ServicePatient.Patient p in patients)
-                {
+                foreach (ServicePatient.Patient p in BusinessManagement.Patient.GetListPatient())
                     if (p.Firstname.Contains(value) || p.Name.Contains(value) || p.Observations.Length.ToString().Contains(value))
                         filters.Add(p);
-                }
                 PatientsList = new ObservableCollection<ServicePatient.Patient>(filters);
+
                 RaisePropertyChanged("Search");
             }
         }
@@ -112,19 +111,7 @@ namespace Hippocrate.ViewModel
             CanAdd = e.Role == "Infirmière" ? false : true;
 
             ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
-            
             PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
         }
-
-        public void TextBoxPreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class PatientData
-    {
-        private string _firstname;
-        public string Firstname { get { return _firstname; } set { _firstname = value; } }
     }
 }

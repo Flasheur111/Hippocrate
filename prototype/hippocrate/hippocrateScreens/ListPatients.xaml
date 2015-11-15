@@ -185,7 +185,9 @@
                         <TextBlock Text="nb obs." Foreground="White" FontSize="14.667" RenderTransformOrigin="0.5,0.5" Height="18.507" Margin="0" />
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="0.1*" HeaderStyle="{DynamicResource DataGridColumnHeaderStyleClassic}"/>
+                <DataGridTextColumn Width="0.1*" HeaderStyle="{DynamicResource DataGridColumnHeaderStyleClassic}">
+                    <Image></Image>
+                </DataGridTextColumn>
             </DataGrid.Columns>
 
             <DataGrid.Items>

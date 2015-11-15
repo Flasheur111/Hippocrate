@@ -33,11 +33,24 @@
             <Image Source="/Assets/plus_button.png"/>
         </Button>
         <TextBox Style="{StaticResource PlaceHolder}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
-        <DataGrid ItemsSource="{Binding PatientsList}" GridLinesVisibility="All" Grid.ColumnSpan="4" Grid.Column="1" Grid.Row="5" HeadersVisibility="Column" AutoGenerateColumns="False"  ColumnHeaderStyle="{DynamicResource DataGridColumnPersonHeaderStyle}" Foreground="#FF1D1D1D" BorderBrush="{x:Null}">
+        <DataGrid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4"
+                  ItemsSource="{Binding PatientsList}" 
+                  Style="{StaticResource DatagridCustom}" ColumnHeaderStyle="{StaticResource HeaderStyle}" RowStyle="{StaticResource RowStyle}" CellStyle="{StaticResource CellStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" />
-                <DataGridTextColumn Header="Nom" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Nb. d'obervations" Binding="{Binding Observations.Length}" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="0.2*"/>
+                <DataGridTextColumn Header="Nb. d'observations" Binding="{Binding Observations.Length}" Width="0.2*"/>
+                <DataGridTemplateColumn Header="Action" Width="0.1*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Button x:Name="btnConfirm" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"  HorizontalAlignment="Center">
+                                    <Image Source="/Assets/noun_8398_cc.png" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
+                                </Button>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

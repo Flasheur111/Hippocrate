@@ -19,6 +19,54 @@
         
         <!-- Styles -->
 
+        <!-- DatagridCustom template -->
+        <Style x:Key="DatagridCustom" TargetType="DataGrid">
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="GridLinesVisibility" Value="None" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="Foreground" Value="#FF1D1D1D" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="AlternationCount" Value="2" />
+            <Setter Property="RowHeight" Value="40" />
+            <Setter Property="Background" Value="#FFA1A1A1"/>
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        
+        <!-- DatagridCustom Header Style -->
+        <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#7F7F7F" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        
+        <!-- DataGridCustom Cell Style -->
+        <Style x:Key="CellStyle" TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0,0,2,0"/>
+            <Setter Property="BorderBrush" Value="#FFA7A7A7"/>
+        </Style>
+
+        <!-- DatagridCustom Row Style -->
+        <Style x:Key="RowStyle" TargetType="DataGridRow">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#8F8F8F"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#7F7F7F"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="Title" TargetType="TextBlock">
             <Style.Setters>
                 <Setter Property="FontSize" Value="30" />

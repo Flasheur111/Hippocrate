@@ -16,5 +16,11 @@ namespace Hippocrate.BusinessManagement
             ServiceUserManager sum = new ServiceUserManager();
             return sum.GetUserAsync(login);
         }
+
+        public static ServiceUser.User[] GetUserList()
+        {
+            ServiceUserManager sum = new ServiceUserManager();
+            return sum.GetListUser();
+        }
     }
 }

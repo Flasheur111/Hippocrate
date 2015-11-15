@@ -20,7 +20,6 @@ namespace Hippocrate
     {
         public App()
         {
-            ServiceLiveManager liveManager = new ServiceLiveManager();
             ServiceObservationManager observationManager = new ServiceObservationManager();
             ServicePatientManager patientManager = new ServicePatientManager();
             ServiceUserManager userManager = new ServiceUserManager();

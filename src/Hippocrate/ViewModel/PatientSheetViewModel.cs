@@ -10,6 +10,9 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Media.Imaging;
 using System.IO;
+using LiveCharts.Series;
+using Hippocrate.DataAccess;
+using Hippocrate.ServiceLive;
 
 namespace Hippocrate.ViewModel
 {
@@ -19,7 +22,7 @@ namespace Hippocrate.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class PatientSheetViewModel : ViewModelBase, IUserConnectedChangedEventHandler,  IPatientSelected
+    public class PatientSheetViewModel : ViewModelBase, IUserConnectedChangedEventHandler,  IPatientSelected, IServiceLiveCallback
     {
         #region Getter / Setters
         private UserControl _windowContent;
@@ -168,6 +171,31 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private ObservableCollection<Serie> _patientbloodpressureserie;
+
+        public ObservableCollection<Serie> PatientBloodPressureSerie
+        {
+            get { return _patientbloodpressureserie; }
+            set
+            {
+                _patientbloodpressureserie = value;
+                RaisePropertyChanged("PatientBloodPressureSerie");
+            }
+        }
+
+        private ObservableCollection<Serie> _patienttemperatureserie;
+
+        public ObservableCollection<Serie> PatientTemperatureSerie
+        {
+            get { return _patienttemperatureserie; }
+            set
+            {
+                _patienttemperatureserie = value;
+                RaisePropertyChanged("PatientTemperatureSerie");
+            }
+        }
+
+
         private ICommand _backCommand;
 
         public ICommand BackCommand
@@ -264,6 +292,16 @@ namespace Hippocrate.ViewModel
                 SelectedObservation = null;
                 vm.Window.DataContext = vm.PatientList;
             });
+
+            PatientBloodPressureSerie = new ObservableCollection<Serie>
+            {
+                new LineSerie
+                {
+                    PrimaryValues = new ObservableCollection<double> { }
+                }
+            };
+
+            ServiceLiveManager s = new ServiceLiveManager(this);
         }
 
         public void UserConnectedChangedEventHandler(object sender, User e)
@@ -276,8 +314,26 @@ namespace Hippocrate.ViewModel
             DisplayedName = e.Firstname.ToUpper() + " " + e.Name;
             DisplayedBirthday = "Née le " + e.Birthday.ToString("dd/MM/yyyy");
             PatientId = e.Id;
+
             
             Observations = new ObservableCollection<ServicePatient.Observation>(new List<ServicePatient.Observation>(e.Observations));
+        }
+
+        public void PushDataHeart(double requestData)
+        {
+            if (PatientBloodPressureSerie[0].PrimaryValues.Count > 50)
+                PatientBloodPressureSerie[0].PrimaryValues.RemoveAt(0);
+
+                PatientBloodPressureSerie[0].PrimaryValues.Add(requestData);
+        }
+
+        public void PushDataTemp(double requestData)
+        {
+            /*
+           if (PatientBloodPressureSerie[1].PrimaryValues.Count > 50)
+                PatientBloodPressureSerie[1].PrimaryValues.RemoveAt(0);
+
+            PatientBloodPressureSerie[1].PrimaryValues.Add(requestData);*/
         }
     }
 }

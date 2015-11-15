@@ -83,6 +83,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusinessManagement\Patient.cs" />
     <Compile Include="BusinessManagement\User.cs" />
     <Compile Include="Helper\PasswordBoxHelper.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />

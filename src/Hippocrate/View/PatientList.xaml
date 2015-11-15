@@ -29,10 +29,17 @@
         </Button>
         <Image Grid.Row="1" Grid.Column="2" Source="/Assets/noun_206184_cc.png"/>
         <TextBlock Grid.Row="1" Grid.Column="3" Text="Patients" FontSize="40" VerticalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="4" Background="#FFA1A1A1" BorderThickness="0">
+        <Button Grid.Row="1" Grid.Column="4" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="#FFA1A1A1" BorderThickness="0">
             <Image Source="/Assets/plus_button.png"/>
         </Button>
-        <TextBox Style="{StaticResource PlaceHolder}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
+        <TextBox Style="{StaticResource PlaceHolder}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
+        <DataGrid ItemsSource="{Binding PatientsList}" GridLinesVisibility="All" Grid.ColumnSpan="4" Grid.Column="1" Grid.Row="5" HeadersVisibility="Column" AutoGenerateColumns="False"  ColumnHeaderStyle="{DynamicResource DataGridColumnPersonHeaderStyle}" Foreground="#FF1D1D1D" BorderBrush="{x:Null}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" />
+                <DataGridTextColumn Header="Nom" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Nb. d'obervations" Binding="{Binding Observations.Length}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 
 </UserControl>

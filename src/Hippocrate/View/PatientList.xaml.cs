@@ -24,5 +24,7 @@ namespace Hippocrate.View
         {
             InitializeComponent();
         }
+
+        
     }
 }

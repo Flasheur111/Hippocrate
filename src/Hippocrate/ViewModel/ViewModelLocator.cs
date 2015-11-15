@@ -86,7 +86,7 @@ namespace Hippocrate.ViewModel
             }
         }
 
-        public StaffListViewModel StaffList
+        public StaffListViewModel StaffListView
         {
             get
             {

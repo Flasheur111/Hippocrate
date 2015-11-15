@@ -143,6 +143,9 @@
     <Compile Include="View\SidebarView.xaml.cs">
       <DependentUpon>SidebarView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StaffListView.xaml.cs">
+      <DependentUpon>StaffListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StaffSheetView.xaml.cs">
       <DependentUpon>StaffSheetView.xaml</DependentUpon>
     </Compile>
@@ -262,6 +265,10 @@
     <Page Include="View\SidebarView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\StaffListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffSheetView.xaml">
       <Generator>MSBuild:Compile</Generator>

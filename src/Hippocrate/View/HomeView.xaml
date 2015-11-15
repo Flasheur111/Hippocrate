@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="4" Grid.ColumnSpan="2"/>
 
-        <Button x:Name="button" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="#FFA1A1A1">
+        <Button x:Name="button" Command="{Binding StaffConsult}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="#FFA1A1A1">
             <DockPanel>
                 <Image DockPanel.Dock="Left" Source="/Assets/noun_206185_cc.png" Margin="50,0,0,0"/>
                 <TextBlock x:Name="personal" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left">

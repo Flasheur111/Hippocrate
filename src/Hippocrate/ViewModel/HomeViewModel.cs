@@ -60,6 +60,17 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private ICommand _staffconsult;
+        public ICommand StaffConsult
+        {
+            get { return _staffconsult; }
+            set
+            {
+                _staffconsult = value;
+                RaisePropertyChanged("StaffConsult");
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the LoginViewModel class.
         /// </summary>
@@ -73,6 +84,12 @@ namespace Hippocrate.ViewModel
                 ViewModelLocator vm = new ViewModelLocator();
                 vm.Window.DataContext = vm.PatientList;
             });
+
+            StaffConsult = new RelayCommand(() =>
+            {
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.StaffListView;
+            });
         }
         
 
@@ -80,11 +97,13 @@ namespace Hippocrate.ViewModel
         {
             if (e.Role != "Infirmière")
             {
-                DButton1 = "Vous pouvez lire, modifier et supprimer des fiches.";
+                DButton2 = "Vous pouvez lire, créer et supprimer des fiches.";
+                DButton1 = "Vous pouvez lire, créer et supprimer les fiches du personnel.";
             }
             else
             {
                 DButton2 = "Vous pouvez lire des fiches.";
+                DButton1 = "Vous pouvez lire les fiches du personnel hospitalier.";
             }
         }
     }

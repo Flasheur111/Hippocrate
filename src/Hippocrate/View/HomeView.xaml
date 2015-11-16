@@ -4,24 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hippocrate.View"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignWidth="980" d:DesignHeight="660">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
 
-        <Button x:Name="button" Command="{Binding StaffConsult}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="#FFA1A1A1">
+        <Button x:Name="button" Command="{Binding StaffConsult}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" BorderThickness="0" Background="#FFA1A1A1">
             <DockPanel>
                 <Image DockPanel.Dock="Left" Source="/Assets/noun_206185_cc.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                <TextBlock x:Name="personal" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock x:Name="personal" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap">
                     <Run FontSize="37.333" Text="Consulter les fiches du personnel"/>
                     <LineBreak/>
                     <Run FontSize="27" Text="{Binding DButton1}">
@@ -29,10 +32,10 @@
                 </TextBlock>
             </DockPanel>
         </Button>
-        <Button x:Name="button2" Command="{Binding PatientConsult}" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="#FFA1A1A1">
+        <Button x:Name="button2" Command="{Binding PatientConsult}" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" BorderThickness="0" Background="#FFA1A1A1">
             <DockPanel>
                 <Image DockPanel.Dock="Left" Source="/Assets/noun_206184_cc.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                <TextBlock x:Name="patients" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="patients" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap">
                     <Run FontSize="37.333" Text="Consulter les fiches des patients"/>
                     <LineBreak/>
                     <Run FontSize="27" Text="{Binding DButton2}"/>

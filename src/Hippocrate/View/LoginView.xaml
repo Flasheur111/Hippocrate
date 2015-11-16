@@ -7,8 +7,6 @@
              xmlns:helper="clr-namespace:Hippocrate.Helper"
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
-             Margin="{Binding Padding, RelativeSource={RelativeSource Mode=FindAncestor, 
-                                 AncestorType={x:Type ContentControl }}}"
              >
     <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>

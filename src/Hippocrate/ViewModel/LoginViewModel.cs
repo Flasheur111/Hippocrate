@@ -44,7 +44,6 @@ namespace Hippocrate.ViewModel
             }
         }
 
-
         private RelayCommand _connectionCommand;
 
         public RelayCommand ConnectionCommand

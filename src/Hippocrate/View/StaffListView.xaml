@@ -33,7 +33,7 @@
             <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Button>
         <TextBox Style="{StaticResource PlaceHolder}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
-        <DataGrid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4"
+        <DataGrid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="6"
                   ItemsSource="{Binding StaffList}" SelectedItem="{Binding SelectedRecord}"
                   Style="{StaticResource DatagridCustom}" ColumnHeaderStyle="{StaticResource HeaderStyle}" RowStyle="{StaticResource RowStyle}" CellStyle="{StaticResource CellStyle}">
             <DataGrid.Columns>

@@ -186,7 +186,7 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Width="0.1*" HeaderStyle="{DynamicResource DataGridColumnHeaderStyleClassic}">
-                    <Image></Image>
+                
                 </DataGridTextColumn>
             </DataGrid.Columns>
 

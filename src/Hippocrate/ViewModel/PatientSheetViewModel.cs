@@ -13,6 +13,7 @@ using System.IO;
 using LiveCharts.Series;
 using Hippocrate.DataAccess;
 using Hippocrate.ServiceLive;
+using System.Windows.Media;
 
 namespace Hippocrate.ViewModel
 {
@@ -297,7 +298,18 @@ namespace Hippocrate.ViewModel
             {
                 new LineSerie
                 {
-                    PrimaryValues = new ObservableCollection<double> { }
+                    Name = "BloodPressure",
+                    PrimaryValues = new ObservableCollection<double> { 0}
+                }
+            };
+
+            PatientTemperatureSerie = new ObservableCollection<Serie>
+            {
+                new LineSerie
+                {
+                    Name = "Temperature",
+                    PrimaryValues = new ObservableCollection<double> { 38},
+                    Color=Color.FromArgb(255,255,0,0)
                 }
             };
 
@@ -325,15 +337,17 @@ namespace Hippocrate.ViewModel
                 PatientBloodPressureSerie[0].PrimaryValues.RemoveAt(0);
 
                 PatientBloodPressureSerie[0].PrimaryValues.Add(requestData);
+
+
         }
 
         public void PushDataTemp(double requestData)
         {
-            /*
-           if (PatientBloodPressureSerie[1].PrimaryValues.Count > 50)
-                PatientBloodPressureSerie[1].PrimaryValues.RemoveAt(0);
+            
+           if (PatientTemperatureSerie[0].PrimaryValues.Count > 50)
+                PatientTemperatureSerie[0].PrimaryValues.RemoveAt(0);
 
-            PatientBloodPressureSerie[1].PrimaryValues.Add(requestData);*/
+            PatientTemperatureSerie[0].PrimaryValues.Add(requestData);
         }
     }
 }

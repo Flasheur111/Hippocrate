@@ -5,10 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
-             Width="980"
-             Height="660"
-             Margin="{Binding Padding, RelativeSource={RelativeSource Mode=FindAncestor, 
-                                 AncestorType={x:Type ContentControl }}}">
+            >
 
     <Grid Background="{StaticResource Second}">
         <Grid.ColumnDefinitions>

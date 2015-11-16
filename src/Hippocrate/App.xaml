@@ -9,8 +9,11 @@
     <Application.Resources>
 
         <!-- Colors -->
-        <SolidColorBrush x:Key="Primary" Color="#404040" />
-        <SolidColorBrush x:Key="Second" Color="#a1a1a1" />
+        <Color x:Key="PrimaryColor">#404040</Color>
+        <Color x:Key="SecondColor">#a1a1a1</Color>
+        <!-- Brushes -->
+        <SolidColorBrush x:Key="Primary" Color="{StaticResource PrimaryColor}" />
+        <SolidColorBrush x:Key="Second" Color="{StaticResource SecondColor}" />
         <SolidColorBrush x:Key="LightGray" Color="#bdbdbd" />
 
         <SolidColorBrush x:Key="NotConnected" Color="#404040"/>
@@ -179,7 +182,7 @@
                     <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                         <Grid>
                             <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
-                            <Rectangle Fill="#FF343434" />
+                            <Rectangle Fill="{StaticResource Primary}" />
                             <ContentPresenter HorizontalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="Auto" Margin="8,2,31.557,2"/>
                             <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
                             <TextBlock HorizontalAlignment="Right" Margin="0,0,8,0" TextWrapping="Wrap" Width="11.557" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="15.397" Foreground="White">
@@ -279,9 +282,6 @@
         </Style>
         <Style x:Key="{x:Type ScrollBar}"
            TargetType="{x:Type ScrollBar}">
-            <Setter Property="Height" Value="{Binding Height, 
-              RelativeSource={RelativeSource Mode=FindAncestor, 
-                                 AncestorType={x:Type ListBox }}}"/>
             <Setter Property="Background"
                 Value="White"/>
             <Setter Property="Stylus.IsPressAndHoldEnabled"

@@ -1,13 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace Hippocrate.ViewModel
 {
@@ -101,8 +95,6 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public LoginViewModel()
         {
-            Login = "";
-            Password = "";
             LoginError = false;
 
             _connectionCommand = new RelayCommand(async () =>
@@ -126,10 +118,17 @@ namespace Hippocrate.ViewModel
                     // Wrong pass dude !
                     LoginError = true;
                 }
-            }, () => Password.Length > 0 && Login.Length > 0);
-            
+            }, () => CanLogin);
+
             WindowContent = new View.LoginView();
             WindowContent.DataContext = this;
         }
+
+        public bool CanLogin
+        {
+            get { return !String.IsNullOrWhiteSpace(Login) && !String.IsNullOrWhiteSpace(Password); }
+        }
+
+
     }
 }

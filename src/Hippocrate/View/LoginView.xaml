@@ -8,35 +8,7 @@
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
              >
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                </Trigger>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation Duration="0:0:2" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                                From="{StaticResource ResourceKey=PrimaryColor}" To="{StaticResource ResourceKey=SecondColor}"  AutoReverse="True"/>
-
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
+    
     <Grid HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -56,8 +28,8 @@
         <TextBox Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Identifiant" Background="{StaticResource LightGray}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="450" FontSize="27" Text="{Binding Login, FallbackValue=Login}"/>
         <PasswordBox helper:PasswordHelper.BindPassword="true" Foreground="{StaticResource Primary}" helper:PasswordBoxHelper.PlaceHolderText="Mot de passe" helper:PasswordHelper.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{StaticResource LightGray}"  Tag="Mot de passe" HorizontalAlignment="Left"  Grid.Row="4"  Width="450" FontSize="27" Padding="5,0,0,0" />
         <StackPanel Orientation="Vertical" Grid.Row="6" HorizontalAlignment="Stretch">
-        <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left"  Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24" Command="{Binding ConnectionCommand}"/>
-            <TextBlock Margin="0,25,0,0" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Stretch">
+            <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left"  Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24" Command="{Binding ConnectionCommand}"/>
+                <TextBlock Margin="0,25,0,0" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Stretch">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Visibility" Value="Hidden"/>

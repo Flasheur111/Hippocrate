@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Hippocrate.View"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="240">
-
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>

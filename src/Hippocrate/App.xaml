@@ -11,6 +11,7 @@
         <!-- Colors -->
         <Color x:Key="PrimaryColor">#404040</Color>
         <Color x:Key="SecondColor">#a1a1a1</Color>
+        
         <!-- Brushes -->
         <SolidColorBrush x:Key="Primary" Color="{StaticResource PrimaryColor}" />
         <SolidColorBrush x:Key="Second" Color="{StaticResource SecondColor}" />

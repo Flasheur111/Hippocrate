@@ -130,11 +130,18 @@
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*" />
                         <RowDefinition Height="1*" />
+
+                        <RowDefinition Height="0.2*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    
-                    <charts:LineChart Series="{Binding PatientBloodPressureSerie}" Grid.Row="0"  x:Name="LineChartBlood" 
+                    <TextBlock Grid.Row="0" Text="Pression sanguine :" VerticalAlignment="Center"></TextBlock>
+                    <charts:LineChart Series="{Binding PatientBloodPressureSerie}" Grid.Row="1"  x:Name="LineChartBlood" 
+                                      Background="#FBFBFB" BorderBrush="LightGray" BorderThickness="1"
+                                      Zooming="False" Hoverable="False"></charts:LineChart>
+                    <TextBlock Grid.Row="2" Text="Température :" VerticalAlignment="Center"></TextBlock>
+                    <charts:LineChart Series="{Binding PatientTemperatureSerie}" Grid.Row="3"  x:Name="LineTemperature" 
                                       Background="#FBFBFB" BorderBrush="LightGray" BorderThickness="1"
                                       Zooming="False" Hoverable="False"></charts:LineChart>
                 </Grid>

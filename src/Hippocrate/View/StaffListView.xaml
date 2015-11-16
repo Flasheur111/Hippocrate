@@ -34,7 +34,7 @@
         </Button>
         <TextBox Style="{StaticResource PlaceHolder}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
         <DataGrid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4"
-                  ItemsSource="{Binding StaffList}" 
+                  ItemsSource="{Binding StaffList}" SelectedItem="{Binding SelectedRecord}"
                   Style="{StaticResource DatagridCustom}" ColumnHeaderStyle="{StaticResource HeaderStyle}" RowStyle="{StaticResource RowStyle}" CellStyle="{StaticResource CellStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname"/>
@@ -44,7 +44,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel>
-                                <Button x:Name="btnConfirm" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"  HorizontalAlignment="Center">
+                                <Button x:Name="btnConfirm" Command="{Binding Path=DataContext.StaffDetails, RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"  HorizontalAlignment="Center">
                                     <Image Source="/Assets/noun_8398_cc.png" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
                                 </Button>
                             </DockPanel>

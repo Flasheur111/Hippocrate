@@ -80,6 +80,21 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("Search");
             }
         }
+
+        private ServiceUser.User _selectedrecord;
+
+        public ServiceUser.User SelectedRecord
+        {
+            get
+            {
+                return _selectedrecord;
+            }
+            set
+            {
+                _selectedrecord = value;
+                RaisePropertyChanged("SelectedRecord");
+            }
+        }
         /// <summary>
         /// Initializes a new instance of the PatientListViewModel class.
         /// </summary>
@@ -92,6 +107,15 @@ namespace Hippocrate.ViewModel
             set { _backCommand = value; }
         }
 
+        private ICommand _staffdetails;
+
+        public ICommand StaffDetails
+        {
+            get { return _staffdetails; }
+            set { _staffdetails = value; }
+        }
+        private string LoginUser;
+        
         public StaffListViewModel()
         {
             WindowContent = new View.StaffListView();
@@ -103,17 +127,36 @@ namespace Hippocrate.ViewModel
                 vm.Window.DataContext = vm.Home;
             });
 
+            StaffDetails = new RelayCommand(() =>
+            {
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.StaffSheet.UserSelectedEventHandler(SelectedRecord);
+                vm.Window.DataContext = vm.StaffSheet;
+            });
+
             StaffList = null;
             CanAdd = true;
         }
 
+        
+
+        public void UserListUpdate()
+        {
+            ServiceUser.User[] staff = BusinessManagement.User.GetUserList();
+            StaffList = new ObservableCollection<ServiceUser.User>();
+            foreach (ServiceUser.User u in staff)
+            {
+                if (u.Login != LoginUser)
+                    StaffList.Add(u);
+            }
+        }
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
             CanAdd = e.Role == "Infirmière" ? false : true;
+            LoginUser = e.Login;
 
-            ServiceUser.User[] staff = BusinessManagement.User.GetUserList();
-            StaffList = new ObservableCollection<ServiceUser.User>(new List<ServiceUser.User>(staff));
+            UserListUpdate();
         }
     }
 }

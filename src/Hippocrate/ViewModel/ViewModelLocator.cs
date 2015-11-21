@@ -41,7 +41,8 @@ namespace Hippocrate.ViewModel
             SimpleIoc.Default.Register<SidebarViewModel>();
             SimpleIoc.Default.Register<AccountViewModel>();
             SimpleIoc.Default.Register<PatientListViewModel>();
-            
+            SimpleIoc.Default.Register<AddPatientViewModel>();
+
             SimpleIoc.Default.Register<View.MainWindow>();
         }
 
@@ -114,6 +115,14 @@ namespace Hippocrate.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<PatientListViewModel>();
+            }
+        }
+
+        public AddPatientViewModel AddPatient
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddPatientViewModel>();
             }
         }
 

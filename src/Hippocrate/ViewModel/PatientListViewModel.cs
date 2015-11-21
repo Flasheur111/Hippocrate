@@ -124,38 +124,7 @@ namespace Hippocrate.ViewModel
             }
         }
 
-        private string _addfirstname;
-
-        public string AddFirstname
-        {
-            get { return _addfirstname; }
-            set { _addfirstname = value; RaisePropertyChanged("AddFirstname"); }
-        }
-
-        private string _addname;
-
-        public string AddName
-        {
-            get { return _addname; }
-            set { _addname = value; RaisePropertyChanged("AddName"); }
-        }
-
-
-        private string _addBirthday;
-
-        public string AddBirthday
-        {
-            get { return _addBirthday; }
-            set { _addBirthday = value; RaisePropertyChanged("AddBirthday"); }
-        }
-
-        private bool _createerror;
-
-        public bool CreateError
-        {
-            get { return _createerror; }
-            set { _createerror = value; RaisePropertyChanged("CreateError"); }
-        }
+  
         #endregion
 
 
@@ -207,12 +176,6 @@ namespace Hippocrate.ViewModel
 
         public PatientListViewModel()
         {
-            WindowContent = new View.PatientListView();
-            WindowContent.DataContext = this;
-
-            AddFirstname = "";
-            AddName = "";
-            AddBirthday = "";
 
 
             BackCommand = new RelayCommand(() =>
@@ -231,54 +194,35 @@ namespace Hippocrate.ViewModel
             AddPatientCommand = new RelayCommand(() =>
             {
                 ViewModelLocator vm = new ViewModelLocator();
+
                 CanViewAdd = !CanViewAdd;
             });
 
-            CancelCommand = new RelayCommand(() =>
-            {
-                CancelPopup();
-            });
-
-            ValidateAddCommand = new RelayCommand(() =>
-            {
-                try
-                {
-                    DateTime date = DateTime.ParseExact(AddBirthday, "M/d/yyyy", CultureInfo.InvariantCulture);
-                    if (AddFirstname != "" && AddName != "")
-                    {
-                        bool added = BusinessManagement.Patient.AddPatient(AddFirstname, AddName, date);
-                        PatientListUpdate();
-                        CancelPopup();
-                    }
-                }
-                catch (Exception)
-                {
-                    CreateError = true;
-                }
-            });
+           
 
             PatientsList = null;
             CanAdd = true;
             CanViewAdd = false;
-        }
 
-        public void CancelPopup()
-        {
-            AddFirstname = "";
-            AddName = "";
-            AddBirthday = "";
-            CanViewAdd = false;
-            CreateError = false;
-        }
+            ViewModelLocator vml = new ViewModelLocator();
+            View.AddPatientView addPatientView = new View.AddPatientView();
+            AddPatientContent = addPatientView;
+            addPatientView.DataContext = vml.AddPatient;
 
+            WindowContent = new View.PatientListView();
+            WindowContent.DataContext = this;
+        }
+        
         public void PatientListUpdate()
         {
             ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
             PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
         }
 
-
-
+        public void DissmissPopup()
+        {
+            CanViewAdd = false;
+        }
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {

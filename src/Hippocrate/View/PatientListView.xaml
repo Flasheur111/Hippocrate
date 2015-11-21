@@ -63,8 +63,8 @@
                 <Border.Effect>
                     <DropShadowEffect/>
                 </Border.Effect>
-                <local:AddPatientView x:Name="addPatient"></local:AddPatientView>
-            </Border>
+                <UserControl Content="{Binding AddPatientContent}"/>
+             </Border>
         </Popup>
     </Grid>
 

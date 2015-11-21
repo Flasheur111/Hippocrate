@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hippocrate.View"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             x:Name="MainPatient"
              d:DesignWidth="980" d:DesignHeight="660">
     <Grid x:Name="LayoutRoot" Background="#FFA1A1A1">
         <Grid.RowDefinitions>
@@ -29,7 +30,7 @@
         </Button>
         <Image Grid.Row="1" Grid.Column="2" Source="/Assets/noun_206184_cc.png"  RenderOptions.BitmapScalingMode="HighQuality"/>
         <TextBlock Grid.Row="1" Grid.Column="3" Text="Patients" FontSize="40" VerticalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="4" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="#FFA1A1A1" BorderThickness="0">
+        <Button Grid.Row="1" Grid.Column="4" Command="{Binding AddPatientCommand}" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="#FFA1A1A1" BorderThickness="0">
             <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Button>
         <TextBox Style="{StaticResource PlaceHolder}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
@@ -54,6 +55,17 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Popup IsOpen="{Binding CanViewAdd}" Name="AddPatient"
+               Placement="Center"  PlacementTarget="{Binding ElementName=MainPatient}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.ColumnSpan="6" Grid.RowSpan="7"
+               AllowsTransparency="True" PopupAnimation="Fade" Width="500" Height="500" >
+            <Border Margin="0 0 8 8">
+                <Border.Effect>
+                    <DropShadowEffect/>
+                </Border.Effect>
+                <local:AddPatientView x:Name="addPatient"></local:AddPatientView>
+            </Border>
+        </Popup>
     </Grid>
 
 </UserControl>

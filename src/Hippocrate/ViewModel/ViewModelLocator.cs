@@ -30,8 +30,7 @@ namespace Hippocrate.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            SimpleIoc.Default.Register<AddPatientViewModel>();
+            
             SimpleIoc.Default.Register<AddStaffViewModel>();
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
@@ -44,14 +43,6 @@ namespace Hippocrate.ViewModel
             SimpleIoc.Default.Register<PatientListViewModel>();
             
             SimpleIoc.Default.Register<View.MainWindow>();
-        }
-
-        public AddPatientViewModel AddPatient
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<AddPatientViewModel>();
-            }
         }
 
         public AddStaffViewModel AddStaff

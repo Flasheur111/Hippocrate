@@ -114,6 +114,8 @@ namespace Hippocrate.ViewModel
             get { return _staffdetails; }
             set { _staffdetails = value; }
         }
+
+
         private string LoginUser;
         
         public StaffListViewModel()

@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
+using System.Globalization;
 
 namespace Hippocrate.ViewModel
 {
@@ -17,6 +18,8 @@ namespace Hippocrate.ViewModel
         /// See http://www.galasoft.ch/mvvm
         /// </para>
         /// </summary>
+        /// 
+        #region get/set
         private UserControl _windowContent;
 
         public UserControl WindowContent
@@ -28,6 +31,31 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("WindowContent");
             }
         }
+
+        private UserControl _addpatientcontent;
+
+        public UserControl AddPatientContent
+        {
+            get { return _addpatientcontent; }
+            set
+            {
+                _addpatientcontent = value;
+                RaisePropertyChanged("AddPatientContent");
+            }
+        }
+
+        private bool _canviewadd;
+
+        public bool CanViewAdd
+        {
+            get { return _canviewadd; }
+            set
+            {
+                _canviewadd = value;
+                RaisePropertyChanged("CanViewAdd");
+            }
+        }
+
 
         private bool _canadd;
 
@@ -63,10 +91,12 @@ namespace Hippocrate.ViewModel
 
         public string Search
         {
-            get {
+            get
+            {
                 return _search;
             }
-            set {
+            set
+            {
                 _search = value;
 
                 List<ServicePatient.Patient> filters = new List<ServicePatient.Patient>();
@@ -93,6 +123,43 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("SelectedRecord");
             }
         }
+
+        private string _addfirstname;
+
+        public string AddFirstname
+        {
+            get { return _addfirstname; }
+            set { _addfirstname = value; RaisePropertyChanged("AddFirstname"); }
+        }
+
+        private string _addname;
+
+        public string AddName
+        {
+            get { return _addname; }
+            set { _addname = value; RaisePropertyChanged("AddName"); }
+        }
+
+
+        private string _addBirthday;
+
+        public string AddBirthday
+        {
+            get { return _addBirthday; }
+            set { _addBirthday = value; RaisePropertyChanged("AddBirthday"); }
+        }
+
+        private bool _createerror;
+
+        public bool CreateError
+        {
+            get { return _createerror; }
+            set { _createerror = value; RaisePropertyChanged("CreateError"); }
+        }
+        #endregion
+
+
+
         /// <summary>
         /// Initializes a new instance of the PatientListViewModel class.
         /// </summary>
@@ -113,10 +180,40 @@ namespace Hippocrate.ViewModel
             set { _patientdetails = value; }
         }
 
+
+        private ICommand _addpatientcommand;
+
+        public ICommand AddPatientCommand
+        {
+            get { return _addpatientcommand; }
+            set { _addpatientcommand = value; }
+        }
+
+        private ICommand _cancelcommand;
+
+        public ICommand CancelCommand
+        {
+            get { return _cancelcommand; }
+            set { _cancelcommand = value; }
+        }
+
+        private ICommand _validateaddcommand;
+
+        public ICommand ValidateAddCommand
+        {
+            get { return _validateaddcommand; }
+            set { _validateaddcommand = value; }
+        }
+
         public PatientListViewModel()
         {
             WindowContent = new View.PatientListView();
             WindowContent.DataContext = this;
+
+            AddFirstname = "";
+            AddName = "";
+            AddBirthday = "";
+
 
             BackCommand = new RelayCommand(() =>
             {
@@ -131,8 +228,47 @@ namespace Hippocrate.ViewModel
                 vm.Window.DataContext = vm.PatientSheet;
             });
 
+            AddPatientCommand = new RelayCommand(() =>
+            {
+                ViewModelLocator vm = new ViewModelLocator();
+                CanViewAdd = !CanViewAdd;
+            });
+
+            CancelCommand = new RelayCommand(() =>
+            {
+                CancelPopup();
+            });
+
+            ValidateAddCommand = new RelayCommand(() =>
+            {
+                try
+                {
+                    DateTime date = DateTime.ParseExact(AddBirthday, "M/d/yyyy", CultureInfo.InvariantCulture);
+                    if (AddFirstname != "" && AddName != "")
+                    {
+                        bool added = BusinessManagement.Patient.AddPatient(AddFirstname, AddName, date);
+                        PatientListUpdate();
+                        CancelPopup();
+                    }
+                }
+                catch (Exception)
+                {
+                    CreateError = true;
+                }
+            });
+
             PatientsList = null;
             CanAdd = true;
+            CanViewAdd = false;
+        }
+
+        public void CancelPopup()
+        {
+            AddFirstname = "";
+            AddName = "";
+            AddBirthday = "";
+            CanViewAdd = false;
+            CreateError = false;
         }
 
         public void PatientListUpdate()
@@ -140,7 +276,9 @@ namespace Hippocrate.ViewModel
             ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
             PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
         }
-    
+
+
+
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {

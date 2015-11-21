@@ -8,24 +8,21 @@
              d:DesignHeight="500" d:DesignWidth="500" Background="#FFC1C1C1">
     <Grid Margin="10,10,10,10"  HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="0.02*"/>
-            <RowDefinition Height="0.02*"/>
-            <RowDefinition Height="0.02*"/>
-            <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="0.02*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*"/>
-        </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="14,0,24,0" Grid.ColumnSpan="2">
+        <DockPanel Grid.Row="0" HorizontalAlignment="Center" Margin="14,0,24,0">
             <Image DockPanel.Dock="Left" Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" Width="90" VerticalAlignment="Center" OpacityMask="Black"/>
             <TextBlock Text="Ajouter un patient" FontSize="40" VerticalAlignment="Center" Margin="20,0,0,0"/>
         </DockPanel>
         <TextBox Grid.Row="1" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Prénom" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddFirstname}"></TextBox>
         <TextBox Grid.Row="2" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Nom" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddName}"></TextBox>
         <TextBox Grid.Row="3" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Date de naissance : 01/01/1999" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddBirthday}"></TextBox>
-        
+
         <TextBlock Grid.Row="4" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Center">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -37,13 +34,16 @@
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
-           <Run Text="* Le prénom ne doit pas être vide !"/><LineBreak/>
-            <Run Text="* Le nom ne doit pas être vide !"/><LineBreak/>
-        <Run Text="* La date ne doit pas être vide et doit être au format dd/mm/yyyy !"/></TextBlock>
-    
-        <DockPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Margin="30,0,40,0" Grid.ColumnSpan="2">
-            <Button DockPanel.Dock="Left"  Content="Annuler" FontSize="25" Grid.Row="4" Grid.Column="0" Width="200" BorderThickness="1" Command="{Binding CancelCommand}"/>
-            <Button DockPanel.Dock="Right"  Content="Créer" FontSize="25" Grid.Row="4" Grid.Column="0" Width="200" BorderThickness="1" Command="{Binding ValidateAddCommand}"/>
+            <Run Text="* Le prénom ne doit pas être vide !"/>
+            <LineBreak/>
+            <Run Text="* Le nom ne doit pas être vide !"/>
+            <LineBreak/>
+            <Run Text="* La date ne doit pas être vide et doit être au format jj/mm/aaaa !"/>
+        </TextBlock>
+
+        <DockPanel Grid.Row="5" HorizontalAlignment="Center" Margin="30,0,40,0" Grid.ColumnSpan="2">
+            <Button DockPanel.Dock="Left"  Content="Créer" FontSize="25" Grid.Row="4" Width="200" BorderThickness="1" Command="{Binding ValidateAddCommand}"/>
+            <Button DockPanel.Dock="Right"  Content="Annuler" FontSize="25" Grid.Row="4" Width="200" BorderThickness="1" Command="{Binding CancelCommand}"/>
         </DockPanel>
     </Grid>
 </UserControl>

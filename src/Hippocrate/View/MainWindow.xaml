@@ -16,6 +16,16 @@
         </Grid.ColumnDefinitions>
         <controls:SidebarView x:Name="sidebar" Grid.Column="0" />
         <Rectangle Fill="{StaticResource Second}" Grid.Column="1" />
-        <ContentControl Content="{Binding WindowContent}" Margin="30,30,30,30" Grid.Column="1"/>
+        <ContentControl Content="{Binding WindowContent, NotifyOnTargetUpdated=True}" Margin="30,30,30,30" Grid.Column="1">
+            <ContentControl.Triggers>
+                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="0:0:0.5" From="0.0" To="1.0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                    </EventTrigger>
+            </ContentControl.Triggers>
+        </ContentControl>
     </Grid>
 </Window>

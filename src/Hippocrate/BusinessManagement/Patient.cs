@@ -20,6 +20,18 @@ namespace Hippocrate.BusinessManagement
             ServicePatientManager s = new ServicePatientManager();
             return s.DeletePatient(id);
         }
-      
+
+        public static bool AddPatient(string firstname, string name, DateTime birthday)
+        {
+            ServicePatientManager s = new ServicePatientManager();
+
+            ServicePatient.Patient p = new ServicePatient.Patient();
+            p.Firstname = firstname;
+            p.Name = name;
+            p.Birthday = birthday;
+            p.Observations = null;
+            return s.AddPatient(p);
+        }
+
     }
 }

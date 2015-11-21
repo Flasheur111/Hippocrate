@@ -327,8 +327,10 @@ namespace Hippocrate.ViewModel
             DisplayedBirthday = "Née le " + e.Birthday.ToString("dd/MM/yyyy");
             PatientId = e.Id;
 
-            
-            Observations = new ObservableCollection<ServicePatient.Observation>(new List<ServicePatient.Observation>(e.Observations));
+            if (e.Observations != null)
+                Observations = new ObservableCollection<ServicePatient.Observation>(new List<ServicePatient.Observation>(e.Observations));
+            else
+                Observations = new ObservableCollection<ServicePatient.Observation>(new List<ServicePatient.Observation>());
         }
 
         public void PushDataHeart(double requestData)

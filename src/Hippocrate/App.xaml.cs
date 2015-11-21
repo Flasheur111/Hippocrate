@@ -19,11 +19,7 @@ namespace Hippocrate
     public partial class App : Application
     {
         public App()
-        {
-            ServiceObservationManager observationManager = new ServiceObservationManager();
-            ServicePatientManager patientManager = new ServicePatientManager();
-            ServiceUserManager userManager = new ServiceUserManager();
-        }
+        {}
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -32,7 +28,6 @@ namespace Hippocrate
 
             #region event handling init
             vm.Login.UserChangedEventHandler += vm.Account.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.AddPatient.UserConnectedChangedEventHandler;
             vm.Login.UserChangedEventHandler += vm.AddStaff.UserConnectedChangedEventHandler;
             vm.Login.UserChangedEventHandler += vm.Home.UserConnectedChangedEventHandler;
             vm.Login.UserChangedEventHandler += vm.PatientSheet.UserConnectedChangedEventHandler;

@@ -46,9 +46,9 @@ namespace Hippocrate.ViewModel
         }
 
 
-        private string _addBirthday;
+        private DateTime _addBirthday;
 
-        public string AddBirthday
+        public DateTime AddBirthday
         {
             get { return _addBirthday; }
             set { _addBirthday = value; RaisePropertyChanged("AddBirthday"); }
@@ -64,10 +64,6 @@ namespace Hippocrate.ViewModel
 
         public AddPatientViewModel()
         {
-            AddFirstname = "";
-            AddName = "";
-            AddBirthday = "";
-
             CancelCommand = new RelayCommand(() =>
             {
                 CancelPopup();
@@ -75,20 +71,14 @@ namespace Hippocrate.ViewModel
 
             ValidateAddCommand = new RelayCommand(() =>
             {
-                try
-                {
-                    DateTime date = DateTime.ParseExact(AddBirthday, "M/d/yyyy", CultureInfo.InvariantCulture);
-                    if (AddFirstname != "" && AddName != "")
+                    if (AddFirstname != "" && AddName != "" && AddBirthday != null)
                     {
-                        bool added = BusinessManagement.Patient.AddPatient(AddFirstname, AddName, date);
+                        bool added = BusinessManagement.Patient.AddPatient(AddFirstname, AddName, AddBirthday);
                         PatientListUpdate();
                         CancelPopup();
                     }
-                }
-                catch (Exception)
-                {
-                    CreateError = true;
-                }
+                    else
+                        CreateError = true;
             });
         }
 
@@ -96,11 +86,9 @@ namespace Hippocrate.ViewModel
         {
             AddFirstname = "";
             AddName = "";
-            AddBirthday = "";
             CreateError = false;
 
             ViewModelLocator vml = new ViewModelLocator();
-
             vml.PatientList.DissmissPopup();
         }
 

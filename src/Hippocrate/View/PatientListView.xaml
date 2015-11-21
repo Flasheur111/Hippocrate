@@ -55,6 +55,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="6" Fill="#FFA1A1A1" OpacityMask="#99000000" Visibility="{Binding Path=CanViewAdd, Converter={StaticResource ResourceKey=BoolToVis}}"></Rectangle>
         <Popup IsOpen="{Binding CanViewAdd}" Name="AddPatient"
                Placement="Center"  PlacementTarget="{Binding ElementName=MainPatient}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                Grid.ColumnSpan="6" Grid.RowSpan="7"

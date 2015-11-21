@@ -11,7 +11,7 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.3*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
@@ -21,8 +21,7 @@
         </DockPanel>
         <TextBox Grid.Row="1" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Prénom" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddFirstname}"></TextBox>
         <TextBox Grid.Row="2" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Nom" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddName}"></TextBox>
-        <TextBox Grid.Row="3" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Date de naissance : 01/01/1999" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddBirthday}"></TextBox>
-
+        <DatePicker Grid.Row="3" Grid.ColumnSpan="3" SelectedDate="{Binding AddBirthday}" FontSize="20"/>
         <TextBlock Grid.Row="4" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Center">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">

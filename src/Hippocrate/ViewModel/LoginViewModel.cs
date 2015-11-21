@@ -97,6 +97,10 @@ namespace Hippocrate.ViewModel
         {
             LoginError = false;
 
+            //Debug hack
+            Login = "fred";
+            Password = "fred";
+
             _connectionCommand = new RelayCommand(async () =>
             {
                 ViewModelLocator vm = new ViewModelLocator();

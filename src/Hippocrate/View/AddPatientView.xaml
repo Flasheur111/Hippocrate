@@ -5,44 +5,54 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hippocrate.View"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500" Background="#FFC1C1C1">
+             d:DesignHeight="300" d:DesignWidth="400" Background="#FFC1C1C1">
     <Grid Margin="10,10,10,10"  HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="1.3*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0" HorizontalAlignment="Center" Margin="14,0,24,0">
-            <Image DockPanel.Dock="Left" Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" Width="90" VerticalAlignment="Center" OpacityMask="Black"/>
-            <TextBlock Text="Ajouter un patient" FontSize="40" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="14,0,24,0">
+            <Image DockPanel.Dock="Left" Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" Width="40" VerticalAlignment="Center" OpacityMask="Black"/>
+            <TextBlock Text="Ajouter un patient" FontSize="30" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource Title}"/>
         </DockPanel>
-        <TextBox Grid.Row="1" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Prénom" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddFirstname}"></TextBox>
-        <TextBox Grid.Row="2" Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Nom" FontSize="20" Grid.ColumnSpan="3" Text="{Binding AddName}"></TextBox>
-        <DatePicker Grid.Row="3" Grid.ColumnSpan="3" SelectedDate="{Binding AddBirthday}" FontSize="20"/>
-        <TextBlock Grid.Row="4" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Center">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Visibility" Value="Hidden"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding CreateError}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-            <Run Text="* Le prénom ne doit pas être vide !"/>
-            <LineBreak/>
-            <Run Text="* Le nom ne doit pas être vide !"/>
-            <LineBreak/>
-            <Run Text="* La date ne doit pas être vide et doit être au format jj/mm/aaaa !"/>
-        </TextBlock>
+        <TextBox Grid.Row="1" Style="{StaticResource TextBoxValidation}" Foreground="{StaticResource Primary}" Tag="Prénom" FontSize="20" Grid.ColumnSpan="3">
+            <TextBox.Text>
+                <Binding Path="AddFirstname" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Row="2" Style="{StaticResource TextBoxValidation}" Foreground="{StaticResource Primary}" Tag="Nom" FontSize="20" Grid.ColumnSpan="3">
+            <TextBox.Text>
+                <Binding Path="AddName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <DatePicker Style="{StaticResource DatePickerValidation}" Grid.Row="3" Grid.ColumnSpan="3" FontSize="20" Background="White" Foreground="{StaticResource Primary}" BorderThickness="1" VerticalContentAlignment="Center" Margin="1,0,1,0">
+            <DatePicker.SelectedDate>
+                <Binding Path="AddBirthday" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </DatePicker.SelectedDate>
+        </DatePicker>
 
-        <DockPanel Grid.Row="5" HorizontalAlignment="Center" Margin="30,0,40,0" Grid.ColumnSpan="2">
-            <Button DockPanel.Dock="Left"  Content="Créer" FontSize="25" Grid.Row="4" Width="200" BorderThickness="1" Command="{Binding ValidateAddCommand}"/>
-            <Button DockPanel.Dock="Right"  Content="Annuler" FontSize="25" Grid.Row="4" Width="200" BorderThickness="1" Command="{Binding CancelCommand}"/>
-        </DockPanel>
+        <Button Content="Créer" FontSize="25" Grid.Row="5" BorderThickness="1" IsEnabled="{Binding CanSubmit}" Command="{Binding ValidateAddCommand}"/>
+        <Button Content="Annuler" FontSize="25" Grid.Row="5" Grid.Column="1" BorderThickness="1" Command="{Binding CancelCommand}"/>
+
     </Grid>
 </UserControl>

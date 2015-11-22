@@ -61,15 +61,34 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private string _password;
+
+        public string Password
+        {
+            get { return _password; }
+            set {
+                _password = value;
+                RaisePropertyChanged("Password");
+            }
+        }
+
+        private string _login;
+
+        public string Login
+        {
+            get { return _login; }
+            set {
+                _login = value;
+                RaisePropertyChanged("Login");
+            }
+        }
+
+
         /// <summary>
         /// Initializes a new instance of the AddPatientViewModel class.
         /// </summary>
         public AccountViewModel()
         {
-            this.Firstname = "";
-            this.Lastname = "";
-            this.Role = "";
-
             WindowContent = new View.AccountView();
             WindowContent.DataContext = this;
         }
@@ -79,6 +98,8 @@ namespace Hippocrate.ViewModel
             this.Firstname = e.Firstname;
             this.Lastname = e.Name;
             this.Role = e.Role;
+            this.Login = e.Login;
+            this.Password = e.Pwd;
         }
     }
 }

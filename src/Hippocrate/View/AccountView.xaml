@@ -7,23 +7,42 @@
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
            >
-    <Grid>
-        <Grid.ColumnDefinitions>
-        </Grid.ColumnDefinitions>
+    <Grid Background="{StaticResource Second}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.50*"/>
+            <ColumnDefinition Width="1.50*" />
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="Mon compte" FontSize="40" VerticalAlignment="Center" Style="{StaticResource Title}"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Login : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Login}" IsEnabled="False" FontSize="20"/>
         
-        <TextBlock Grid.Row="1" Text="Prénom : "  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="28"/>
-        <TextBox  Text="{Binding Firstname}"  Grid.Row="1" VerticalAlignment="Center" Margin="120,0,20,0" IsEnabled="False" Height="35" FontSize="24"/>
-        <TextBlock Grid.Row="2" Text="Nom : "  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="28"/>
-        <TextBox  Text="{Binding Lastname}"  Grid.Row="2" VerticalAlignment="Center" Margin="120,0,20,0" IsEnabled="False" Height="35" FontSize="24"/>
-        <TextBlock Grid.Row="3" Text="Role : "  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="28"/>
-        <TextBox  Text="{Binding Role}"  Grid.Row="3" VerticalAlignment="Center" Margin="120,0,20,0" IsEnabled="False" Height="35" FontSize="24"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="Nom : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
+        <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding Lastname}" IsEnabled="False" FontSize="20"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="Prénom : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
+        <TextBox  Grid.Row="5" Grid.Column="3" Text="{Binding Firstname}" IsEnabled="False" FontSize="20"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="Mot de passe : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
+        <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding Password}" IsEnabled="False" FontSize="20"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="2" Text="Role : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
+        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Role}" IsEnabled="False" FontSize="20"/>
     </Grid>
 </UserControl>

@@ -121,6 +121,8 @@ namespace Hippocrate.ViewModel
             RaisePropertyChanged("AddName");
             _addBirthday = DateTime.Now;
             RaisePropertyChanged("AddBirthday");
+            CanSubmit = false;
+            RaisePropertyChanged("CanSubmit");
 
             vml.PatientList.DissmissPopup();
         }

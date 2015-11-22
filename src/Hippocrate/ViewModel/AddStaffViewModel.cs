@@ -1,15 +1,13 @@
-﻿using GalaSoft.MvvmLight;
-using System.Windows.Controls;
-using Hippocrate.ServiceUser;
+﻿using Hippocrate.ServiceUser;
 using System;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using Microsoft.Win32;
+using MvvmValidation;
 using System.IO;
 using System.Windows.Media.Imaging;
-using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace Hippocrate.ViewModel
 {
@@ -19,7 +17,7 @@ namespace Hippocrate.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class AddStaffViewModel : ViewModelBase
+    public class AddStaffViewModel : ValidatableViewModelBase
     {
         #region get/set
         private ICommand _cancelcommand;
@@ -54,6 +52,11 @@ namespace Hippocrate.ViewModel
             set {
                 _firstname = value;
                 RaisePropertyChanged("Firstname");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => Firstname);
+                if (e != null)
+                    throw e;
             }
         }
 
@@ -62,7 +65,14 @@ namespace Hippocrate.ViewModel
         public string Name
         {
             get { return _name; }
-            set { _name = value; RaisePropertyChanged("Name"); }
+            set { _name = value;
+                RaisePropertyChanged("Name");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => Name);
+                if (e != null)
+                    throw e;
+            }
         }
 
         private string _login;
@@ -70,7 +80,14 @@ namespace Hippocrate.ViewModel
         public string Login
         {
             get { return _login; }
-            set { _login = value; RaisePropertyChanged("Login"); }
+            set { _login = value;
+                RaisePropertyChanged("Login");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => Login);
+                if (e != null)
+                    throw e;
+            }
         }
 
         private string _role;
@@ -78,7 +95,14 @@ namespace Hippocrate.ViewModel
         public string Role
         {
             get { return _role; }
-            set { _role = value; RaisePropertyChanged("Role"); }
+            set { _role = value;
+                RaisePropertyChanged("Role");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => Role);
+                if (e != null)
+                    throw e;
+            }
         }
 
         private string _password;
@@ -86,16 +110,24 @@ namespace Hippocrate.ViewModel
         public string Password
         {
             get { return _password; }
-            set { _password = value; RaisePropertyChanged("Password"); }
+            set { _password = value;
+                RaisePropertyChanged("Password");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => Password);
+                if (e != null)
+                    throw e;
+            }
         }
 
-        private string _errormessage;
+        private bool _cansubmit;
 
-        public string ErrorMessage
+        public bool CanSubmit
         {
-            get { return _errormessage; }
-            set { _errormessage = value; RaisePropertyChanged("ErrorMessage"); }
+            get { return _cansubmit; }
+            set { _cansubmit = value; RaisePropertyChanged("CanSubmit"); }
         }
+
 
         private ObservableCollection<string> _listrole;
 
@@ -119,12 +151,13 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public AddStaffViewModel()
         {
-            Firstname = "";
-            Name = "";
-            Login = "";
-            Role = "";
-            Password = "";
-            ErrorMessage = "";
+            CanSubmit = false;
+            Validator.AddRequiredRule(() => Firstname, "Le prénom ne peut pas être vide");
+            Validator.AddRequiredRule(() => Name, "Le prénom ne peut pas être vide");
+            Validator.AddRequiredRule(() => Login, "Le login ne peut pas être vide");
+            Validator.AddRequiredRule(() => Role, "Le role ne peut pas être vide");
+            Validator.AddRequiredRule(() => Password, "Le mot de passe ne peut pas être vide");
+
             CancelCommand = new RelayCommand(() =>
             {
                 CancelPopup();
@@ -133,9 +166,7 @@ namespace Hippocrate.ViewModel
             ChoosePictureCommand = new RelayCommand(() =>
             {
                 OpenFileDialog openDialog = new OpenFileDialog();
-                openDialog.Filter = "All Images|*.BMP;*.DIB;*.RLE;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.TIF;*.TIFF;*.PNG|" +
-                                    "BMP Files: (*.BMP; *.DIB; *.RLE) | *.BMP; *.DIB; *.RLE |" + "JPEG Files: (*.JPG; *.JPEG; *.JPE; *.JFIF)| *.JPG; *.JPEG; *.JPE; *.JFIF |" +
-                                    "GIF Files: (*.GIF) | *.GIF | " + "TIFF Files: (*.TIF; *.TIFF)| *.TIF; *.TIFF |" + "PNG Files: (*.PNG) | *.PNG |" + "All Files | *.* ";
+                openDialog.Filter = "All Images|*.BMP;*.DIB;*.RLE;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.TIF;*.TIFF;*.PNG|BMP Files: (*.BMP; *.DIB; *.RLE) | *.BMP; *.DIB; *.RLE |" + "JPEG Files: (*.JPG; *.JPEG; *.JPE; *.JFIF)| *.JPG; *.JPEG; *.JPE; *.JFIF |GIF Files: (*.GIF) | *.GIF | " + "TIFF Files: (*.TIF; *.TIFF)| *.TIF; *.TIFF |" + "PNG Files: (*.PNG) | *.PNG |" + "All Files | *.* ";
 
                 ViewModelLocator vml = new ViewModelLocator();
                 vml.StaffListView.DissmissPopup();
@@ -149,10 +180,6 @@ namespace Hippocrate.ViewModel
 
             CreateCommand = new RelayCommand(() =>
             {
-                if (Firstname == "" || Name == "" || Role == "" || Password == "" || Role == "" || Login == "")
-                    ErrorMessage = "Tous les champs sont requis";
-                else
-                {
                     User user = new User();
                     user.Firstname = Firstname;
                     user.Name = Name;
@@ -169,9 +196,8 @@ namespace Hippocrate.ViewModel
                     }
                     catch (Exception)
                     {
-                        ErrorMessage = "La taille de l'image est trop grande";
+                       // ErrorMessage = "La taille de l'image est trop grande";
                     }
-                }
             });
 
             Image = new BitmapImage(new Uri("/Assets/anonym.jpg", UriKind.Relative));
@@ -193,15 +219,36 @@ namespace Hippocrate.ViewModel
 
         public void CancelPopup()
         {
-            ViewModelLocator vml = new ViewModelLocator();
-            Firstname = "";
-            Name = "";
-            Login = "";
-            Role = "";
-            Password = "";
-            ErrorMessage = "";
+            _firstname = "";
+            RaisePropertyChanged("Firstname");
+            _name = "";
+            RaisePropertyChanged("Name");
+            _login = "";
+            RaisePropertyChanged("Login");
+            _role = "";
+            RaisePropertyChanged("Role");
+            _password = "";
+            RaisePropertyChanged("Password");
+            CanSubmit = false;
             Image = new BitmapImage(new Uri("/Assets/anonym.jpg", UriKind.Relative));
+            ViewModelLocator vml = new ViewModelLocator();
             vml.StaffListView.DissmissPopup();
+        }
+
+        private void UpdateSubmitButton()
+        {
+            ValidationResult v = Validator.ValidateAll();
+            CanSubmit = v.IsValid;
+        }
+
+        private Exception ValidateTarget(Expression<Func<object>> expression)
+        {
+            ValidationResult result = Validator.Validate(expression);
+            if (!result.IsValid)
+            {
+                return new Exception(string.Join("\n", result.ErrorList));
+            }
+            return null;
         }
     }
 }

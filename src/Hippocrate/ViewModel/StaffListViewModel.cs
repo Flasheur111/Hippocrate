@@ -29,6 +29,18 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private UserControl _addusercontent;
+
+        public UserControl AddUserContent
+        {
+            get { return _addusercontent; }
+            set
+            {
+                _addusercontent = value;
+                RaisePropertyChanged("AddUserContent");
+            }
+        }
+
         private bool _canadd;
 
         public bool CanAdd
@@ -41,6 +53,21 @@ namespace Hippocrate.ViewModel
             {
                 _canadd = value;
                 RaisePropertyChanged("CanAdd");
+            }
+        }
+
+        private bool _canviewadd;
+
+        public bool CanViewAdd
+        {
+            get
+            {
+                return _canviewadd;
+            }
+            set
+            {
+                _canviewadd = value;
+                RaisePropertyChanged("CanViewAdd");
             }
         }
 
@@ -115,14 +142,19 @@ namespace Hippocrate.ViewModel
             set { _staffdetails = value; }
         }
 
+        private ICommand _addcommand;
+
+        public ICommand AddCommand
+        {
+            get { return _addcommand; }
+            set { _addcommand = value; }
+        }
+
 
         private string LoginUser;
         
         public StaffListViewModel()
         {
-            WindowContent = new View.StaffListView();
-            WindowContent.DataContext = this;
-
             BackCommand = new RelayCommand(() =>
             {
                 ViewModelLocator vm = new ViewModelLocator();
@@ -136,11 +168,28 @@ namespace Hippocrate.ViewModel
                 vm.Window.DataContext = vm.StaffSheet;
             });
 
+            AddCommand = new RelayCommand(() =>
+            {
+                ViewModelLocator vm = new ViewModelLocator();
+                CanViewAdd = !CanViewAdd;
+            });
+
             StaffList = null;
             CanAdd = true;
+
+            ViewModelLocator vml = new ViewModelLocator();
+            View.AddStaffView addStaffView = new View.AddStaffView();
+            AddUserContent = addStaffView;
+            addStaffView.DataContext = vml.AddStaff;
+
+            WindowContent = new View.StaffListView();
+            WindowContent.DataContext = this;
         }
 
-        
+        public void DissmissPopup()
+        {
+            CanViewAdd = false;
+        }
 
         public void UserListUpdate()
         {

@@ -28,5 +28,11 @@ namespace Hippocrate.BusinessManagement
             ServiceUserManager sum = new ServiceUserManager();
             return sum.DeleteUser(login);
         }
+
+        public static bool AddUser(ServiceUser.User user)
+        {
+            ServiceUserManager sum = new ServiceUserManager();
+            return sum.AddUser(user);
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Hippocrate.BusinessManagement
             p.Firstname = firstname;
             p.Name = name;
             p.Birthday = birthday;
-            p.Observations = null;
+            p.Observations = new ServicePatient.Observation[0];
             return s.AddPatient(p);
         }
 

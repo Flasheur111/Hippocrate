@@ -39,8 +39,9 @@
             </PasswordBox.InputBindings>
         </PasswordBox>
         <StackPanel Orientation="Vertical" Grid.Row="6" HorizontalAlignment="Stretch">
-            <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left"  Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24" Command="{Binding ConnectionCommand}"/>
-                <TextBlock Margin="0,25,0,0" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Stretch">
+            <Button Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left"  Height="50" Width="146" Background="{StaticResource Primary}" FontSize="24" Command="{Binding ConnectionCommand}">
+            </Button>
+            <TextBlock Margin="0,25,0,0" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Stretch">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Visibility" Value="Hidden"/>

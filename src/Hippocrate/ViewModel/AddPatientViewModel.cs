@@ -1,16 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Hippocrate.ViewModel
 {
-   public class AddPatientViewModel : ViewModelBase
+    public class AddPatientViewModel : ViewModelBase
     {
         private ICommand _cancelcommand;
 
@@ -84,11 +79,11 @@ namespace Hippocrate.ViewModel
 
         public void CancelPopup()
         {
+                        ViewModelLocator vml = new ViewModelLocator();
             AddFirstname = "";
             AddName = "";
             CreateError = false;
 
-            ViewModelLocator vml = new ViewModelLocator();
             vml.PatientList.DissmissPopup();
         }
 

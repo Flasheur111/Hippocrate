@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hippocrate.View"
              mc:Ignorable="d" 
+             x:Name="MainStaff"
              d:DesignWidth="980" d:DesignHeight="660">
     <Grid x:Name="LayoutRoot" Background="#FFA1A1A1">
         <Grid.RowDefinitions>
@@ -29,7 +30,7 @@
         </Button>
         <Image Grid.Row="1" Grid.Column="2" Source="/Assets/noun_206185_cc.png" RenderOptions.BitmapScalingMode="HighQuality"/>
         <TextBlock Grid.Row="1" Grid.Column="3" Text="Personnel hospitalier" FontSize="40" VerticalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="4" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="#FFA1A1A1" BorderThickness="0">
+        <Button Command="{Binding AddCommand}" Grid.Row="1" Grid.Column="4" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="#FFA1A1A1" BorderThickness="0">
             <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Button>
         <TextBox Style="{StaticResource PlaceHolder}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
@@ -53,5 +54,18 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="6" Fill="#FFA1A1A1" OpacityMask="#99000000" Visibility="{Binding Path=CanViewAdd, Converter={StaticResource ResourceKey=BoolToVis}}"></Rectangle>
+        <Popup IsOpen="{Binding CanViewAdd}" Name="AddPatient"
+               Placement="Center"  PlacementTarget="{Binding ElementName=MainStaff}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.ColumnSpan="6" Grid.RowSpan="7"
+               AllowsTransparency="True" Width="400" Height="500" >
+            <Border Margin="0 0 8 8">
+                <Border.Effect>
+                    <DropShadowEffect/>
+                </Border.Effect>
+                <UserControl Content="{Binding AddUserContent}"/>
+            </Border>
+        </Popup>
     </Grid>
 </UserControl>

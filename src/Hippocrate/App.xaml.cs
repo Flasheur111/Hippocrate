@@ -28,7 +28,6 @@ namespace Hippocrate
 
             #region event handling init
             vm.Login.UserChangedEventHandler += vm.Account.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.AddStaff.UserConnectedChangedEventHandler;
             vm.Login.UserChangedEventHandler += vm.Home.UserConnectedChangedEventHandler;
             vm.Login.UserChangedEventHandler += vm.PatientSheet.UserConnectedChangedEventHandler;
             vm.Login.UserChangedEventHandler += vm.Sidebar.UserConnectedChangedEventHandler;

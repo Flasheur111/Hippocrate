@@ -29,7 +29,7 @@
             <Image Source="/Assets/back_button.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
         </Button>
         <Image Grid.Row="1" Grid.Column="2" Source="/Assets/noun_206184_cc.png"  RenderOptions.BitmapScalingMode="HighQuality"/>
-        <TextBlock Grid.Row="1" Grid.Column="3" Text="Patients" FontSize="40" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="Patients" FontSize="40" VerticalAlignment="Center" Style="{StaticResource Title}"/>
         <Button Grid.Row="1" Grid.Column="4" Command="{Binding AddPatientCommand}" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="#FFA1A1A1" BorderThickness="0">
             <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Button>
@@ -59,7 +59,7 @@
         <Popup IsOpen="{Binding CanViewAdd}" Name="AddPatient"
                Placement="Center"  PlacementTarget="{Binding ElementName=MainPatient}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                Grid.ColumnSpan="6" Grid.RowSpan="7"
-               AllowsTransparency="True" PopupAnimation="Fade" Width="500" Height="500" >
+               AllowsTransparency="True" PopupAnimation="Fade" Width="400" Height="300" >
             <Border Margin="0 0 8 8">
                 <Border.Effect>
                     <DropShadowEffect/>

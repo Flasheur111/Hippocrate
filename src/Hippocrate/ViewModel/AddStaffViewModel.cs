@@ -19,7 +19,7 @@ namespace Hippocrate.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class AddStaffViewModel : ViewModelBase, IUserConnectedChangedEventHandler
+    public class AddStaffViewModel : ViewModelBase
     {
         #region get/set
         private ICommand _cancelcommand;
@@ -51,7 +51,10 @@ namespace Hippocrate.ViewModel
         public string Firstname
         {
             get { return _firstname; }
-            set { _firstname = value;RaisePropertyChanged("Firstname"); }
+            set {
+                _firstname = value;
+                RaisePropertyChanged("Firstname");
+            }
         }
 
         private string _name;
@@ -134,7 +137,7 @@ namespace Hippocrate.ViewModel
                                     "BMP Files: (*.BMP; *.DIB; *.RLE) | *.BMP; *.DIB; *.RLE |" + "JPEG Files: (*.JPG; *.JPEG; *.JPE; *.JFIF)| *.JPG; *.JPEG; *.JPE; *.JFIF |" +
                                     "GIF Files: (*.GIF) | *.GIF | " + "TIFF Files: (*.TIF; *.TIFF)| *.TIF; *.TIFF |" + "PNG Files: (*.PNG) | *.PNG |" + "All Files | *.* ";
 
-                ViewModelLocator vml = new ViewModelLocator();               
+                ViewModelLocator vml = new ViewModelLocator();
                 vml.StaffListView.DissmissPopup();
                 if (openDialog.ShowDialog().Value)
                 {
@@ -155,17 +158,7 @@ namespace Hippocrate.ViewModel
                     user.Name = Name;
                     user.Login = Login;
                     user.Role = Role;
-
-                    byte[] data;
-                    JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                    encoder.Frames.Add(BitmapFrame.Create(Image));
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        encoder.Save(ms);
-                        data = ms.ToArray();
-                    }
-
-                    user.Picture = data;
+                    user.Picture = ConvertImage(Image);
                     user.Pwd = Password;
                     try
                     {
@@ -174,7 +167,7 @@ namespace Hippocrate.ViewModel
                         vml.StaffListView.UserListUpdate();
                         CancelPopup();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         ErrorMessage = "La taille de l'image est trop grande";
                     }
@@ -183,6 +176,19 @@ namespace Hippocrate.ViewModel
 
             Image = new BitmapImage(new Uri("/Assets/anonym.jpg", UriKind.Relative));
             ListRole = new ObservableCollection<string>() { "Infirmière", "Medecin", "Chirurgien", "Radiologue" };
+        }
+
+        private byte[] ConvertImage(BitmapImage image)
+        {
+            byte[] data;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+            return data;
         }
 
         public void CancelPopup()
@@ -196,10 +202,6 @@ namespace Hippocrate.ViewModel
             ErrorMessage = "";
             Image = new BitmapImage(new Uri("/Assets/anonym.jpg", UriKind.Relative));
             vml.StaffListView.DissmissPopup();
-        }
-
-        public void UserConnectedChangedEventHandler(object sender, User e)
-        {
         }
     }
 }

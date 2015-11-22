@@ -47,18 +47,18 @@
 
         <!-- Identifiant -->
         <TextBlock Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" FontSize="20">Login :</TextBlock>
-        <TextBox Text="{Binding StaffId}" Grid.Column="3" Grid.Row="3" Style="{StaticResource PlaceHolder}" IsReadOnly="True" FontSize="20"/>
+        <TextBox Text="{Binding StaffId}" Grid.Column="3" Grid.Row="3" Style="{StaticResource PlaceHolder}" IsEnabled="False" FontSize="20"/>
 
         <!-- Nom -->
         <TextBlock Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" FontSize="20">Nom :</TextBlock>
-        <TextBox Text="{Binding StaffName}" Grid.Column="3" Grid.Row="4" Style="{StaticResource PlaceHolder}" IsReadOnly="True" FontSize="20"/>
+        <TextBox Text="{Binding StaffName}" Grid.Column="3" Grid.Row="4" Style="{StaticResource PlaceHolder}" IsEnabled="False" FontSize="20"/>
 
         <!-- Prénom -->
         <TextBlock Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" FontSize="20">Prénom :</TextBlock>
-        <TextBox Text="{Binding StaffFirstname}" Grid.Column="3" Grid.Row="5" Style="{StaticResource PlaceHolder}" IsReadOnly="True" FontSize="20"/>
+        <TextBox Text="{Binding StaffFirstname}" Grid.Column="3" Grid.Row="5" Style="{StaticResource PlaceHolder}" IsEnabled="False" FontSize="20"/>
 
         <!-- Rôle -->
         <TextBlock Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" FontSize="20">Rôle :</TextBlock>
-        <TextBox Text="{Binding StaffRole}" Grid.Column="3" Grid.Row="6" Style="{StaticResource PlaceHolder}" IsReadOnly="True" FontSize="20"/>
+        <TextBox Text="{Binding StaffRole}" Grid.Column="3" Grid.Row="6" Style="{StaticResource PlaceHolder}" IsEnabled="False" FontSize="20"/>
     </Grid>
 </UserControl>

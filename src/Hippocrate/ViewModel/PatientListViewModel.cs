@@ -101,7 +101,7 @@ namespace Hippocrate.ViewModel
 
                 List<ServicePatient.Patient> filters = new List<ServicePatient.Patient>();
                 foreach (ServicePatient.Patient p in BusinessManagement.Patient.GetListPatient())
-                    if (p.Firstname.Contains(value) || p.Name.Contains(value) || p.Observations.Length.ToString().Contains(value))
+                    if (p.Firstname.Contains(value) || p.Name.Contains(value) || (p.Observations != null && p.Observations.Length.ToString().Contains(value)))
                         filters.Add(p);
                 PatientsList = new ObservableCollection<ServicePatient.Patient>(filters);
 

@@ -339,8 +339,6 @@ namespace Hippocrate.ViewModel
                 PatientBloodPressureSerie[0].PrimaryValues.RemoveAt(0);
 
                 PatientBloodPressureSerie[0].PrimaryValues.Add(requestData);
-
-
         }
 
         public void PushDataTemp(double requestData)

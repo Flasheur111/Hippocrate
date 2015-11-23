@@ -76,7 +76,7 @@ namespace Hippocrate.ViewModel
                     ObservationDate = value.Date.ToString();
                     ObservationWeight = value.Weight.ToString();
                     ObservationBloodPressure = value.BloodPressure.ToString();
-                    ObservationPrescription = string.Join("\n", value.Prescription);
+                    ObservationPrescription = new ObservableCollection<string>(value.Prescription);
                     ObservationComment = value.Comment;
 
                     ObservationPicture = new ObservableCollection<BitmapImage>();
@@ -123,6 +123,26 @@ namespace Hippocrate.ViewModel
             {
                 _canadd = value;
                 RaisePropertyChanged("CanAdd");
+            }
+        }
+
+        private bool _canviewadd;
+
+        public bool CanViewAdd
+        {
+            get { return _canviewadd; }
+            set { _canviewadd = value; RaisePropertyChanged("CanViewAdd"); }
+        }
+
+        private UserControl _addobservationcontent;
+
+        public UserControl AddObservationContent
+        {
+            get { return _addobservationcontent; }
+            set
+            {
+                _addobservationcontent = value;
+                RaisePropertyChanged("AddObservationContent");
             }
         }
 
@@ -205,6 +225,14 @@ namespace Hippocrate.ViewModel
             set { _backCommand = value; }
         }
 
+        private ICommand _addCommand;
+
+        public ICommand AddCommand
+        {
+            get { return _addCommand; }
+            set { _addCommand = value; }
+        }
+
         private ICommand _trashpatientCommand;
 
         public ICommand TrashPatientCommand
@@ -239,8 +267,8 @@ namespace Hippocrate.ViewModel
             }
         }
 
-        private string _observationprescription;
-        public string ObservationPrescription
+        private ObservableCollection<string> _observationprescription;
+        public ObservableCollection<string> ObservationPrescription
         {
             get
             {
@@ -284,6 +312,10 @@ namespace Hippocrate.ViewModel
                 vm.Window.DataContext = vm.PatientList;
             });
 
+            AddCommand = new RelayCommand(() => {
+                CanViewAdd = true;
+            });
+
             TrashPatientCommand = new RelayCommand(() =>
             {
                 ViewModelLocator vm = new ViewModelLocator();
@@ -313,12 +345,23 @@ namespace Hippocrate.ViewModel
                 }
             };
 
+            CanViewAdd = false;
+
+            ViewModelLocator vml = new ViewModelLocator();
+            View.AddObservationView addObservationView = new View.AddObservationView();
+            AddObservationContent = addObservationView;
+            addObservationView.DataContext = vml.AddObservation;
             ServiceLiveManager s = new ServiceLiveManager(this);
         }
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
             CanAdd = e.Role == "Infirmière" ? false : true;
+        }
+
+        public void DissmissPopup()
+        {
+            CanViewAdd = false;
         }
 
         public void PatientSelectedEventHandler(Patient e)

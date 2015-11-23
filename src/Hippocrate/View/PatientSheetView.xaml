@@ -5,6 +5,7 @@
         xmlns:charts="clr-namespace:LiveCharts.Charts;assembly=LiveCharts"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             x:Name="MainObservation"
              d:DesignWidth="980" d:DesignHeight="660">
     <Grid Background="{StaticResource Second}">
         <Grid.ColumnDefinitions>
@@ -57,7 +58,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Plus button -->
-                    <Button Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="0" Grid.Row="0" Style="{StaticResource RoundButton}">
+                    <Button Command="{Binding AddCommand}" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="0" Grid.Row="0" Style="{StaticResource RoundButton}">
                         <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" />
                     </Button>
 
@@ -85,19 +86,19 @@
 
                             <!-- Date -->
                             <TextBlock Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="0" Grid.Row="0" FontWeight="Bold">Date</TextBlock>
-                            <TextBox Text="{Binding ObservationDate}" IsReadOnly="True" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
+                            <TextBox Text="{Binding ObservationDate}" Style="{StaticResource TextBoxValidation}" IsReadOnly="True" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
 
                             <!-- Weight -->
                             <TextBlock Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="0" Grid.Row="1" FontWeight="Bold">Poids</TextBlock>
-                            <TextBox Text="{Binding ObservationWeight}" IsReadOnly="True" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <TextBox Text="{Binding ObservationWeight}" Style="{StaticResource TextBoxValidation}" IsReadOnly="True" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
 
                             <!-- Pressure -->
                             <TextBlock Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}"  Grid.Column="0" Grid.Row="2" FontWeight="Bold">Pression sanguine</TextBlock>
-                            <TextBox Text="{Binding ObservationBloodPressure}" IsReadOnly="True" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
+                            <TextBox Text="{Binding ObservationBloodPressure}" Style="{StaticResource TextBoxValidation}" IsReadOnly="True" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
 
                             <!-- Prescription -->
                             <TextBlock Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}"  Grid.Column="0" Grid.Row="3"  FontWeight="Bold">Prescription :</TextBlock>
-                            <TextBox Text="{Binding ObservationPrescription}" IsReadOnly="True" TextWrapping="Wrap" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" />
+                            <ListBox ItemsSource="{Binding ObservationPrescription}" Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" />
 
                             <!-- Comments -->
                             <TextBlock Visibility="{Binding Path=Selected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Column="0" Grid.Row="5"  FontWeight="Bold">Commentaires :</TextBlock>
@@ -147,5 +148,17 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="6" Fill="#FFA1A1A1" OpacityMask="#99000000" Visibility="{Binding Path=CanViewAdd, Converter={StaticResource ResourceKey=BoolToVis}}"></Rectangle>
+        <Popup IsOpen="{Binding CanViewAdd}" Name="AddObservation"
+               Placement="Center"  PlacementTarget="{Binding ElementName=MainObservation}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.ColumnSpan="6" Grid.RowSpan="7"
+               AllowsTransparency="True" PopupAnimation="Fade" Width="500" Height="300" >
+            <Border Margin="0 0 8 8">
+                <Border.Effect>
+                    <DropShadowEffect/>
+                </Border.Effect>
+                <UserControl Content="{Binding AddObservationContent}"/>
+            </Border>
+        </Popup>
     </Grid>
 </UserControl>

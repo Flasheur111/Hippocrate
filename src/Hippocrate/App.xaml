@@ -8,10 +8,11 @@
            >
     <Application.Resources>
 
+        <helper:BooleanOrConverter x:Key="BooleanOrConverter"/>
         <!-- Colors -->
         <Color x:Key="PrimaryColor">#404040</Color>
         <Color x:Key="SecondColor">#a1a1a1</Color>
-        
+
         <!-- Brushes -->
         <SolidColorBrush x:Key="Primary" Color="{StaticResource PrimaryColor}" />
         <SolidColorBrush x:Key="Second" Color="{StaticResource SecondColor}" />
@@ -20,7 +21,7 @@
         <SolidColorBrush x:Key="NotConnected" Color="#404040"/>
         <SolidColorBrush x:Key="Nurse" Color="#0097B6" />
         <SolidColorBrush x:Key="Other" Color="#B60000" />
-        
+
         <!-- Styles -->
 
         <!-- DatagridCustom template -->
@@ -38,7 +39,7 @@
             <Setter Property="Background" Value="#FFA1A1A1"/>
             <Setter Property="BorderThickness" Value="0" />
         </Style>
-        
+
         <!-- DatagridCustom Header Style -->
         <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="#7F7F7F" />
@@ -50,7 +51,7 @@
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FontSize" Value="15"/>
         </Style>
-        
+
         <!-- DataGridCustom Cell Style -->
         <Style x:Key="CellStyle" TargetType="DataGridCell">
             <Setter Property="BorderThickness" Value="0,0,2,0"/>
@@ -307,7 +308,7 @@
                                     <RepeatButton Style="{StaticResource VerticalScrollBarPageButton}"
                                                         Command="{x:Static ScrollBar.PageDownCommand}"/>
                                 </Track.IncreaseRepeatButton>
-                                
+
                                 <Track.Thumb>
                                     <Thumb Style="{StaticResource ScrollBarThumb}"
                                                         />
@@ -381,6 +382,7 @@
                             </TextBox>
                         </Grid>
                     </ControlTemplate>
+                    
                 </Setter.Value>
             </Setter>
             <Setter Property="Validation.ErrorTemplate">
@@ -405,6 +407,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="DatePickerValidation" TargetType="{x:Type DatePicker}">
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
@@ -452,20 +455,45 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Right" Width="16" Height="16" VerticalAlignment="Top">
+                                <Ellipse Width="16" Height="16" Fill="Red"/>
+                                <Ellipse Width="3" Height="8" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 2 0 0" Fill="White"/>
+                                <Ellipse Width="2" Height="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 2" Fill="White"/>
+                            </Grid>
+                            <Border BorderBrush="Red" BorderThickness="2" CornerRadius="2">
+                                <AdornedElementPlaceholder/>
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
+        
 
         <Style x:Key="CustomLabel" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
         </Style>
         <Style x:Key="CustomTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
         </Style>
+        
         <!-- Data Template-->
 
         <!-- ViewModel dico -->
-        
+
         <ResourceDictionary x:Key="ViewModels">
             <vm:ViewModelLocator x:Key="ViewModelLocator" d:IsDataSource="True"  xmlns:vm="clr-namespace:Hippocrate.ViewModel"/>
         </ResourceDictionary>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         
+
     </Application.Resources>
+    
 </Application>

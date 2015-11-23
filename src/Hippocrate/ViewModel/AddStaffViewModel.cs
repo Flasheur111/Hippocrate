@@ -49,7 +49,8 @@ namespace Hippocrate.ViewModel
         public string Firstname
         {
             get { return _firstname; }
-            set {
+            set
+            {
                 _firstname = value;
                 RaisePropertyChanged("Firstname");
                 UpdateSubmitButton();
@@ -65,7 +66,9 @@ namespace Hippocrate.ViewModel
         public string Name
         {
             get { return _name; }
-            set { _name = value;
+            set
+            {
+                _name = value;
                 RaisePropertyChanged("Name");
                 UpdateSubmitButton();
 
@@ -80,7 +83,9 @@ namespace Hippocrate.ViewModel
         public string Login
         {
             get { return _login; }
-            set { _login = value;
+            set
+            {
+                _login = value;
                 RaisePropertyChanged("Login");
                 UpdateSubmitButton();
 
@@ -95,7 +100,9 @@ namespace Hippocrate.ViewModel
         public string Role
         {
             get { return _role; }
-            set { _role = value;
+            set
+            {
+                _role = value;
                 RaisePropertyChanged("Role");
                 UpdateSubmitButton();
 
@@ -110,7 +117,9 @@ namespace Hippocrate.ViewModel
         public string Password
         {
             get { return _password; }
-            set { _password = value;
+            set
+            {
+                _password = value;
                 RaisePropertyChanged("Password");
                 UpdateSubmitButton();
 
@@ -154,9 +163,17 @@ namespace Hippocrate.ViewModel
             CanSubmit = false;
             Validator.AddRequiredRule(() => Firstname, "Le prénom ne peut pas être vide");
             Validator.AddRequiredRule(() => Name, "Le prénom ne peut pas être vide");
+
             Validator.AddRequiredRule(() => Login, "Le login ne peut pas être vide");
+            Validator.AddRule(() => Login,
+                              () => RuleResult.Assert(Login != null && Login != "" && Login.Split(' ').Length == 1, "Le login doit être composé d'un seul mot"));
+
+
             Validator.AddRequiredRule(() => Role, "Le role ne peut pas être vide");
+
             Validator.AddRequiredRule(() => Password, "Le mot de passe ne peut pas être vide");
+            Validator.AddRule(() => Password,
+                              () => RuleResult.Assert(Password.Length >= 4, "Le mot de passe doit contenir au moins 4 caractères"));
 
             CancelCommand = new RelayCommand(() =>
             {
@@ -180,24 +197,24 @@ namespace Hippocrate.ViewModel
 
             CreateCommand = new RelayCommand(() =>
             {
-                    User user = new User();
-                    user.Firstname = Firstname;
-                    user.Name = Name;
-                    user.Login = Login;
-                    user.Role = Role;
-                    user.Picture = ConvertImage(Image);
-                    user.Pwd = Password;
-                    try
-                    {
-                        BusinessManagement.User.AddUser(user);
-                        ViewModelLocator vml = new ViewModelLocator();
-                        vml.StaffListView.UserListUpdate();
-                        CancelPopup();
-                    }
-                    catch (Exception)
-                    {
-                       // ErrorMessage = "La taille de l'image est trop grande";
-                    }
+                User user = new User();
+                user.Firstname = Firstname;
+                user.Name = Name;
+                user.Login = Login;
+                user.Role = Role;
+                user.Picture = ConvertImage(Image);
+                user.Pwd = Password;
+                try
+                {
+                    BusinessManagement.User.AddUser(user);
+                    ViewModelLocator vml = new ViewModelLocator();
+                    vml.StaffListView.UserListUpdate();
+                    CancelPopup();
+                }
+                catch (Exception)
+                {
+                    // ErrorMessage = "La taille de l'image est trop grande";
+                }
             });
 
             Image = new BitmapImage(new Uri("/Assets/anonym.jpg", UriKind.Relative));

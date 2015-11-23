@@ -94,6 +94,7 @@
     <Compile Include="BusinessManagement\Observation.cs" />
     <Compile Include="BusinessManagement\Patient.cs" />
     <Compile Include="BusinessManagement\User.cs" />
+    <Compile Include="Helper\BooleanOrConverter.cs" />
     <Compile Include="Helper\PasswordBoxHelper.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Service References\ServiceObservation\Reference.cs">

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Collections.ObjectModel;
 
 namespace Hippocrate.ViewModel
 {
@@ -27,6 +28,24 @@ namespace Hippocrate.ViewModel
             get { return _validateaddcommand; }
             set { _validateaddcommand = value; }
         }
+
+        private ICommand _addprescriptioncommand;
+
+        public ICommand AddPrescriptionCommand
+        {
+            get { return _addprescriptioncommand; }
+            set { _addprescriptioncommand = value; }
+        }
+
+        private ICommand _reinitcommand;
+
+        public ICommand ReinitCommand
+        {
+            get { return _reinitcommand; }
+            set { _reinitcommand = value; }
+        }
+
+
 
         private string _bloodpressure;
 
@@ -66,9 +85,36 @@ namespace Hippocrate.ViewModel
         public string Comment
         {
             get { return _comment; }
-            set { _comment = value; }
+            set { _comment = value; RaisePropertyChanged("Comment"); }
         }
 
+        private string _addprescription;
+
+        public string AddPrescription
+        {
+            get { return _addprescription; }
+            set { _addprescription = value;
+                CanAddPrescription = !(value == "" || value == null);
+                RaisePropertyChanged("AddPrescription");
+            }
+        }
+
+
+        private bool _canaddprescription;
+
+        public bool CanAddPrescription
+        {
+            get { return _canaddprescription; }
+            set { _canaddprescription = value; RaisePropertyChanged("CanAddPrescription"); }
+        }
+
+        private ObservableCollection<string> _prescriptions;
+
+        public ObservableCollection<string> Prescriptions
+        {
+            get { return _prescriptions; }
+            set { _prescriptions = value; RaisePropertyChanged("Prescriptions"); UpdateSubmitButton(); }
+        }
 
 
         private DateTime _date;
@@ -99,12 +145,16 @@ namespace Hippocrate.ViewModel
 
         public AddObservationViewModel()
         {
+            Prescriptions = new ObservableCollection<string>();
             _date = DateTime.Now;
-            RaisePropertyChanged("AddBirthday");
+            RaisePropertyChanged("Date");
+            CanAddPrescription = false;
 
             Validator.AddRequiredRule(() => Date, "La date ne peut pas être vide");
             Validator.AddRequiredRule(() => BloodPressure, "La pression sanguine ne peut pas être vide");
             Validator.AddRequiredRule(() => Poids, "Le poids ne peut pas être vide");
+            Validator.AddRule(() => Prescriptions,
+                              () => RuleResult.Assert(Prescriptions.Count > 0, "Il doit y avoir au moins une prescription"));
 
             CancelCommand = new RelayCommand(() =>
             {
@@ -116,11 +166,27 @@ namespace Hippocrate.ViewModel
                 CancelPopup();
             });
 
+            AddPrescriptionCommand = new RelayCommand(() =>
+            {
+                if (CanAddPrescription)
+                {
+                    Prescriptions.Add(AddPrescription);
+                    AddPrescription = "";
+                    UpdateSubmitButton();
+                }
+            });
+
+            ReinitCommand = new RelayCommand(() =>
+            {
+                Prescriptions = new ObservableCollection<string>();
+            });
+
             CanSubmit = false;
         }
 
         public void CancelPopup()
         {
+            Prescriptions = new ObservableCollection<string>();
             ViewModelLocator vml = new ViewModelLocator();
             vml.PatientSheet.DissmissPopup();
             _poids = "";
@@ -131,6 +197,7 @@ namespace Hippocrate.ViewModel
             RaisePropertyChanged("BloodPressure");
             _comment = "";
             RaisePropertyChanged("Comment");
+            AddPrescription = "";
             CanSubmit = false;
             RaisePropertyChanged("CanSubmit");
         }

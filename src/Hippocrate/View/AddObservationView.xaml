@@ -6,35 +6,58 @@
              xmlns:local="clr-namespace:Hippocrate.View"
              xmlns:helper="clr-namespace:Hippocrate.Helper"
              mc:Ignorable="d" 
-             d:DesignHeight="765.5" d:DesignWidth="500" Background="#FFC1C1C1">
+             d:DesignHeight="765.5" d:DesignWidth="800" Background="#FFC1C1C1">
     <Grid Margin="10,10,10,10"  HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
+
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.3*"/>
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="14,0,24,0">
             <Image DockPanel.Dock="Left" Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" Width="40" VerticalAlignment="Center" OpacityMask="Black"/>
-            <TextBlock Text="Ajouter une observation" FontSize="30" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource Title}"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource Title}">
+                <Run Text="Ajouter"/><LineBreak/>
+                <Run Text="une observation"/>
+            </TextBlock>
         </DockPanel>
-        <DatePicker Grid.Row="1" Style="{StaticResource DatePickerValidation}" Grid.ColumnSpan="3" FontSize="20" Background="White" Foreground="{StaticResource Primary}" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" BorderThickness="1" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+        <DatePicker Grid.Row="1" Style="{StaticResource DatePickerValidation}" Grid.ColumnSpan="2" FontSize="20" Background="White" Foreground="{StaticResource Primary}" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" BorderThickness="1" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
         <TextBox Grid.Row="2" Style="{StaticResource TextBoxValidation}" Foreground="{StaticResource Primary}" Tag="Poids" FontSize="20" Grid.ColumnSpan="2"
                  Text="{Binding Poids, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
         <TextBox Grid.Row="3" Style="{StaticResource TextBoxValidation}" Foreground="{StaticResource Primary}" Tag="Pression sanguine" FontSize="20" Grid.ColumnSpan="2"
                  Text="{Binding BloodPressure, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
         <TextBox Grid.Row="4" Foreground="{StaticResource Primary}" Tag="Commentaire" FontSize="20" Grid.ColumnSpan="2" Grid.RowSpan="2" TextWrapping="Wrap"
                  Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
-        
-       <Button Content="Créer" FontSize="25" Grid.Row="7" Grid.Column="0" BorderThickness="1" IsEnabled="{Binding CanSubmit}"  Command="{Binding ValidateAddCommand}"/>
+
+        <DockPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="14,0,24,0">
+            <Image DockPanel.Dock="Left" Source="/Assets/noun_8398_cc.png" RenderOptions.BitmapScalingMode="HighQuality" Width="40" VerticalAlignment="Center" OpacityMask="Black"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource Primary}"  Margin="20,0,0,0" FontSize="30" TextWrapping="Wrap" Text="Prescriptions :"/>
+        </DockPanel>
+        <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource PlaceHolder}" Tag="Ajouter une prescription" Foreground="{StaticResource Primary}" FontSize="20" TextWrapping="Wrap"
+                 Text="{Binding AddPrescription, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter"
+                    Command="{Binding AddPrescriptionCommand}"/>
+            </TextBox.InputBindings>
+        </TextBox>
+        <Button Grid.Row="1" Grid.Column="4" Background="Transparent" BorderThickness="0" IsEnabled="{Binding CanAddPrescription}" Command="{Binding AddPrescriptionCommand}">
+            <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" OpacityMask="Black"/>
+        </Button>
+        <ListBox ItemsSource="{Binding Prescriptions}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="4" FontSize="20"></ListBox>
+        <Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" BorderThickness="1" Command="{Binding ReinitCommand}" Content="Supprimer toutes les prescriptions" FontSize="25"/>
+        <Button Content="Créer" FontSize="25" Grid.Row="7" Grid.Column="0" BorderThickness="1" IsEnabled="{Binding CanSubmit}"  Command="{Binding ValidateAddCommand}"/>
         <Button Content="Annuler" FontSize="25" Grid.Row="7" Grid.Column="1" BorderThickness="1" Command="{Binding CancelCommand}"/>
     </Grid>
 </UserControl>

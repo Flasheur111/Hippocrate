@@ -147,6 +147,7 @@ namespace Hippocrate.ViewModel
             });
         }
 
+
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
             CanAdd = e.Role == "Infirmière" ? false : true;

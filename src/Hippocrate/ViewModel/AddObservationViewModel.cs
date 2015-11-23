@@ -1,0 +1,161 @@
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using MvvmValidation;
+using System;
+using System.Windows.Input;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Linq.Expressions;
+
+namespace Hippocrate.ViewModel
+{
+    public class AddObservationViewModel : ValidatableViewModelBase
+    {
+
+        private ICommand _cancelcommand;
+
+        public ICommand CancelCommand
+        {
+            get { return _cancelcommand; }
+            set { _cancelcommand = value; }
+        }
+
+        private ICommand _validateaddcommand;
+
+        public ICommand ValidateAddCommand
+        {
+            get { return _validateaddcommand; }
+            set { _validateaddcommand = value; }
+        }
+
+        private string _bloodpressure;
+
+        public string BloodPressure
+        {
+            get { return _bloodpressure; }
+            set
+            {
+                _bloodpressure = value;
+                RaisePropertyChanged("BloodPressure");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => BloodPressure);
+                if (e != null)
+                    throw e;
+            }
+        }
+
+        private string _poids;
+
+        public string Poids
+        {
+            get { return _poids; }
+            set {
+                _poids = value;
+                RaisePropertyChanged("Poids");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => Poids);
+                if (e != null)
+                    throw e;
+            }
+        }
+
+        private string _comment;
+
+        public string Comment
+        {
+            get { return _comment; }
+            set { _comment = value; }
+        }
+
+
+
+        private DateTime _date;
+
+        public DateTime Date
+        {
+            get { return _date; }
+            set
+            {
+                _date = value;
+                RaisePropertyChanged("Date");
+                UpdateSubmitButton();
+
+                Exception e = ValidateTarget(() => Date);
+                if (e != null)
+                    throw e;
+            }
+        }
+
+        private bool _cansubmit;
+
+        public bool CanSubmit
+        {
+            get { return _cansubmit; }
+            set { _cansubmit = value; RaisePropertyChanged("CanSubmit"); }
+        }
+
+
+        public AddObservationViewModel()
+        {
+            _date = DateTime.Now;
+            RaisePropertyChanged("AddBirthday");
+
+            Validator.AddRequiredRule(() => Date, "La date ne peut pas être vide");
+            Validator.AddRequiredRule(() => BloodPressure, "La pression sanguine ne peut pas être vide");
+            Validator.AddRequiredRule(() => Poids, "Le poids ne peut pas être vide");
+
+            CancelCommand = new RelayCommand(() =>
+            {
+                CancelPopup();
+            });
+
+            ValidateAddCommand = new RelayCommand(() =>
+            {
+                CancelPopup();
+            });
+
+            CanSubmit = false;
+        }
+
+        public void CancelPopup()
+        {
+            ViewModelLocator vml = new ViewModelLocator();
+            vml.PatientSheet.DissmissPopup();
+            _poids = "";
+            RaisePropertyChanged("Poids");
+            _date = DateTime.Now;
+            RaisePropertyChanged("Date");
+            _bloodpressure = "";
+            RaisePropertyChanged("BloodPressure");
+            _comment = "";
+            RaisePropertyChanged("Comment");
+            CanSubmit = false;
+            RaisePropertyChanged("CanSubmit");
+        }
+
+
+        public void PatientListUpdate()
+        {
+            ViewModelLocator vml = new ViewModelLocator();
+            vml.PatientList.PatientListUpdate();
+        }
+
+        private void UpdateSubmitButton()
+        {
+            ValidationResult v = Validator.ValidateAll();
+            CanSubmit = v.IsValid;
+        }
+
+        private Exception ValidateTarget(Expression<Func<object>> expression)
+        {
+            ValidationResult result = Validator.Validate(expression);
+            if (!result.IsValid)
+            {
+                return new Exception(string.Join("\n", result.ErrorList));
+            }
+            return null;
+        }
+    }
+}

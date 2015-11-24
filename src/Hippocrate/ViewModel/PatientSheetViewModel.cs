@@ -294,6 +294,15 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("ObservationComment");
             }
         }
+
+        private ServicePatient.Patient _patient;
+
+        public ServicePatient.Patient Patient
+        {
+            get { return _patient; }
+            set { _patient = value; }
+        }
+
         #endregion
         /// <summary>
         /// Initializes a new instance of the PatientsListViewModel class.
@@ -374,6 +383,12 @@ namespace Hippocrate.ViewModel
                 Observations = new ObservableCollection<ServicePatient.Observation>(new List<ServicePatient.Observation>(e.Observations));
             else
                 Observations = new ObservableCollection<ServicePatient.Observation>(new List<ServicePatient.Observation>());
+        }
+
+        public void PatientUpdate()
+        {
+            Patient p = BusinessManagement.Patient.GetPatient(PatientId);
+            Observations = new ObservableCollection<ServicePatient.Observation>(new List<ServicePatient.Observation>(p.Observations));
         }
 
         public void PushDataHeart(double requestData)

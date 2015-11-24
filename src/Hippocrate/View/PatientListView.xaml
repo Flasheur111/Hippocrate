@@ -41,8 +41,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="0.2*"/>
-                <DataGridTextColumn Header="Nb. d'observations" Binding="{Binding Observations.Length, FallbackValue=0}" Width="0.2*"/>
-                <DataGridTemplateColumn Header="Action" Width="0.1*" >
+                <DataGridTextColumn Header="Nombre d'observations" Binding="{Binding Observations.Length, FallbackValue=0}" Width="0.2*"/>
+                <DataGridTemplateColumn Header="Observation" Width="0.1*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel>

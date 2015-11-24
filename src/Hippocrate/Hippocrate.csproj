@@ -97,6 +97,7 @@
     <Compile Include="Helper\BooleanOrConverter.cs" />
     <Compile Include="Helper\PasswordBoxHelper.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
+    <Compile Include="Helper\Tools.cs" />
     <Compile Include="Service References\ServiceObservation\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

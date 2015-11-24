@@ -8,6 +8,7 @@ using MvvmValidation;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Linq.Expressions;
+using Hippocrate.Helper;
 
 namespace Hippocrate.ViewModel
 {
@@ -202,7 +203,7 @@ namespace Hippocrate.ViewModel
                 user.Name = Name;
                 user.Login = Login;
                 user.Role = Role;
-                user.Picture = ConvertImage(Image);
+                user.Picture = Tools.ConvertImage(Image);
                 user.Pwd = Password;
                 try
                 {
@@ -219,19 +220,6 @@ namespace Hippocrate.ViewModel
 
             Image = new BitmapImage(new Uri("/Assets/anonym.jpg", UriKind.Relative));
             ListRole = new ObservableCollection<string>() { "Infirmière", "Medecin", "Chirurgien", "Radiologue" };
-        }
-
-        private byte[] ConvertImage(BitmapImage image)
-        {
-            byte[] data;
-            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(image));
-            using (MemoryStream ms = new MemoryStream())
-            {
-                encoder.Save(ms);
-                data = ms.ToArray();
-            }
-            return data;
         }
 
         public void CancelPopup()

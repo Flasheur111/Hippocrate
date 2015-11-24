@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
+using System.Collections.Generic;
+using Hippocrate.Helper;
 
 namespace Hippocrate.ViewModel
 {
@@ -45,6 +49,21 @@ namespace Hippocrate.ViewModel
             set { _reinitcommand = value; }
         }
 
+        private ICommand _addobservationpicture;
+
+        public ICommand AddObservationPicture
+        {
+            get { return _addobservationpicture; }
+            set { _addobservationpicture = value; }
+        }
+
+        private ICommand _deletepictures;
+
+        public ICommand DeletePictures
+        {
+            get { return _deletepictures; }
+            set { _deletepictures = value; }
+        }
 
 
         private string _bloodpressure;
@@ -116,6 +135,14 @@ namespace Hippocrate.ViewModel
             set { _prescriptions = value; RaisePropertyChanged("Prescriptions"); UpdateSubmitButton(); }
         }
 
+        private ObservableCollection<BitmapImage> _pictures;
+
+        public ObservableCollection<BitmapImage> Pictures
+        {
+            get { return _pictures; }
+            set { _pictures = value; RaisePropertyChanged("Pictures"); }
+        }
+
 
         private DateTime _date;
 
@@ -145,14 +172,20 @@ namespace Hippocrate.ViewModel
 
         public AddObservationViewModel()
         {
+            int parse = 0;
             Prescriptions = new ObservableCollection<string>();
+            Pictures = new ObservableCollection<BitmapImage>();
             _date = DateTime.Now;
             RaisePropertyChanged("Date");
             CanAddPrescription = false;
 
             Validator.AddRequiredRule(() => Date, "La date ne peut pas être vide");
             Validator.AddRequiredRule(() => BloodPressure, "La pression sanguine ne peut pas être vide");
+            Validator.AddRule(() => BloodPressure,
+                              () => RuleResult.Assert(int.TryParse(BloodPressure, out parse), "La pression sanguine doit être un nombre"));
             Validator.AddRequiredRule(() => Poids, "Le poids ne peut pas être vide");
+            Validator.AddRule(() => Poids,
+                  () => RuleResult.Assert(int.TryParse(Poids, out parse), "Le poids doit être un nombre"));
             Validator.AddRule(() => Prescriptions,
                               () => RuleResult.Assert(Prescriptions.Count > 0, "Il doit y avoir au moins une prescription"));
 
@@ -163,7 +196,27 @@ namespace Hippocrate.ViewModel
 
             ValidateAddCommand = new RelayCommand(() =>
             {
-                CancelPopup();
+                try
+                {
+                    ViewModelLocator vml = new ViewModelLocator();
+                    ServiceObservation.Observation o = new ServiceObservation.Observation();
+                    o.BloodPressure = int.Parse(BloodPressure);
+                    o.Weight = int.Parse(Poids);
+                    o.Comment = Comment;
+                    o.Date = Date;
+                    o.Prescription = new List<string>(Prescriptions).ToArray();
+
+                    List<byte[]> images = new List<byte[]>();
+                    foreach (BitmapImage arr in Pictures)
+                        images.Add(Tools.ConvertImage(arr));
+                    o.Pictures = images.ToArray();
+
+                    BusinessManagement.Observation.AddObservation(vml.PatientSheet.PatientId, o);
+                    vml.PatientSheet.PatientUpdate();
+                    vml.PatientList.PatientListUpdate();
+                    CancelPopup();
+                }
+                catch (Exception){}
             });
 
             AddPrescriptionCommand = new RelayCommand(() =>
@@ -181,12 +234,34 @@ namespace Hippocrate.ViewModel
                 Prescriptions = new ObservableCollection<string>();
             });
 
+            AddObservationPicture = new RelayCommand(() =>
+            {
+                OpenFileDialog openDialog = new OpenFileDialog();
+                openDialog.Filter = "All Images|*.BMP;*.DIB;*.RLE;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.TIF;*.TIFF;*.PNG|BMP Files: (*.BMP; *.DIB; *.RLE) | *.BMP; *.DIB; *.RLE |" + "JPEG Files: (*.JPG; *.JPEG; *.JPE; *.JFIF)| *.JPG; *.JPEG; *.JPE; *.JFIF |GIF Files: (*.GIF) | *.GIF | " + "TIFF Files: (*.TIF; *.TIFF)| *.TIF; *.TIFF |" + "PNG Files: (*.PNG) | *.PNG |" + "All Files | *.* ";
+
+                ViewModelLocator vml = new ViewModelLocator();
+                vml.PatientSheet.DissmissPopup();
+                if (openDialog.ShowDialog().Value)
+                {
+                    vml.PatientSheet.CanViewAdd = true;
+                    Pictures.Add(new BitmapImage(new Uri(openDialog.FileName)));
+                }
+
+                vml.PatientSheet.CanViewAdd = true;
+            });
+
+            DeletePictures = new RelayCommand(() =>
+            {
+                Pictures = new ObservableCollection<BitmapImage>();
+            });
+
             CanSubmit = false;
         }
 
         public void CancelPopup()
         {
             Prescriptions = new ObservableCollection<string>();
+            Pictures = new ObservableCollection<BitmapImage>();
             ViewModelLocator vml = new ViewModelLocator();
             vml.PatientSheet.DissmissPopup();
             _poids = "";

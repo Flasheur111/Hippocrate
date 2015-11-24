@@ -33,5 +33,11 @@ namespace Hippocrate.BusinessManagement
             return s.AddPatient(p);
         }
 
+        public static ServicePatient.Patient GetPatient(int idPatient)
+        {
+            ServicePatientManager s = new ServicePatientManager();
+            return s.GetPatient(idPatient);
+        }
+
     }
 }

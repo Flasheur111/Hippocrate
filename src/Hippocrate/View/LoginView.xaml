@@ -32,7 +32,7 @@
                     Command="{Binding ConnectionCommand}"/>
             </TextBox.InputBindings>
         </TextBox>
-        <PasswordBox helper:PasswordHelper.BindPassword="true" Foreground="{StaticResource Primary}" helper:PasswordBoxHelper.PlaceHolderText="Mot de passe" helper:PasswordHelper.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{StaticResource LightGray}"  Tag="Mot de passe" HorizontalAlignment="Left"  Grid.Row="4"  Width="450" FontSize="27" Padding="5,0,0,0">
+        <PasswordBox helper:PasswordHelper.BindPassword="true" Foreground="{StaticResource Primary}" helper:PasswordBoxHelper.PlaceHolderText="Mot de passe" helper:PasswordHelper.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{StaticResource LightGray}"  Tag="Mot de passe" HorizontalAlignment="Left"  Grid.Row="4"  Width="450" FontSize="27" Padding="15,0,0,0">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Enter"
                     Command="{Binding ConnectionCommand}"/>

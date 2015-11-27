@@ -19,22 +19,14 @@ namespace Hippocrate
     public partial class App : Application
     {
         public App()
-        {}
+        { }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             ViewModelLocator vm = new ViewModelLocator();
 
-            #region event handling init
-            vm.Login.UserChangedEventHandler += vm.Account.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.Home.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.PatientSheet.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.Sidebar.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.StaffListView.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.StaffSheet.UserConnectedChangedEventHandler;
-            vm.Login.UserChangedEventHandler += vm.PatientList.UserConnectedChangedEventHandler;
-            #endregion
+            vm.Login.UserChangedEventHandler += Login_UserChangedEventHandler;
 
             LoginViewModel loginViewModel = vm.Login;
 
@@ -42,6 +34,18 @@ namespace Hippocrate
             vm.Window.DataContext = loginViewModel;
             vm.Window.Show();
         }
-        
+
+        private void Login_UserChangedEventHandler(object sender, ServiceUser.User e)
+        {
+            ViewModelLocator vm = new ViewModelLocator();
+
+            vm.Account.UserConnectedChangedEventHandler(sender, e);
+            vm.Home.UserConnectedChangedEventHandler(sender, e);
+            vm.PatientSheet.UserConnectedChangedEventHandler(sender, e);
+            vm.Sidebar.UserConnectedChangedEventHandler(sender, e);
+            vm.StaffListView.UserConnectedChangedEventHandler(sender, e);
+            vm.StaffSheet.UserConnectedChangedEventHandler(sender, e);
+            vm.PatientList.UserConnectedChangedEventHandler(sender, e);
+        }
     }
 }

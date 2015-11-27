@@ -28,7 +28,7 @@
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
         <!-- Back button -->
-        <Button Grid.Row="1" Grid.Column="1" Command="{Binding BackCommand}" BorderThickness="0" Background="#FFA1A1A1">
+        <Button Grid.Row="1" Grid.Column="1" Command="{Binding BackCommand}" BorderThickness="0" Background="{StaticResource Second}">
             <Image Source="/Assets/back_button.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
         </Button>
 

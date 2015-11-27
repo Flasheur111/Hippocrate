@@ -148,7 +148,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="6" Fill="#FFA1A1A1" OpacityMask="#99000000" Visibility="{Binding Path=CanViewAdd, Converter={StaticResource ResourceKey=BoolToVis}}"></Rectangle>
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="6" Fill="{StaticResource Second}" OpacityMask="#99000000" Visibility="{Binding Path=CanViewAdd, Converter={StaticResource ResourceKey=BoolToVis}}"></Rectangle>
         <Popup IsOpen="{Binding CanViewAdd}" Name="AddObservation"
                Placement="Center"  PlacementTarget="{Binding ElementName=MainObservation}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                Grid.ColumnSpan="6" Grid.RowSpan="7"

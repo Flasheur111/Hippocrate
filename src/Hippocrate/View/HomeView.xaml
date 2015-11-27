@@ -16,9 +16,9 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FFA1A1A1" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="{StaticResource Second}" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
 
-        <Button x:Name="button" Command="{Binding StaffConsult}" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderThickness="0" Background="#FFA1A1A1" Height="200">
+        <Button x:Name="button" Command="{Binding StaffConsult}" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderThickness="0" Background="{StaticResource Second}" Height="200">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -33,7 +33,7 @@
                 </TextBlock>
             </Grid>
         </Button>
-        <Button x:Name="button2" Command="{Binding PatientConsult}" Grid.Row="1" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderThickness="0" Background="#FFA1A1A1" Height="200">
+        <Button x:Name="button2" Command="{Binding PatientConsult}" Grid.Row="1" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderThickness="0" Background="{StaticResource Second}" Height="200">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>

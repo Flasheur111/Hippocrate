@@ -12,8 +12,8 @@ Design
 ======
 
 
-[ ] Login : padding sur les champs
-[ ] All : Fond plus clair
+[x] Login : padding sur les champs
+[x] All : Fond plus clair
 [ ] All : Hover boutons (bleu actuellement)
 [ ] Profil : padding sur les champs + enlever le champ password
 [ ] Liste du personnel

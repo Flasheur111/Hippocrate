@@ -11,7 +11,7 @@
         <helper:BooleanOrConverter x:Key="BooleanOrConverter"/>
         <!-- Colors -->
         <Color x:Key="PrimaryColor">#404040</Color>
-        <Color x:Key="SecondColor">#a1a1a1</Color>
+        <Color x:Key="SecondColor">#D6D6D6</Color>
 
         <!-- Brushes -->
         <SolidColorBrush x:Key="Primary" Color="{StaticResource PrimaryColor}" />
@@ -36,7 +36,7 @@
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="AlternationCount" Value="2" />
             <Setter Property="RowHeight" Value="40" />
-            <Setter Property="Background" Value="#FFA1A1A1"/>
+            <Setter Property="Background" Value="{StaticResource Second}"/>
             <Setter Property="BorderThickness" Value="0" />
         </Style>
 

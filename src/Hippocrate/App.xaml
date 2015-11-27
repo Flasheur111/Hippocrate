@@ -335,7 +335,7 @@
                                      VerticalContentAlignment="Center"
                                      Padding="5,0,0,0"
                                  Panel.ZIndex="2" />
-                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1" VerticalContentAlignment="Center" Padding="15,0,0,0">
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1" VerticalContentAlignment="Center" Padding="5,0,0,0">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Foreground" Value="Transparent"/>

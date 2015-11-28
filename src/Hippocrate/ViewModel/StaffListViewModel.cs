@@ -9,9 +9,14 @@ using GalaSoft.MvvmLight.Command;
 
 namespace Hippocrate.ViewModel
 {
+    /// <summary>
+    /// This class contains properties that a View can data bind to.
+    /// <para>
+    /// See http://www.galasoft.ch/mvvm
+    /// </para>
+    /// </summary>
     public class StaffListViewModel : ViewModelBase, IUserConnectedChangedEventHandler
     {
-        #region get/set
         private UserControl _windowContent;
 
         public UserControl WindowContent
@@ -68,7 +73,7 @@ namespace Hippocrate.ViewModel
 
         private ObservableCollection<ServiceUser.User> _stafflist;
 
-        public ObservableCollection<ServiceUser.User> StaffList
+        public ObservableCollection<ServiceUser.User>  StaffList
         {
             get
             {
@@ -145,31 +150,34 @@ namespace Hippocrate.ViewModel
             set { _addcommand = value; }
         }
 
-        private ViewModelLocator vml;
+
         private string LoginUser;
-        #endregion
+        
         public StaffListViewModel()
         {
-            vml = new ViewModelLocator();
             BackCommand = new RelayCommand(() =>
             {
-                vml.Window.DataContext = vml.Home;
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.Home;
             });
 
             StaffDetails = new RelayCommand(() =>
             {
-                vml.StaffSheet.UserSelectedEventHandler(SelectedRecord);
-                vml.Window.DataContext = vml.StaffSheet;
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.StaffSheet.UserSelectedEventHandler(SelectedRecord);
+                vm.Window.DataContext = vm.StaffSheet;
             });
 
             AddCommand = new RelayCommand(() =>
             {
+                ViewModelLocator vm = new ViewModelLocator();
                 CanViewAdd = !CanViewAdd;
             });
 
             StaffList = null;
             CanAdd = true;
 
+            ViewModelLocator vml = new ViewModelLocator();
             View.AddStaffView addStaffView = new View.AddStaffView();
             AddUserContent = addStaffView;
             addStaffView.DataContext = vml.AddStaff;
@@ -185,17 +193,20 @@ namespace Hippocrate.ViewModel
 
         public void UserListUpdate()
         {
-            User[] staff = BusinessManagement.User.GetUserList();
-            StaffList = new ObservableCollection<User>();
-            foreach (User u in staff)
+            ServiceUser.User[] staff = BusinessManagement.User.GetUserList();
+            StaffList = new ObservableCollection<ServiceUser.User>();
+            foreach (ServiceUser.User u in staff)
+            {
                 if (u.Login != LoginUser)
                     StaffList.Add(u);
+            }
         }
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
             CanAdd = e.Role == "Infirmière" ? false : true;
             LoginUser = e.Login;
+
             UserListUpdate();
         }
     }

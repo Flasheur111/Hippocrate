@@ -10,7 +10,6 @@ namespace Hippocrate.ViewModel
 {
     public class SidebarViewModel : ViewModelBase, IUserConnectedChangedEventHandler
     {
-        #region get/set
         private bool _connected;
 
         public bool Connected
@@ -86,28 +85,27 @@ namespace Hippocrate.ViewModel
             set { _homeCommand = value; }
         }
 
-        private ViewModelLocator vml;
-        #endregion
-
         public SidebarViewModel()
         {
-            vml = new ViewModelLocator();
             Connected = false;
 
             AccountCommand = new RelayCommand(() =>
             {
-                vml.Window.DataContext = vml.Account;
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.Account;
             }, () => Connected);
 
             LogoutCommand = new RelayCommand(() =>
             {
-                vml.Window.DataContext = vml.Login;
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.Login;
                 Connected = false;
             }, () => Connected);
 
             HomeCommand = new RelayCommand(() =>
             {
-                vml.Window.DataContext = vml.Home;
+                ViewModelLocator vm = new ViewModelLocator();
+                vm.Window.DataContext = vm.Home;
             }, () => Connected);
         }
 

@@ -101,14 +101,15 @@ namespace Hippocrate.ViewModel
             Login = "fred";
             Password = "fred";
 
-            _connectionCommand = new RelayCommand(async () =>
+            _connectionCommand = new RelayCommand(() =>
             {
                 ViewModelLocator vm = new ViewModelLocator();
-                bool isConnected = await BusinessManagement.User.ConnectAsync(Login, Password);
+
+                bool isConnected = BusinessManagement.User.Connect(Login, Password);
                 if (isConnected)
                 {
                     // Set connected User
-                    ServiceUser.User User = await BusinessManagement.User.GetUserAsync(Login);
+                    ServiceUser.User User = BusinessManagement.User.GetUser(Login);
                     _userChangedEventHandler(this, User);
 
                     // Reset error handling

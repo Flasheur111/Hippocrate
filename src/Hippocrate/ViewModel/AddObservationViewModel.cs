@@ -88,7 +88,8 @@ namespace Hippocrate.ViewModel
         public string Poids
         {
             get { return _poids; }
-            set {
+            set
+            {
                 _poids = value;
                 RaisePropertyChanged("Poids");
                 UpdateSubmitButton();
@@ -112,7 +113,9 @@ namespace Hippocrate.ViewModel
         public string AddPrescription
         {
             get { return _addprescription; }
-            set { _addprescription = value;
+            set
+            {
+                _addprescription = value;
                 CanAddPrescription = !(value == "" || value == null);
                 RaisePropertyChanged("AddPrescription");
             }
@@ -124,7 +127,11 @@ namespace Hippocrate.ViewModel
         public bool CanAddPrescription
         {
             get { return _canaddprescription; }
-            set { _canaddprescription = value; RaisePropertyChanged("CanAddPrescription"); }
+            set
+            {
+                _canaddprescription = value;
+                RaisePropertyChanged("CanAddPrescription");
+            }
         }
 
         private ObservableCollection<string> _prescriptions;
@@ -132,7 +139,12 @@ namespace Hippocrate.ViewModel
         public ObservableCollection<string> Prescriptions
         {
             get { return _prescriptions; }
-            set { _prescriptions = value; RaisePropertyChanged("Prescriptions"); UpdateSubmitButton(); }
+            set
+            {
+                _prescriptions = value;
+                RaisePropertyChanged("Prescriptions");
+                UpdateSubmitButton();
+            }
         }
 
         private ObservableCollection<BitmapImage> _pictures;
@@ -140,7 +152,9 @@ namespace Hippocrate.ViewModel
         public ObservableCollection<BitmapImage> Pictures
         {
             get { return _pictures; }
-            set { _pictures = value; RaisePropertyChanged("Pictures"); }
+            set {
+                _pictures = value;
+                RaisePropertyChanged("Pictures"); }
         }
 
 
@@ -166,12 +180,16 @@ namespace Hippocrate.ViewModel
         public bool CanSubmit
         {
             get { return _cansubmit; }
-            set { _cansubmit = value; RaisePropertyChanged("CanSubmit"); }
+            set {
+                _cansubmit = value;
+                RaisePropertyChanged("CanSubmit"); }
         }
 
+        private ViewModelLocator vml;
 
         public AddObservationViewModel()
         {
+            vml = new ViewModelLocator();
             int parse = 0;
             Prescriptions = new ObservableCollection<string>();
             Pictures = new ObservableCollection<BitmapImage>();
@@ -198,7 +216,6 @@ namespace Hippocrate.ViewModel
             {
                 try
                 {
-                    ViewModelLocator vml = new ViewModelLocator();
                     ServiceObservation.Observation o = new ServiceObservation.Observation();
                     o.BloodPressure = int.Parse(BloodPressure);
                     o.Weight = int.Parse(Poids);
@@ -216,7 +233,7 @@ namespace Hippocrate.ViewModel
                     vml.PatientList.PatientListUpdate();
                     CancelPopup();
                 }
-                catch (Exception){}
+                catch (Exception) { }
             });
 
             AddPrescriptionCommand = new RelayCommand(() =>
@@ -239,7 +256,6 @@ namespace Hippocrate.ViewModel
                 OpenFileDialog openDialog = new OpenFileDialog();
                 openDialog.Filter = "All Images|*.BMP;*.DIB;*.RLE;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.TIF;*.TIFF;*.PNG|BMP Files: (*.BMP; *.DIB; *.RLE) | *.BMP; *.DIB; *.RLE |" + "JPEG Files: (*.JPG; *.JPEG; *.JPE; *.JFIF)| *.JPG; *.JPEG; *.JPE; *.JFIF |GIF Files: (*.GIF) | *.GIF | " + "TIFF Files: (*.TIF; *.TIFF)| *.TIF; *.TIFF |" + "PNG Files: (*.PNG) | *.PNG |" + "All Files | *.* ";
 
-                ViewModelLocator vml = new ViewModelLocator();
                 vml.PatientSheet.DissmissPopup();
                 if (openDialog.ShowDialog().Value)
                 {
@@ -262,7 +278,6 @@ namespace Hippocrate.ViewModel
         {
             Prescriptions = new ObservableCollection<string>();
             Pictures = new ObservableCollection<BitmapImage>();
-            ViewModelLocator vml = new ViewModelLocator();
             vml.PatientSheet.DissmissPopup();
             _poids = "";
             RaisePropertyChanged("Poids");
@@ -280,7 +295,6 @@ namespace Hippocrate.ViewModel
 
         public void PatientListUpdate()
         {
-            ViewModelLocator vml = new ViewModelLocator();
             vml.PatientList.PatientListUpdate();
         }
 

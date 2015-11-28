@@ -95,6 +95,8 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public LoginViewModel()
         {
+            ViewModelLocator vm = new ViewModelLocator();
+
             LoginError = false;
 
             //Debug hack
@@ -103,8 +105,6 @@ namespace Hippocrate.ViewModel
 
             _connectionCommand = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-
                 bool isConnected = BusinessManagement.User.Connect(Login, Password);
                 if (isConnected)
                 {

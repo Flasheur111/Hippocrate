@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Windows.Controls;
 using Hippocrate.ServiceUser;
-using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 
@@ -15,6 +14,7 @@ namespace Hippocrate.ViewModel
     /// </summary>
     public class HomeViewModel : ViewModelBase, IUserConnectedChangedEventHandler
     {
+        #region get/set
         private UserControl _windowContent;
 
         public UserControl WindowContent
@@ -37,7 +37,7 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("DButton1");
             }
         }
-        
+
         private string _dbutton2;
         public string DButton2
         {
@@ -71,27 +71,28 @@ namespace Hippocrate.ViewModel
             }
         }
 
+        private ViewModelLocator vml;
+        #endregion
         /// <summary>
         /// Initializes a new instance of the LoginViewModel class.
         /// </summary>
         public HomeViewModel()
         {
+            vml = new ViewModelLocator();
             WindowContent = new View.HomeView();
             WindowContent.DataContext = this;
 
             PatientConsult = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-                vm.Window.DataContext = vm.PatientList;
+                vml.Window.DataContext = vml.PatientList;
             });
 
             StaffConsult = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-                vm.Window.DataContext = vm.StaffListView;
+                vml.Window.DataContext = vml.StaffListView;
             });
         }
-        
+
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {

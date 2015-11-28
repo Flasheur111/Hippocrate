@@ -17,6 +17,7 @@ namespace Hippocrate.ViewModel
     /// </summary>
     public class StaffSheetViewModel : ViewModelBase, IUserConnectedChangedEventHandler, IUserSelected
     {
+        #region get/set
         private UserControl _windowContent;
 
         public UserControl WindowContent
@@ -124,26 +125,24 @@ namespace Hippocrate.ViewModel
         }
 
         private string SelectedLogin;
-        /// <summary>
-        /// Initializes a new instance of the StaffSheetViewModel class.
-        /// </summary>
+        private ViewModelLocator vml;
+        #endregion
+
         public StaffSheetViewModel()
         {
-             WindowContent = new View.StaffSheetView();
-             WindowContent.DataContext = this;
+            WindowContent = new View.StaffSheetView();
+            WindowContent.DataContext = this;
 
             BackCommand = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-                vm.Window.DataContext = vm.StaffListView;
+                vml.Window.DataContext = vml.StaffListView;
             });
 
             TrashUserCommand = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-                bool delete = BusinessManagement.User.DeleteUser(SelectedLogin);
-                vm.StaffListView.UserListUpdate();
-                vm.Window.DataContext = vm.StaffListView;
+                BusinessManagement.User.DeleteUser(SelectedLogin);
+                vml.StaffListView.UserListUpdate();
+                vml.Window.DataContext = vml.StaffListView;
             });
         }
 

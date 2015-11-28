@@ -15,7 +15,7 @@ namespace Hippocrate.BusinessManagement
                 ServiceUserManager sum = new ServiceUserManager();
                 return sum.Connect(login, pass);
             }
-            catch (EndpointNotFoundException e)
+            catch (EndpointNotFoundException)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
                 return false;

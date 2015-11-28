@@ -295,13 +295,15 @@ namespace Hippocrate.ViewModel
             }
         }
 
-        private ServicePatient.Patient _patient;
+        private Patient _patient;
 
-        public ServicePatient.Patient Patient
+        public Patient Patient
         {
             get { return _patient; }
             set { _patient = value; }
         }
+
+        private ViewModelLocator vml;
 
         #endregion
         /// <summary>
@@ -309,16 +311,16 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public PatientSheetViewModel()
         {
-             WindowContent = new View.PatientSheetView();
+            vml = new ViewModelLocator();
+            WindowContent = new View.PatientSheetView();
              WindowContent.DataContext = this;
 
             Selected = false;
             BackCommand = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
                 Selected = false;
                 SelectedObservation = null;
-                vm.Window.DataContext = vm.PatientList;
+                vml.Window.DataContext = vml.PatientList;
             });
 
             AddCommand = new RelayCommand(() => {
@@ -327,12 +329,11 @@ namespace Hippocrate.ViewModel
 
             TrashPatientCommand = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-                bool delete = BusinessManagement.Patient.DeletePatient(PatientId);
-                vm.PatientList.PatientListUpdate();
+                BusinessManagement.Patient.DeletePatient(PatientId);
+                vml.PatientList.PatientListUpdate();
                 Selected = false;
                 SelectedObservation = null;
-                vm.Window.DataContext = vm.PatientList;
+                vml.Window.DataContext = vml.PatientList;
             });
 
             PatientBloodPressureSerie = new ObservableCollection<Serie>
@@ -340,7 +341,7 @@ namespace Hippocrate.ViewModel
                 new LineSerie
                 {
                     Name = "BloodPressure",
-                    PrimaryValues = new ObservableCollection<double> { 0}
+                    PrimaryValues = new ObservableCollection<double> { 0 }
                 }
             };
 
@@ -349,14 +350,13 @@ namespace Hippocrate.ViewModel
                 new LineSerie
                 {
                     Name = "Temperature",
-                    PrimaryValues = new ObservableCollection<double> { 38},
+                    PrimaryValues = new ObservableCollection<double> { 38 },
                     Color=Color.FromArgb(255,255,0,0)
                 }
             };
 
             CanViewAdd = false;
 
-            ViewModelLocator vml = new ViewModelLocator();
             View.AddObservationView addObservationView = new View.AddObservationView();
             AddObservationContent = addObservationView;
             addObservationView.DataContext = vml.AddObservation;
@@ -400,8 +400,7 @@ namespace Hippocrate.ViewModel
         }
 
         public void PushDataTemp(double requestData)
-        {
-            
+        {      
            if (PatientTemperatureSerie[0].PrimaryValues.Count > 50)
                 PatientTemperatureSerie[0].PrimaryValues.RemoveAt(0);
 

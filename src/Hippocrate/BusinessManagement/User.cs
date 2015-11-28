@@ -1,38 +1,81 @@
 ﻿using Hippocrate.DataAccess;
+using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Hippocrate.BusinessManagement
 {
     public static class User
     {
-        public static Task<bool> ConnectAsync(string login, string pass)
+        public static bool Connect(string login, string pass)
         {
-            ServiceUserManager sum = new ServiceUserManager();
-            return sum.ConnectAsync(login, pass);
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return sum.Connect(login, pass);
+            }
+            catch (EndpointNotFoundException e)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                return false;
+            }
         }
 
-        public static Task<ServiceUser.User> GetUserAsync(string login)
+        public static ServiceUser.User GetUser(string login)
         {
-            ServiceUserManager sum = new ServiceUserManager();
-            return sum.GetUserAsync(login);
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return sum.GetUser(login);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                return null;
+            }
         }
 
         public static ServiceUser.User[] GetUserList()
         {
-            ServiceUserManager sum = new ServiceUserManager();
-            return sum.GetListUser();
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return sum.GetListUser();
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                return null;
+            }
         }
 
         public static bool DeleteUser(string login)
         {
-            ServiceUserManager sum = new ServiceUserManager();
-            return sum.DeleteUser(login);
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return sum.DeleteUser(login);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                return false;
+            }
         }
 
         public static bool AddUser(ServiceUser.User user)
         {
-            ServiceUserManager sum = new ServiceUserManager();
-            return sum.AddUser(user);
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return sum.AddUser(user);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                return false;
+            }
         }
     }
 }

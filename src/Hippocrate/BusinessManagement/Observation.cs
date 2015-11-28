@@ -1,9 +1,5 @@
-﻿using Hippocrate.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceModel;
+using System.Windows;
 
 namespace Hippocrate.BusinessManagement
 {
@@ -11,8 +7,16 @@ namespace Hippocrate.BusinessManagement
     {
         public static bool AddObservation(int idPatient, ServiceObservation.Observation o)
         {
-            ServiceObservation.ServiceObservationClient c = new ServiceObservation.ServiceObservationClient();
-            return c.AddObservation(idPatient, o);
+            try
+            {
+                ServiceObservation.ServiceObservationClient c = new ServiceObservation.ServiceObservationClient();
+                return c.AddObservation(idPatient, o);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                return false;
+            }
         }
     }
 }

@@ -1,17 +1,13 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+﻿using GalaSoft.MvvmLight.CommandWpf;
 using MvvmValidation;
 using System;
 using System.Windows.Input;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Hippocrate.ViewModel
 {
     public class AddPatientViewModel : ValidatableViewModelBase
     {
-
         private ICommand _cancelcommand;
 
         public ICommand CancelCommand
@@ -87,9 +83,11 @@ namespace Hippocrate.ViewModel
             set { _cansubmit = value; RaisePropertyChanged("CanSubmit"); }
         }
 
+        private ViewModelLocator vml;
 
         public AddPatientViewModel()
         {
+            vml = new ViewModelLocator();
             _addBirthday = DateTime.Now;
             RaisePropertyChanged("AddBirthday");
 
@@ -114,7 +112,6 @@ namespace Hippocrate.ViewModel
 
         public void CancelPopup()
         {
-            ViewModelLocator vml = new ViewModelLocator();
             _addfirstname = "";
             RaisePropertyChanged("AddFirstname");
             _addname = "";
@@ -129,7 +126,6 @@ namespace Hippocrate.ViewModel
 
         public void PatientListUpdate()
         {
-            ViewModelLocator vml = new ViewModelLocator();
             vml.PatientList.PatientListUpdate();
         }
 

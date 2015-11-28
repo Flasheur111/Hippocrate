@@ -5,20 +5,11 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
-using System.Globalization;
 
 namespace Hippocrate.ViewModel
 {
     public class PatientListViewModel : ViewModelBase, IUserConnectedChangedEventHandler
     {
-        /// <summary>
-        /// This class contains properties that a View can data bind to.
-        /// <para>
-        /// See http://www.galasoft.ch/mvvm
-        /// </para>
-        /// </summary>
-        /// 
         #region get/set
         private UserControl _windowContent;
 
@@ -124,15 +115,6 @@ namespace Hippocrate.ViewModel
             }
         }
 
-  
-        #endregion
-
-
-
-        /// <summary>
-        /// Initializes a new instance of the PatientListViewModel class.
-        /// </summary>
-        /// 
         private ICommand _backCommand;
 
         public ICommand BackCommand
@@ -174,37 +156,33 @@ namespace Hippocrate.ViewModel
             set { _validateaddcommand = value; }
         }
 
+        private ViewModelLocator vml;
+        #endregion
+
         public PatientListViewModel()
         {
-
+            vml = new ViewModelLocator();
 
             BackCommand = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-                vm.Window.DataContext = vm.Home;
+                vml.Window.DataContext = vml.Home;
             });
 
             PatientDetails = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-                vm.PatientSheet.PatientSelectedEventHandler(SelectedRecord);
-                vm.Window.DataContext = vm.PatientSheet;
+                vml.PatientSheet.PatientSelectedEventHandler(SelectedRecord);
+                vml.Window.DataContext = vml.PatientSheet;
             });
 
             AddPatientCommand = new RelayCommand(() =>
             {
-                ViewModelLocator vm = new ViewModelLocator();
-
                 CanViewAdd = !CanViewAdd;
             });
-
-           
 
             PatientsList = null;
             CanAdd = true;
             CanViewAdd = false;
-
-            ViewModelLocator vml = new ViewModelLocator();
+            
             View.AddPatientView addPatientView = new View.AddPatientView();
             AddPatientContent = addPatientView;
             addPatientView.DataContext = vml.AddPatient;
@@ -216,7 +194,8 @@ namespace Hippocrate.ViewModel
         public void PatientListUpdate()
         {
             ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
-            PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
+            if (patients != null)
+                PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
         }
 
         public void DissmissPopup()
@@ -227,7 +206,6 @@ namespace Hippocrate.ViewModel
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
             CanAdd = e.Role == "Infirmière" ? false : true;
-
             PatientListUpdate();
         }
     }

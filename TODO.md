@@ -22,10 +22,11 @@ Design
 	[x] Bouton d'accès à une fiche à changer
 	[x] Taille du titre : viewbox
 [ ] Boutons rond : hover rond
-[ ] Tableaux d'utilisateurs
+[x] Tableaux d'utilisateurs
 	[x] Padding des champs
 	[x] Couleurs à adapter
-	[ ] Flèches de tri
+	[x] Hover sur les headers 
+	[x] Flèches de tri
 [ ] Fiche patient
 	[x] Padding du champ Commentaires
 	[x] Bordures grises

@@ -19,17 +19,19 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>
-            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.15*"/>
             <ColumnDefinition Width="0.50*"/>
-            <ColumnDefinition Width="1.50*" />
-            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="1.70*" />
+            <ColumnDefinition Width="0.15*"/>
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="Back" Command="{Binding BackCommand}" Grid.Row="1" Grid.Column="1" Background="{StaticResource Second}" BorderThickness="0">
             <Image Source="/Assets/back_button.png"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
         </Button>
         <Image Grid.Row="1" Grid.Column="2" Source="/Assets/noun_206185_cc.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-        <TextBlock Grid.Row="1" Grid.Column="3" Text="Personnel hospitalier" FontSize="40" VerticalAlignment="Center" Style="{StaticResource Title}"/>
+        <Viewbox Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"  HorizontalAlignment="Left" Stretch="Uniform">
+            <TextBlock Text="Personnel hospitalier" FontSize="30" VerticalAlignment="Center" Style="{StaticResource Title}"/>
+        </Viewbox>
         <Button Command="{Binding AddCommand}" Grid.Row="1" Grid.Column="4" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="{StaticResource Second}" BorderThickness="0">
             <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality"/>
         </Button>
@@ -41,7 +43,7 @@
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="0.2*"/>
                 <DataGridTextColumn Header="Fonction" Binding="{Binding Role}" Width="0.2*"/>
-                <DataGridTemplateColumn Header="Action" Width="0.1*" >
+                <DataGridTemplateColumn Header="Dossier" Width="0.1*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel>

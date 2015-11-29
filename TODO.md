@@ -17,10 +17,10 @@ Design
 [x] All : Fond plus clair
 [x] All : Hover boutons (bleu actuellement)
 [x] Profil : padding sur les champs + enlever le champ password
-[ ] Liste du personnel
-	[ ] Taille des boutons back + trash à réduire
-	[ ] Bouton d'accès à une fiche à changer
-	[ ] Taille du titre : viewbox
+[x] Liste du personnel
+	[x] Taille des boutons back + trash à réduire
+	[x] Bouton d'accès à une fiche à changer
+	[x] Taille du titre : viewbox
 [ ] Boutons rond : hover rond
 [ ] Tableaux d'utilisateurs
 	[ ] Padding des champs

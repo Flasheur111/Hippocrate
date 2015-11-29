@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Hippocrate.View"
              xmlns:helper="clr-namespace:Hippocrate.Helper"
              mc:Ignorable="d" 
-             d:DesignHeight="765.5" d:DesignWidth="950" Background="#FFC1C1C1">
+             d:DesignHeight="765.5" d:DesignWidth="950" Background="{StaticResource PopupBackground}">
     <Grid Margin="10,10,10,10"  HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -52,17 +52,17 @@
                     Command="{Binding AddPrescriptionCommand}"/>
             </TextBox.InputBindings>
         </TextBox>
-        <Button Grid.Row="1" Grid.Column="4" IsEnabled="{Binding CanAddPrescription}" Command="{Binding AddPrescriptionCommand}">
+        <Button Style="{StaticResource HoverButton}" Grid.Row="1" Grid.Column="4" IsEnabled="{Binding CanAddPrescription}" Command="{Binding AddPrescriptionCommand}">
             <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" OpacityMask="Black"/>
         </Button>
         <ListBox ItemsSource="{Binding Prescriptions}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="4" FontSize="20"></ListBox>
-        <Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" BorderThickness="1" Command="{Binding ReinitCommand}" Content="Supprimer les prescriptions" FontSize="20"/>
+        <Button Style="{StaticResource HoverButton}" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" BorderThickness="1" Command="{Binding ReinitCommand}" Content="Supprimer les prescriptions" FontSize="20"/>
 
         <DockPanel Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource Primary}"  Margin="20,0,0,0" FontSize="30" TextWrapping="Wrap" Text="Photos de l'observation"/>
         </DockPanel>
 
-        <Button Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" BorderThickness="1" Command="{Binding AddObservationPicture}">
+        <Button Style="{StaticResource HoverButton}" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" BorderThickness="1" Command="{Binding AddObservationPicture}">
             <DockPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                 <Image DockPanel.Dock="Left" Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" OpacityMask="Black" Width="50"/>
                 <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource Primary}"  Margin="20,0,0,0" FontSize="20" TextWrapping="Wrap" Text="Ajouter une photo"/>
@@ -80,9 +80,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" BorderThickness="1" Command="{Binding DeletePictures}" Content="Supprimer les photos" FontSize="20"/>
+        <Button Style="{StaticResource HoverButton}" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" BorderThickness="1" Command="{Binding DeletePictures}" Content="Supprimer les photos" FontSize="20"/>
 
-        <Button Content="Créer" FontSize="20" Grid.Row="7" Grid.Column="0" BorderThickness="1" IsEnabled="{Binding CanSubmit}"  Command="{Binding ValidateAddCommand}"/>
-        <Button Content="Annuler" FontSize="20" Grid.Row="7" Grid.Column="1" BorderThickness="1" Command="{Binding CancelCommand}"/>
+        <Button Style="{StaticResource HoverButton}" Content="Créer" FontSize="20" Grid.Row="7" Grid.Column="0" BorderThickness="1" IsEnabled="{Binding CanSubmit}"  Command="{Binding ValidateAddCommand}"/>
+        <Button Style="{StaticResource HoverButton}" Content="Annuler" FontSize="20" Grid.Row="7" Grid.Column="1" BorderThickness="1" Command="{Binding CancelCommand}"/>
     </Grid>
 </UserControl>

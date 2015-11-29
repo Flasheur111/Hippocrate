@@ -15,8 +15,11 @@
 
         <!-- Brushes -->
         <SolidColorBrush x:Key="Primary" Color="{StaticResource PrimaryColor}" />
+        <SolidColorBrush x:Key="PrimaryLight" Color="#787C80" />
         <SolidColorBrush x:Key="Second" Color="{StaticResource SecondColor}" />
+        <SolidColorBrush x:Key="PopupBackground" Color="#E3E3E3" />
         <SolidColorBrush x:Key="LightGray" Color="#bdbdbd" />
+        <SolidColorBrush x:Key="WhiteOverlay" Color="White" Opacity=".2"/>
 
         <SolidColorBrush x:Key="NotConnected" Color="#404040"/>
         <SolidColorBrush x:Key="Nurse" Color="#0097B6" />
@@ -103,6 +106,72 @@
                 <Setter Property="Width" Value="40" />
                 <Setter Property="BorderThickness" Value="0" />
             </Style.Setters>
+        </Style>
+        <Style x:Key="HoverButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource Second}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource LightGray}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ConnectionButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource Primary}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryLight}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SidebarButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource WhiteOverlay}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="CustomListBox" TargetType="ListBox">
             <Style.Setters>
@@ -382,7 +451,7 @@
                             </TextBox>
                         </Grid>
                     </ControlTemplate>
-                    
+
                 </Setter.Value>
             </Setter>
             <Setter Property="Validation.ErrorTemplate">
@@ -407,7 +476,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="DatePickerValidation" TargetType="{x:Type DatePicker}">
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
@@ -477,13 +546,13 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
 
         <Style x:Key="CustomLabel" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
         </Style>
         <Style x:Key="CustomTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
         </Style>
-        
+
         <!-- Data Template-->
 
         <!-- ViewModel dico -->
@@ -492,8 +561,8 @@
             <vm:ViewModelLocator x:Key="ViewModelLocator" d:IsDataSource="True"  xmlns:vm="clr-namespace:Hippocrate.ViewModel"/>
         </ResourceDictionary>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
-        
+
 
     </Application.Resources>
-    
+
 </Application>

@@ -13,7 +13,7 @@ Design
 
 
 [x] Login : padding sur les champs
-[x] Login : couleur du bouton différente quand "connexion" est désactivé
+[ ] Login : couleur du bouton différente quand "connexion" est désactivé
 [x] All : Fond plus clair
 [x] All : Hover boutons (bleu actuellement)
 [x] Profil : padding sur les champs + enlever le champ password
@@ -23,7 +23,8 @@ Design
 	[x] Taille du titre : viewbox
 [ ] Boutons rond : hover rond
 [ ] Tableaux d'utilisateurs
-	[ ] Padding des champs
+	[x] Padding des champs
+	[x] Couleurs à adapter
 	[ ] Flèches de tri
 [ ] Fiche patient
 	[ ] Padding du champ Commentaires

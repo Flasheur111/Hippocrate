@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hippocrate.View"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="400" Background="#FFC1C1C1">
+             d:DesignHeight="300" d:DesignWidth="400" Background="{StaticResource PopupBackground}">
     <Grid Margin="10,10,10,10"  HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -51,8 +51,8 @@
             </DatePicker.SelectedDate>
         </DatePicker>
 
-        <Button Content="Créer" FontSize="25" Grid.Row="5" BorderThickness="1" IsEnabled="{Binding CanSubmit}" Command="{Binding ValidateAddCommand}"/>
-        <Button Content="Annuler" FontSize="25" Grid.Row="5" Grid.Column="1" BorderThickness="1" Command="{Binding CancelCommand}"/>
+        <Button Style="{StaticResource HoverButton}"  Content="Créer" FontSize="25" Grid.Row="5" BorderThickness="1" IsEnabled="{Binding CanSubmit}" Command="{Binding ValidateAddCommand}"/>
+        <Button Style="{StaticResource HoverButton}" Content="Annuler" FontSize="25" Grid.Row="5" Grid.Column="1" BorderThickness="1" Command="{Binding CancelCommand}"/>
 
     </Grid>
 </UserControl>

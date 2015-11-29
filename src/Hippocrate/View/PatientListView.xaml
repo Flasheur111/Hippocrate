@@ -46,7 +46,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel>
-                                <Button x:Name="Details" Command="{Binding Path=DataContext.PatientDetails, RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}"  Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"  HorizontalAlignment="Center">
+                                <Button Style="{StaticResource HoverButton}" x:Name="Details" Command="{Binding Path=DataContext.PatientDetails, RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}"  Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"  HorizontalAlignment="Center">
                                     <Image Source="/Assets/noun_8398_cc.png" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
                                 </Button>
                             </DockPanel>

@@ -14,7 +14,7 @@ Design
 
 [x] Login : padding sur les champs
 [x] All : Fond plus clair
-[ ] All : Hover boutons (bleu actuellement)
+[x] All : Hover boutons (bleu actuellement)
 [ ] Profil : padding sur les champs + enlever le champ password
 [ ] Liste du personnel
 	[ ] Taille des boutons back + trash à réduire

@@ -16,7 +16,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        
+
         <Rectangle x:Name="background" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="1">
             <Rectangle.Style>
                 <Style TargetType="{x:Type Rectangle}">
@@ -44,17 +44,27 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
+
+        <!-- User information -->
         <TextBlock x:Name="userName" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Grid.Row="1" TextWrapping="Wrap" Text="{Binding DisplayedName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="10, 0, 10, 0"/>
         <Image x:Name="userPhoto" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" Source="{Binding Picture}" Stretch="Uniform" RenderOptions.BitmapScalingMode="Fant" Margin="20,20,20,0"/>
-        <Viewbox Grid.Row="3" HorizontalAlignment="Stretch" Margin="5" Stretch="Uniform">
-        <Button x:Name="home" Command="{Binding HomeCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" FontSize="15" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Content="accueil" BorderThickness="0" Background="Transparent"/>
+
+        <!-- Home -->
+        <Viewbox Grid.Row="3" HorizontalAlignment="Stretch"  Margin="0,5,0,5" Stretch="Uniform">
+            <Button Width="{Binding ActualWidth, ElementName=sidebar}" Style="{StaticResource SidebarButton}" x:Name="home" Command="{Binding HomeCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" FontSize="25" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Content="accueil" BorderThickness="0"/>
         </Viewbox>
-        <Viewbox Grid.Row="4" HorizontalAlignment="Stretch" Margin="5" Stretch="Uniform">
-            <Button x:Name="my_account" Command="{Binding AccountCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" FontSize="15" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="mon compte" BorderThickness="0" Background="Transparent"/>
+
+         <!-- Profile -->
+        <Viewbox Grid.Row="4" HorizontalAlignment="Stretch" Margin="0,5,0,5" Stretch="Uniform">
+            <Button Width="{Binding ActualWidth, ElementName=sidebar}" Style="{StaticResource SidebarButton}" x:Name="my_account" Command="{Binding AccountCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" FontSize="25" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="mon compte" BorderThickness="0"/>
         </Viewbox>
-        <Viewbox Grid.Row="5" HorizontalAlignment="Stretch" Margin="5" Stretch="Uniform">
-            <Button x:Name="disconnect" Command="{Binding LogoutCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" FontSize="15" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Content="déconnexion" BorderThickness="0" Background="Transparent"/>
+
+        <!-- Sign out -->
+        <Viewbox Grid.Row="5" HorizontalAlignment="Stretch" Margin="0,5,0,5" Stretch="Uniform">
+            <Button Width="{Binding ActualWidth, ElementName=sidebar}" Style="{StaticResource SidebarButton}" x:Name="disconnect" Command="{Binding LogoutCommand}" Visibility="{Binding Path=Connected, Converter={StaticResource ResourceKey=BoolToVis}}" FontSize="25" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Content="déconnexion" BorderThickness="0"/>
         </Viewbox>
+
+        <!-- Logo -->
         <Image x:Name="logo" Grid.Row="6" Source="/Assets/logo.png"  RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
 
     </Grid>

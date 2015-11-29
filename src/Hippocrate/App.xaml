@@ -53,6 +53,15 @@
             <Setter Property="MinHeight" Value="30" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FontSize" Value="15"/>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True" />
+                        <Condition Property="SortDirection" Value="{x:Null}" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="{StaticResource PrimaryLight}" />
+                </MultiTrigger>
+            </Style.Triggers>
         </Style>
 
         <!-- DataGridCustom Cell Style -->
@@ -100,6 +109,7 @@
         <Style x:Key="CustomTabControl" TargetType="TabControl">
             <Style.Setters>
                 <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
             </Style.Setters>
         </Style>
         <Style x:Key="CustomTabItem" TargetType="TabItem">
@@ -108,6 +118,27 @@
                 <Setter Property="Foreground" Value="{StaticResource Primary}" />
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Grid Name="Panel">
+                                <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="0,2,10,0"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource Primary}" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter Property="Foreground" Value="{StaticResource LightGray}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style.Setters>
         </Style>
         <Style x:Key="RoundButton" TargetType="Button">
@@ -187,6 +218,7 @@
             <Style.Setters>
                 <Setter Property="Background" Value="{StaticResource LightGray}" />
                 <Setter Property="Foreground" Value="{StaticResource Primary}" />
+                <Setter Property="FontWeight" Value="Normal" />
                 <Setter Property="HorizontalContentAlignment" Value="Center" />
             </Style.Setters>
         </Style>

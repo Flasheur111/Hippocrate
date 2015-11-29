@@ -40,9 +40,11 @@
         <DataGrid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="6"
                   ItemsSource="{Binding PatientsList}" 
                   SelectedItem="{Binding SelectedRecord}"
-                  Style="{StaticResource DatagridCustom}" ColumnHeaderStyle="{StaticResource HeaderStyle}" RowStyle="{StaticResource RowStyle}" CellStyle="{StaticResource CellStyle}">
+                  Style="{StaticResource DatagridCustom}"
+                  ColumnHeaderStyle="{StaticResource HeaderStyle}"
+                  RowStyle="{StaticResource RowStyle}" CellStyle="{StaticResource CellStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname"/>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname" />
                 <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="0.2*"/>
                 <DataGridTextColumn Header="Nombre d'observations" Binding="{Binding Observations.Length, FallbackValue=0}" Width="0.2*"/>
                 <DataGridTemplateColumn Header="Dossier médical" Width="0.1*" >

@@ -39,7 +39,7 @@
         <TextBlock Grid.Row="5" Grid.Column="2" Text="Prénom : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
         <TextBox Style="{StaticResource BasicTextBox}" Grid.Row="5" Grid.Column="3" Text="{Binding Firstname}" IsEnabled="False" FontSize="20"/>
 
-        <TextBlock Grid.Row="6" Grid.Column="2" Text="Role : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="Rôle : "  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20"/>
         <TextBox Style="{StaticResource BasicTextBox}" Grid.Row="6" Grid.Column="3" Text="{Binding Role}" IsEnabled="False" FontSize="20"/>
     </Grid>
 </UserControl>

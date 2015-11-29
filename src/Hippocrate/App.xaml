@@ -45,7 +45,7 @@
 
         <!-- DatagridCustom Header Style -->
         <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#7F7F7F" />
+            <Setter Property="Background" Value="#bfbfbf" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -57,8 +57,18 @@
 
         <!-- DataGridCustom Cell Style -->
         <Style x:Key="CellStyle" TargetType="DataGridCell">
-            <Setter Property="BorderThickness" Value="0,0,2,0"/>
-            <Setter Property="BorderBrush" Value="#FFA7A7A7"/>
+            <Setter Property="BorderThickness" Value="2,0,2,0"/>
+            <Setter Property="BorderBrush" Value="{StaticResource LightGray}"/>
+            <Setter Property="Padding" Value="15,0,0,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <!-- DatagridCustom Row Style -->
@@ -67,10 +77,10 @@
             <Setter Property="BorderThickness" Value="0" />
             <Style.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                    <Setter Property="Background" Value="#8F8F8F"></Setter>
+                    <Setter Property="Background" Value="#cecece"></Setter>
                 </Trigger>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                    <Setter Property="Background" Value="#7F7F7F"></Setter>
+                    <Setter Property="Background" Value="#e1e1e1"></Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>

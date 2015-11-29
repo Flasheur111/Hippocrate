@@ -27,9 +27,10 @@ Design
 	[x] Couleurs à adapter
 	[ ] Flèches de tri
 [ ] Fiche patient
-	[ ] Padding du champ Commentaires
+	[x] Padding du champ Commentaires
+	[x] Bordures grises
 	[ ] Scrollbar des observations
-	[ ] Bordures grises
+	[ ] Scrollbar manquante des commentaires
 [ ] Title bar personnalisée
 
 Bonus

@@ -18,7 +18,7 @@ namespace Hippocrate.BusinessManagement
             catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return false;
+                throw e;
             }
         }
 

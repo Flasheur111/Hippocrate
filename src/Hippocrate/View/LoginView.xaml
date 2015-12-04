@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Hippocrate.View"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:helper="clr-namespace:Hippocrate.Helper"
+             xmlns:controls="clr-namespace:Hippocrate.View"
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
              >
@@ -52,6 +53,7 @@
                         </Style.Triggers>
                     </Style>
                 </TextBlock.Style>
+
                 <Run Text="L'identifiant et le mot de passe saisis ne correspondent pas."/><LineBreak/><Run Text="Vérifiez à nouveau vos informations."/></TextBlock>
         </StackPanel>
     </Grid>

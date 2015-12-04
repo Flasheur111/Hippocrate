@@ -11,7 +11,7 @@ namespace Hippocrate.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class LoginViewModel : ViewModelBase
+    public class LoginViewModel : LoadingViewModel
     {
 
         #region user changed event handler
@@ -95,6 +95,7 @@ namespace Hippocrate.ViewModel
         /// </summary>
         public LoginViewModel()
         {
+            Loading = true;
             LoginError = false;
 
             //Debug hack
@@ -103,27 +104,38 @@ namespace Hippocrate.ViewModel
 
             _connectionCommand = new RelayCommand(() =>
             {
+                Loading = true;
                 ViewModelLocator vm = new ViewModelLocator();
-
-                bool isConnected = BusinessManagement.User.Connect(Login, Password);
-                if (isConnected)
+                try
                 {
-                    // Set connected User
-                    ServiceUser.User User = BusinessManagement.User.GetUser(Login);
-                    _userChangedEventHandler(this, User);
+                    bool isConnected = BusinessManagement.User.Connect(Login, Password);
 
-                    // Reset error handling
-                    LoginError = false;
+                    if (isConnected)
+                    {
+                        // Set connected User
+                        ServiceUser.User User = BusinessManagement.User.GetUser(Login);
+                        _userChangedEventHandler(this, User);
 
-                    // Switch view to home
-                    vm.Window.DataContext = vm.Home;
-                }
-                else
+                        // Reset error handling
+                        LoginError = false;
+
+                        // Switch view to home
+                        vm.Window.DataContext = vm.Home;
+                    }
+                    else
+                    {
+                        // Wrong pass dude !
+                        LoginError = true;
+                    }
+                } catch (Exception)
                 {
-                    // Wrong pass dude !
-                    LoginError = true;
+                    // Server error
                 }
-            }, () => CanLogin);
+                finally
+                {
+                    Loading = false;
+                }
+            }, () => !Loading && CanLogin);
 
             WindowContent = new View.LoginView();
             WindowContent.DataContext = this;
@@ -131,7 +143,7 @@ namespace Hippocrate.ViewModel
 
         public bool CanLogin
         {
-            get { return !String.IsNullOrWhiteSpace(Login) && !String.IsNullOrWhiteSpace(Password); }
+            get { return !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password); }
         }
 
 

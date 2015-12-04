@@ -640,7 +640,7 @@
         </Style>
 
         <!-- Data Template-->
-
+        
         <!-- ViewModel dico -->
 
         <ResourceDictionary x:Key="ViewModels">

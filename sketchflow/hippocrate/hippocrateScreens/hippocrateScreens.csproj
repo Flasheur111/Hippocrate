@@ -111,12 +111,6 @@
     <Resource Include="search.png" />
     <Resource Include="Sketch.Flow" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\Downloads\Wcf-Medical\Dbo\Dbo.csproj">
-      <Project>{e251ea27-0be8-46df-9e11-5f86e2402e84}</Project>
-      <Name>Dbo</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.

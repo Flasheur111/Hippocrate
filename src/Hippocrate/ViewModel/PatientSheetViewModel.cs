@@ -14,6 +14,7 @@ using LiveCharts.Series;
 using Hippocrate.DataAccess;
 using Hippocrate.ServiceLive;
 using System.Windows.Media;
+using System.Threading.Tasks;
 
 namespace Hippocrate.ViewModel
 {
@@ -303,13 +304,16 @@ namespace Hippocrate.ViewModel
             set { _patient = value; }
         }
 
+        private ServiceLiveManager s;
+
         #endregion
         /// <summary>
         /// Initializes a new instance of the PatientsListViewModel class.
         /// </summary>
         public PatientSheetViewModel()
         {
-             WindowContent = new View.PatientSheetView();
+            ViewModelLocator vml = new ViewModelLocator();
+             WindowContent = vml.PatientSheetView;
              WindowContent.DataContext = this;
 
             Selected = false;
@@ -355,17 +359,17 @@ namespace Hippocrate.ViewModel
             };
 
             CanViewAdd = false;
-
-            ViewModelLocator vml = new ViewModelLocator();
+            
             View.AddObservationView addObservationView = new View.AddObservationView();
             AddObservationContent = addObservationView;
             addObservationView.DataContext = vml.AddObservation;
-            ServiceLiveManager s = new ServiceLiveManager(this);
+            s = new ServiceLiveManager(this);
+            
         }
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
-            CanAdd = e.Role == "Infirmière" ? false : true;
+            CanAdd = e.Role.Equals("Infirmière") ? false : true;
         }
 
         public void DissmissPopup()
@@ -375,6 +379,8 @@ namespace Hippocrate.ViewModel
 
         public void PatientSelectedEventHandler(Patient e)
         {
+            if (!s.IsSubscribed())
+                s.Subscribe();
             DisplayedName = e.Firstname.ToUpper() + " " + e.Name;
             DisplayedBirthday = "Née le " + e.Birthday.ToString("dd/MM/yyyy");
             PatientId = e.Id;
@@ -401,7 +407,6 @@ namespace Hippocrate.ViewModel
 
         public void PushDataTemp(double requestData)
         {
-            
            if (PatientTemperatureSerie[0].PrimaryValues.Count > 50)
                 PatientTemperatureSerie[0].PrimaryValues.RemoveAt(0);
 

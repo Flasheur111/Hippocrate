@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Hippocrate.ServiceUser;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Hippocrate.ViewModel
 {

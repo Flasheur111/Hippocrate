@@ -1,5 +1,6 @@
 ﻿using Hippocrate.ServiceLive;
 using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace Hippocrate.DataAccess
 {
@@ -11,7 +12,16 @@ namespace Hippocrate.DataAccess
         {
             this._ic = new InstanceContext(i);
             this._client = new ServiceLiveClient(this._ic);
-            this._client.Subscribe();
+        }
+
+        public void Subscribe()
+        {
+           this._client.SubscribeAsync();
+        }
+
+        public bool IsSubscribed()
+        {
+            return this._client.State == CommunicationState.Opened;
         }
     }
 }

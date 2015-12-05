@@ -18,10 +18,24 @@ namespace Hippocrate.BusinessManagement
                 ServicePatientManager s = new ServicePatientManager();
                 return s.GetListPatient();
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return null;
+                throw e;
+            }
+        }
+
+        public async static Task<ServicePatient.Patient[]> GetListPatientAsync()
+        {
+            try
+            {
+                ServicePatientManager s = new ServicePatientManager();
+                return await s.GetListPatientAsync();
+            }
+            catch (EndpointNotFoundException e)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                throw e;
             }
         }
 
@@ -32,10 +46,10 @@ namespace Hippocrate.BusinessManagement
                 ServicePatientManager s = new ServicePatientManager();
                 return s.DeletePatient(id);
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return false;
+                throw e;
             }
         }
 
@@ -52,10 +66,10 @@ namespace Hippocrate.BusinessManagement
                 p.Observations = new ServicePatient.Observation[0];
                 return s.AddPatient(p);
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return false;
+                throw e;
             }
         }
 
@@ -66,10 +80,10 @@ namespace Hippocrate.BusinessManagement
                 ServicePatientManager s = new ServicePatientManager();
                 return s.GetPatient(idPatient);
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return null;
+                throw e;
             }
         }
 

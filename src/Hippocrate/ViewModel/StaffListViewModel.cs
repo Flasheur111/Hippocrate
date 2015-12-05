@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using System.Threading.Tasks;
 
 namespace Hippocrate.ViewModel
 {
@@ -73,7 +74,7 @@ namespace Hippocrate.ViewModel
 
         private ObservableCollection<ServiceUser.User> _stafflist;
 
-        public ObservableCollection<ServiceUser.User>  StaffList
+        public ObservableCollection<ServiceUser.User> StaffList
         {
             get
             {
@@ -152,7 +153,7 @@ namespace Hippocrate.ViewModel
 
 
         private string LoginUser;
-        
+
         public StaffListViewModel()
         {
             BackCommand = new RelayCommand(() =>
@@ -191,15 +192,13 @@ namespace Hippocrate.ViewModel
             CanViewAdd = false;
         }
 
-        public void UserListUpdate()
+        public async void UserListUpdate()
         {
-            ServiceUser.User[] staff = BusinessManagement.User.GetUserList();
-            StaffList = new ObservableCollection<ServiceUser.User>();
-            foreach (ServiceUser.User u in staff)
-            {
+            User[] staff = await BusinessManagement.User.GetUserListAsync();
+            StaffList = new ObservableCollection<User>();
+            foreach (User u in staff)
                 if (u.Login != LoginUser)
                     StaffList.Add(u);
-            }
         }
 
         public void UserConnectedChangedEventHandler(object sender, User e)

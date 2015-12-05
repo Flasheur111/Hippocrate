@@ -1,6 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Hippocrate.ViewModel
@@ -11,7 +14,7 @@ namespace Hippocrate.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class LoginViewModel : LoadingViewModel
+    public class LoginViewModel : ViewModelBase
     {
 
         #region user changed event handler
@@ -58,7 +61,7 @@ namespace Hippocrate.ViewModel
                 RaisePropertyChanged("WindowContent");
             }
         }
-        
+
         private string _login;
 
         public string Login
@@ -88,33 +91,47 @@ namespace Hippocrate.ViewModel
                 }
             }
         }
-    
+
+        private bool _loading;
+
+        public bool Loading
+        {
+            get
+            {
+                return _loading;
+            }
+            set
+            {
+                _loading = value;
+                RaisePropertyChanged("Loading");
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the LoginViewModel class.
         /// </summary>
         public LoginViewModel()
         {
-            Loading = true;
+            Loading = false;
             LoginError = false;
 
             //Debug hack
             Login = "fred";
             Password = "fred";
 
-            _connectionCommand = new RelayCommand(() =>
+            _connectionCommand = new RelayCommand(async () =>
             {
-                Loading = true;
                 ViewModelLocator vm = new ViewModelLocator();
+                Loading = true;
                 try
                 {
-                    bool isConnected = BusinessManagement.User.Connect(Login, Password);
+                    bool isConnected = await BusinessManagement.User.ConnectAsync(Login, Password);
 
                     if (isConnected)
                     {
                         // Set connected User
-                        ServiceUser.User User = BusinessManagement.User.GetUser(Login);
-                        _userChangedEventHandler(this, User);
+                        ServiceUser.User User = await BusinessManagement.User.GetUserAsync(Login);
+                        await Application.Current.Dispatcher.InvokeAsync(() => { _userChangedEventHandler(this, User); });
 
                         // Reset error handling
                         LoginError = false;
@@ -127,7 +144,8 @@ namespace Hippocrate.ViewModel
                         // Wrong pass dude !
                         LoginError = true;
                     }
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     // Server error
                 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Hippocrate.View"
         xmlns:local="clr-namespace:Hippocrate.View"
+        xmlns:model="clr-namespace:Hippocrate.ViewModel"
         mc:Ignorable="d"
         Title="Hippocrate" Height="720" Width="1280" MinWidth="700" MinHeight="600"
         Icon="/Assets/hippocrate.ico"
@@ -27,16 +28,5 @@
                 </EventTrigger>
             </ContentControl.Triggers>
         </ContentControl>
-        <controls:LoadingView Grid.ColumnSpan="2">
-            <!-- FIX this style -->
-            <Style TargetType="controls:LoadingView">
-                <Setter Property="Visibility" Value="Hidden" />
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Loading}" Value="true">
-                        <Setter Property="Visibility" Value="Visible"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-        </controls:LoadingView>
     </Grid>
 </Window>

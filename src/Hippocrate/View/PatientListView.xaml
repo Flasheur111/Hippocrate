@@ -43,6 +43,10 @@
                   Style="{StaticResource DatagridCustom}"
                   ColumnHeaderStyle="{StaticResource HeaderStyle}"
                   RowStyle="{StaticResource RowStyle}" CellStyle="{StaticResource CellStyle}">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="{StaticResource SelectedColor}"/>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname" />
                 <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="0.2*"/>

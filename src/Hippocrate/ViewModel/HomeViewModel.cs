@@ -4,6 +4,7 @@ using Hippocrate.ServiceUser;
 using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using System.Threading.Tasks;
 
 namespace Hippocrate.ViewModel
 {
@@ -91,7 +92,7 @@ namespace Hippocrate.ViewModel
                 vm.Window.DataContext = vm.StaffListView;
             });
         }
-        
+
 
         public void UserConnectedChangedEventHandler(object sender, User e)
         {

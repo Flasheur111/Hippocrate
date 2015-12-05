@@ -22,6 +22,20 @@ namespace Hippocrate.BusinessManagement
             }
         }
 
+        public async static Task<bool> ConnectAsync(string login, string pass)
+        {
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return await sum.ConnectAsync(login, pass);
+            }
+            catch (EndpointNotFoundException e)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                throw e;
+            }
+        }
+
         public static ServiceUser.User GetUser(string login)
         {
             try
@@ -29,10 +43,24 @@ namespace Hippocrate.BusinessManagement
                 ServiceUserManager sum = new ServiceUserManager();
                 return sum.GetUser(login);
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return null;
+                throw e;
+            }
+        }
+
+        public async static Task<ServiceUser.User> GetUserAsync(string login)
+        {
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return await sum.GetUserAsync(login);
+            }
+            catch (EndpointNotFoundException e)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                throw e;
             }
         }
 
@@ -43,10 +71,24 @@ namespace Hippocrate.BusinessManagement
                 ServiceUserManager sum = new ServiceUserManager();
                 return sum.GetListUser();
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return null;
+                throw e;
+            }
+        }
+
+        public async static Task<ServiceUser.User[]> GetUserListAsync()
+        {
+            try
+            {
+                ServiceUserManager sum = new ServiceUserManager();
+                return await sum.GetListUserAsync();
+            }
+            catch (EndpointNotFoundException e)
+            {
+                MessageBox.Show("Le serveur ne répond pas.", "Erreur");
+                throw e;
             }
         }
 
@@ -57,10 +99,10 @@ namespace Hippocrate.BusinessManagement
                 ServiceUserManager sum = new ServiceUserManager();
                 return sum.DeleteUser(login);
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return false;
+                throw e;
             }
         }
 
@@ -71,10 +113,10 @@ namespace Hippocrate.BusinessManagement
                 ServiceUserManager sum = new ServiceUserManager();
                 return sum.AddUser(user);
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("Le serveur ne répond pas.", "Erreur");
-                return false;
+                throw e;
             }
         }
     }

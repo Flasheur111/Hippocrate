@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Hippocrate.ServiceUser;
 using System;
+using System.Threading.Tasks;
 
 namespace Hippocrate.ViewModel
 {
@@ -92,9 +93,8 @@ namespace Hippocrate.ViewModel
             WindowContent = new View.AccountView();
             WindowContent.DataContext = this;
         }
-
         public void UserConnectedChangedEventHandler(object sender, User e)
-        {
+        { 
             this.Firstname = e.Firstname;
             this.Lastname = e.Name;
             this.Role = e.Role;

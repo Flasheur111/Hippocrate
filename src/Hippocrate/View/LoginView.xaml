@@ -7,11 +7,15 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:helper="clr-namespace:Hippocrate.Helper"
              xmlns:controls="clr-namespace:Hippocrate.View"
+             xmlns:model="clr-namespace:Hippocrate.ViewModel"
              mc:Ignorable="d" 
              d:DesignWidth="980" d:DesignHeight="660"
              >
-    
+
     <Grid HorizontalAlignment="Stretch">
+        <Grid.Resources>
+            <model:LoginViewModel x:Key="myDataSource2"/>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1.2*"/>
@@ -40,8 +44,7 @@
             </PasswordBox.InputBindings>
         </PasswordBox>
         <StackPanel Orientation="Vertical" Grid.Row="6" HorizontalAlignment="Stretch">
-            <Button Style="{StaticResource ConnectionButton}" Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left"  Height="50" Width="146" FontSize="24" Command="{Binding ConnectionCommand}">
-            </Button>
+            <Button Style="{StaticResource ConnectionButton}" Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left"  Height="50" Width="146" FontSize="24" Command="{Binding ConnectionCommand}"/>
             <TextBlock Margin="0,25,0,0" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Stretch">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
@@ -56,5 +59,6 @@
 
                 <Run Text="L'identifiant et le mot de passe saisis ne correspondent pas."/><LineBreak/><Run Text="Vérifiez à nouveau vos informations."/></TextBlock>
         </StackPanel>
+        <controls:LoadingView Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding Path=Loading, Converter={StaticResource ResourceKey=BoolToVis}}"/>
     </Grid>
 </UserControl>

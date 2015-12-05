@@ -45,6 +45,7 @@ namespace Hippocrate.ViewModel
             SimpleIoc.Default.Register<AddObservationViewModel>();
 
             SimpleIoc.Default.Register<View.MainWindow>();
+            SimpleIoc.Default.Register<View.PatientSheetView>();
         }
 
         public AddStaffViewModel AddStaff
@@ -145,6 +146,14 @@ namespace Hippocrate.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<View.MainWindow>();
+            }
+        }
+
+        public View.PatientSheetView PatientSheetView
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<View.PatientSheetView>();
             }
         }
     }

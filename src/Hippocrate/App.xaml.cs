@@ -41,11 +41,11 @@ namespace Hippocrate
 
             vm.Account.UserConnectedChangedEventHandler(sender, e);
             vm.Home.UserConnectedChangedEventHandler(sender, e);
-            vm.PatientSheet.UserConnectedChangedEventHandler(sender, e);
             vm.Sidebar.UserConnectedChangedEventHandler(sender, e);
             vm.StaffListView.UserConnectedChangedEventHandler(sender, e);
             vm.StaffSheet.UserConnectedChangedEventHandler(sender, e);
             vm.PatientList.UserConnectedChangedEventHandler(sender, e);
+            vm.PatientSheet.UserConnectedChangedEventHandler(sender, e);
         }
     }
 }

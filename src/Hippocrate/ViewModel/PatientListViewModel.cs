@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace Hippocrate.ViewModel
 {
@@ -196,9 +197,7 @@ namespace Hippocrate.ViewModel
                 ViewModelLocator vm = new ViewModelLocator();
 
                 CanViewAdd = !CanViewAdd;
-            });
-
-           
+            });           
 
             PatientsList = null;
             CanAdd = true;
@@ -213,9 +212,9 @@ namespace Hippocrate.ViewModel
             WindowContent.DataContext = this;
         }
         
-        public void PatientListUpdate()
+        public async void PatientListUpdate()
         {
-            ServicePatient.Patient[] patients = BusinessManagement.Patient.GetListPatient();
+            ServicePatient.Patient[] patients = await BusinessManagement.Patient.GetListPatientAsync();
             PatientsList = new ObservableCollection<ServicePatient.Patient>(new List<ServicePatient.Patient>(patients));
         }
 
@@ -227,7 +226,6 @@ namespace Hippocrate.ViewModel
         public void UserConnectedChangedEventHandler(object sender, User e)
         {
             CanAdd = e.Role == "Infirmière" ? false : true;
-
             PatientListUpdate();
         }
     }

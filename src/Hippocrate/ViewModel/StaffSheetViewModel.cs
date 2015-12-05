@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Hippocrate.ViewModel
 {
